@@ -7,5 +7,5 @@
 4. npm install three
 
 
-## jalaninnya
+## Run the program
 1. parcel ./src/index.html
