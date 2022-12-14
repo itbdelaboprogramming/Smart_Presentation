@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.139.2/build/three.module.js"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css" >
+  </head>
+  <body>
+    <canvas id="myCanvas">    </canvas>
+
+    <script type="module">
+        // const myCanvas = document.querySelector('#myCanvas');
+
+        import * as THREE from 'three';
+        import { OrbitControls } from 'https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls.js';
+        import { GLTFLoader } from 'https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js'
+
+        const metal = new URL('/metal.glb', import.meta.url);
+        const scene = new THREE.Scene();
+
+        const camera = new THREE.PerspectiveCamera(
+            90,
+            myCanvas.offsetWidth / myCanvas.offsetHeight
+        );
+
+        camera.position.set(1, 1, 1);
+        camera.lookAt(scene.position);
+
+        const renderer = new THREE.WebGLRenderer({ canvas: myCanvas });
+        renderer.setClearColor(0xffffff, 1.0);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(myCanvas.offsetWidth, myCanvas.offsetHeight);
+
+        const orbitControls = new OrbitControls(camera, renderer.domElement);
+
+        const assetLoader = new GLTFLoader();
+        assetLoader.load(metal.href, function(gltf){
+            const model = gltf.scene;
+            scene.add(model);
+            model.position.set(0, 0, 0)
+        }, undefined, function(error){
+            concole.error(error);
+        });
+
+        renderer.setAnimationLoop(() => {
+            orbitControls.update();
+
+            renderer.render(scene, camera);
+        });
+    </script>
+  </body>
+</html>
