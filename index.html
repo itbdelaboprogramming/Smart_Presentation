@@ -12,25 +12,30 @@
     <link rel="stylesheet" href="style.css" >
   </head>
   <body>
-    <canvas id="myCanvas">    </canvas>
+    <canvas id="myCanvas" height="300px" width="500px">    </canvas>
 
     <script type="module">
-        // const myCanvas = document.querySelector('#myCanvas');
+        const myCanvas = document.querySelector('#myCanvas');
 
         import * as THREE from 'three';
         import { OrbitControls } from 'https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls.js';
         import { GLTFLoader } from 'https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js'
 
         const metal = new URL('/metal.glb', import.meta.url);
+        const MZFB659A_2 = new URL('/MZFB659A_2.STL', import.meta.url);
         const scene = new THREE.Scene();
 
         const camera = new THREE.PerspectiveCamera(
-            90,
+            120,
             myCanvas.offsetWidth / myCanvas.offsetHeight
         );
 
-        camera.position.set(1, 1, 1);
+        camera.position.set(0, 1, 1);
         camera.lookAt(scene.position);
+
+        const light = new THREE.SpotLight()
+        light.position.set(20, 20, 20)
+        scene.add(light)
 
         const renderer = new THREE.WebGLRenderer({ canvas: myCanvas });
         renderer.setClearColor(0xffffff, 1.0);
@@ -47,6 +52,7 @@
         }, undefined, function(error){
             concole.error(error);
         });
+
 
         renderer.setAnimationLoop(() => {
             orbitControls.update();
