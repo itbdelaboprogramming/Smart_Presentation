@@ -23,9 +23,11 @@
         import { STLLoader } from 'https://unpkg.com/three@0.139.2/examples/jsm/loaders/STLLoader.js'
         import { VRMLLoader } from 'https://unpkg.com/three@0.139.2/examples/jsm/loaders/VRMLLoader.js'
 
+
         const metal = new URL('/metal.glb', import.meta.url);
         const MZFB659A_2 = new URL('/MZFB659A_2.STL', import.meta.url);
         const scene = new THREE.Scene();
+        let vrmlScene;
 
         const camera = new THREE.PerspectiveCamera(
             120,
@@ -72,8 +74,12 @@
         // })
 
         var loader = new VRMLLoader();
-          loader.load( 'test.wrl', function ( object ) {
+        loader.load( 'test.wrl', function ( object ) {
+          vrmlScene = object;
           scene.add( object );
+          orbitControls.reset();
+        }, undefined, function(error){
+          console.error(error);
         } );
 
 
