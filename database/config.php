@@ -1,7 +1,7 @@
 <?php
-    $user = 'root';
-    $pass = '';
-    $db = 'smart_presentation';
+    // $user = 'root';
+    // $pass = '';
+    // $db = 'smart_presentation';
 
 
 ?>

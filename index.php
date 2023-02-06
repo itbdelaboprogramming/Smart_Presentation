@@ -10,6 +10,9 @@
 
 </head>
 <body>
-    SMART PRESENTATION!!
+    <!-- SMART PRESENTATION!! -->
+    <?php
+        include("./pages/home.php")
+    ?>
 </body>
 </html>
