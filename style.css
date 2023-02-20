@@ -16,3 +16,8 @@ canvas {
     min-height: 100%;
     background-color: lightgray;
 }
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
