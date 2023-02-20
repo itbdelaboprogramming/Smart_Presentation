@@ -1,4 +1,5 @@
 const myCanvas = document.querySelector('#myCanvas');
+var myText = document.getElementById("myText").textContent;
 
 import * as THREE from 'three';
 import { OrbitControls } from 'https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls.js';
@@ -49,7 +50,12 @@ const orbitControls = new OrbitControls(camera, renderer.domElement);
 
 const loader = new GLTFLoader();
 
-loader.load( 'files/MSD700_bucket_MCLA007A_00_2.glb', function ( gltf ) {
+
+// let text = "MSD700_bucket_MCLA007A_00_2.glb";
+let pathnya = "files/" + myText;
+console.log(pathnya)
+
+loader.load( pathnya, function ( gltf ) {
 
     scene.add( gltf.scene );
 
