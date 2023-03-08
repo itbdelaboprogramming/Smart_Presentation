@@ -25,7 +25,19 @@ function resizeCanvasToDisplaySize(canvas) {
 	return needResize;
 }
 
+// Creating a scene with background color
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xe0e4e7);
+
+// Plane geometry as a ground
+// const geometry = new THREE.PlaneGeometry(10, 10, 8, 8);
+// const material = new THREE.MeshBasicMaterial({
+// 	color: 0x4f5354,
+// 	side: THREE.DoubleSide,
+// });
+// const plane = new THREE.Mesh(geometry, material);
+// plane.rotateX(-Math.PI / 2);
+// scene.add(plane);
 
 const camera = new THREE.PerspectiveCamera(
 	40,
@@ -55,6 +67,7 @@ const r = 20;
 // above obj light
 const light = new THREE.PointLight();
 light.position.set(r, r, 0);
+light.shadowMapVisible = true;
 scene.add(light);
 
 const light1 = new THREE.PointLight();
