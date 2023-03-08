@@ -41,21 +41,37 @@ const divisions = 10;
 const gridHelper = new THREE.GridHelper(size, divisions);
 scene.add(gridHelper);
 
+/*
+	Light in 3D scene
+	set(x,y,z)
+		+x front
+		+y up
+		+z left
+*/
+
+//distance from 0,0,0
+const r = 20;
+
+// above obj light
 const light = new THREE.PointLight();
-light.position.set(-20, 20, 20);
+light.position.set(r, r, 0);
 scene.add(light);
+
 const light1 = new THREE.PointLight();
-light1.position.set(-20, -20, 20);
+light1.position.set(-0.5 * r, r, 0.866 * r);
 scene.add(light1);
 
-const light3 = new THREE.PointLight();
-light3.position.set(-20, 20, -20);
-scene.add(light3);
-const light4 = new THREE.PointLight();
-light4.position.set(-20, -20, -20);
-scene.add(light4);
+const light2 = new THREE.PointLight();
+light2.position.set(-0.5 * r, r, -0.866 * r);
+scene.add(light2);
 
-camera.position.set(1, 3, 3);
+// below obj light
+const light3 = new THREE.PointLight();
+light3.position.set(0, -r, 0);
+scene.add(light3);
+
+// Camera position
+camera.position.set(3, 2, 2);
 camera.lookAt(scene.position);
 
 const renderer = new THREE.WebGLRenderer({ canvas: myCanvas });
@@ -67,11 +83,11 @@ const orbitControls = new OrbitControls(camera, renderer.domElement);
 
 const loader = new GLTFLoader();
 
-let pathnya = "files/" + myText;
-console.log(pathnya);
+let path = "files/" + myText;
+console.log(path);
 
 loader.load(
-	pathnya,
+	path,
 	function (gltf) {
 		scene.add(gltf.scene);
 	},

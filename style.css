@@ -10,6 +10,7 @@ body {
 	grid-template-columns: 4fr 1fr 1fr;
 }
 
+/* Canvas for 3d object */
 canvas {
 	border: 1px solid black;
 	width: 100%;
