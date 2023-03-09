@@ -30,14 +30,16 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xe0e4e7);
 
 // Plane geometry as a ground
-// const geometry = new THREE.PlaneGeometry(10, 10, 8, 8);
-// const material = new THREE.MeshBasicMaterial({
-// 	color: 0x4f5354,
-// 	side: THREE.DoubleSide,
-// });
-// const plane = new THREE.Mesh(geometry, material);
-// plane.rotateX(-Math.PI / 2);
-// scene.add(plane);
+const geometry = new THREE.PlaneGeometry(20, 20, 8, 8);
+const material = new THREE.MeshBasicMaterial({
+	color: 0x4f5354,
+	side: THREE.DoubleSide,
+	transparent: true,
+	opacity: 0.4,
+});
+const plane = new THREE.Mesh(geometry, material);
+plane.rotateX(-Math.PI / 2);
+scene.add(plane);
 
 const camera = new THREE.PerspectiveCamera(
 	40,
@@ -47,11 +49,12 @@ const camera = new THREE.PerspectiveCamera(
 // Resize canvas match the size of the screen
 resizeCanvasToDisplaySize(myCanvas);
 
-const size = 10;
-const divisions = 10;
+// create grid helper
+// const size = 10;
+// const divisions = 10;
 
-const gridHelper = new THREE.GridHelper(size, divisions);
-scene.add(gridHelper);
+// const gridHelper = new THREE.GridHelper(size, divisions);
+// scene.add(gridHelper);
 
 /*
 	Light in 3D scene
@@ -97,7 +100,6 @@ const orbitControls = new OrbitControls(camera, renderer.domElement);
 const loader = new GLTFLoader();
 
 let path = "files/" + myText;
-console.log(path);
 
 loader.load(
 	path,
