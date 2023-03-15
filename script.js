@@ -50,8 +50,8 @@ const camera = new THREE.PerspectiveCamera(
 resizeCanvasToDisplaySize(myCanvas);
 
 // create grid helper
-const size = 10;
-const divisions = 10;
+const size = 20;
+const divisions = 20;
 
 const gridHelper = new THREE.GridHelper(size, divisions);
 scene.add(gridHelper);
