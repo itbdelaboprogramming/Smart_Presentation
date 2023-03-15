@@ -1,45 +1,94 @@
-const myCanvas = document.querySelector('#myCanvas');
+const myCanvas = document.querySelector("#myCanvas");
 var myText = document.getElementById("myText").textContent;
 
-import * as THREE from 'three';
-import { OrbitControls } from 'https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from 'https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js'
-import { STLLoader } from 'https://unpkg.com/three@0.139.2/examples/jsm/loaders/STLLoader.js'
-import { VRMLLoader } from 'https://unpkg.com/three@0.139.2/examples/jsm/loaders/VRMLLoader.js'
+import * as THREE from "three";
+import { OrbitControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls.js";
+import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js";
+import { STLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/STLLoader.js";
+import { VRMLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/VRMLLoader.js";
 
 function resizeCanvasToDisplaySize(canvas) {
-    // Lookup the size the browser is displaying the canvas in CSS pixels.
-    const displayWidth = canvas.clientWidth;
-    const displayHeight = canvas.clientHeight;
+	// Lookup the size the browser is displaying the canvas in CSS pixels.
+	const displayWidth = canvas.clientWidth;
+	const displayHeight = canvas.clientHeight;
 
-    // Check if the canvas is not the same size.
-    const needResize =
-        canvas.width !== displayWidth || canvas.height !== displayHeight;
+	// Check if the canvas is not the same size.
+	const needResize =
+		canvas.width !== displayWidth || canvas.height !== displayHeight;
 
-    if (needResize) {
-        // Make the canvas the same size
-        canvas.width = displayWidth;
-        canvas.height = displayHeight;
-    }
+	if (needResize) {
+		// Make the canvas the same size
+		canvas.width = displayWidth;
+		canvas.height = displayHeight;
+	}
 
-    return needResize;
+	return needResize;
 }
 
+// Creating a scene with background color
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xe0e4e7);
+
+// Plane geometry as a ground
+const geometry = new THREE.PlaneGeometry(20, 20, 8, 8);
+const material = new THREE.MeshBasicMaterial({
+	color: 0x4f5354,
+	side: THREE.DoubleSide,
+	transparent: true,
+	opacity: 0.4,
+});
+const plane = new THREE.Mesh(geometry, material);
+plane.rotateX(-Math.PI / 2);
+scene.add(plane);
 
 const camera = new THREE.PerspectiveCamera(
-    40,
-    myCanvas.offsetWidth / myCanvas.offsetHeight
+	40,
+	myCanvas.offsetWidth / myCanvas.offsetHeight
 );
 
-resizeCanvasToDisplaySize(myCanvas)
+// Resize canvas match the size of the screen
+resizeCanvasToDisplaySize(myCanvas);
 
-camera.position.set(1, 3, 3);
+// create grid helper
+// const size = 10;
+// const divisions = 10;
+
+// const gridHelper = new THREE.GridHelper(size, divisions);
+// scene.add(gridHelper);
+
+/*
+	Light in 3D scene
+	set(x,y,z)
+		+x front
+		+y up
+		+z left
+*/
+
+//distance from 0,0,0
+const r = 20;
+
+// above obj light
+const light = new THREE.PointLight();
+light.position.set(r, r, 0);
+light.shadowMapVisible = true;
+scene.add(light);
+
+const light1 = new THREE.PointLight();
+light1.position.set(-0.5 * r, r, 0.866 * r);
+scene.add(light1);
+
+const light2 = new THREE.PointLight();
+light2.position.set(-0.5 * r, r, -0.866 * r);
+scene.add(light2);
+
+// below obj light
+const light3 = new THREE.PointLight();
+light3.position.set(0, -r, 0);
+scene.add(light3);
+
+// Camera position
+camera.position.set(3, 2, 2);
 camera.lookAt(scene.position);
-
-const light = new THREE.SpotLight()
-light.position.set(20, 20, 20)
-scene.add(light)
 
 const renderer = new THREE.WebGLRenderer({ canvas: myCanvas });
 renderer.setClearColor(0xffffff, 1.0);
@@ -50,59 +99,21 @@ const orbitControls = new OrbitControls(camera, renderer.domElement);
 
 const loader = new GLTFLoader();
 
+let path = "files/" + myText;
 
-// let text = "MSD700_bucket_MCLA007A_00_2.glb";
-let pathnya = "files/" + myText;
-console.log(pathnya)
-
-loader.load( pathnya, function ( gltf ) {
-
-    scene.add( gltf.scene );
-
-}, undefined, function ( error ) {
-
-    console.error( error );
-
-} );
-
+loader.load(
+	path,
+	function (gltf) {
+		scene.add(gltf.scene);
+	},
+	undefined,
+	function (error) {
+		console.error(error);
+	}
+);
 
 renderer.setAnimationLoop(() => {
-    orbitControls.update();
+	orbitControls.update();
 
-    renderer.render(scene, camera);
+	renderer.render(scene, camera);
 });
-
-
-// const assetLoader = new GLTFLoader();
-// assetLoader.load(metal.href, function(gltf){
-//     const model = gltf.scene;
-//     scene.add(model);
-//     model.position.set(0, 0, 0)
-// }, undefined, function(error){
-//     concole.error(error);
-// });
-
-// const loader = new STLLoader()
-// loader.load("/test.stl", function (geometry) {
-//     const group = new THREE.Group()
-//     scene.add(group)
-
-//     const material = new THREE.MeshPhongMaterial({ color: 0xaaaaaa, specular: 0x111111, shininess: 200 })
-//     const mesh = new THREE.Mesh(geometry, material)
-//     mesh.position.set(0, 0, 0)
-//     mesh.scale.set(10, 10, 10)
-//     mesh.castShadow = true
-//     mesh.receiveShadow = true
-
-//     geometry.center()
-//     group.add(mesh)
-// })
-
-// var loader = new VRMLLoader();
-// loader.load( 'files/test.wrl', function ( object ) {
-//   vrmlScene = object;
-//   scene.add( object );
-//   orbitControls.reset();
-// }, undefined, function(error){
-//   console.error(error);
-// } );
