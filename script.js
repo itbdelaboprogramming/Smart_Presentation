@@ -35,7 +35,7 @@ const material = new THREE.MeshBasicMaterial({
 	color: 0x4f5354,
 	side: THREE.DoubleSide,
 	transparent: true,
-	opacity: 0.4,
+	opacity: 0,
 });
 const plane = new THREE.Mesh(geometry, material);
 plane.rotateX(-Math.PI / 2);
@@ -52,8 +52,10 @@ resizeCanvasToDisplaySize(myCanvas);
 // create grid helper
 const size = 20;
 const divisions = 20;
+const colorCenterLine = 0xFFFFFF
+const colorGrid = 0xFFFFFF
 
-const gridHelper = new THREE.GridHelper(size, divisions);
+const gridHelper = new THREE.GridHelper(size, divisions, colorCenterLine, colorGrid);
 scene.add(gridHelper);
 
 /*
