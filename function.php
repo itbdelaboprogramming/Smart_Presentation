@@ -19,6 +19,7 @@ if (isset($_FILES['file'])) {
       // echo "Error: Invalid file type or file size too large.";
     }
     $value = $file_name;
-    header("Location: /SMART_PRESENTATION/index.php?value=" . urlencode($file_name));
-  }
+    header("Location: index.php?value=" . urlencode($file_name));
+    exit();
+}
   
