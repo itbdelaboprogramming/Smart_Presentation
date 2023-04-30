@@ -4,8 +4,8 @@ var myText = document.getElementById("myText").textContent;
 import * as THREE from "three";
 import { OrbitControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js";
-import { STLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/STLLoader.js";
-import { VRMLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/VRMLLoader.js";
+// import { STLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/STLLoader.js";
+// import { VRMLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/VRMLLoader.js";
 
 function resizeCanvasToDisplaySize(canvas) {
 	// Lookup the size the browser is displaying the canvas in CSS pixels.
@@ -54,10 +54,15 @@ resizeCanvasToDisplaySize(myCanvas);
 // create grid helper
 const size = 20;
 const divisions = 20;
-const colorCenterLine = 0xFFFFFF
-const colorGrid = 0xFFFFFF
+const colorCenterLine = 0xffffff;
+const colorGrid = 0xffffff;
 
-const gridHelper = new THREE.GridHelper(size, divisions, colorCenterLine, colorGrid);
+const gridHelper = new THREE.GridHelper(
+	size,
+	divisions,
+	colorCenterLine,
+	colorGrid
+);
 scene.add(gridHelper);
 
 /*

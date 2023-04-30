@@ -1,5 +1,4 @@
 <?php
-    
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +20,7 @@
     <body>
         <!-- SMART PRESENTATION!! -->
         <?php
+            // include("./pages/home.php")
             include("./pages/details.php")
         ?>
     </body>
