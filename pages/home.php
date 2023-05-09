@@ -30,10 +30,10 @@
                 <button class="menu-container" onClick="location.href='detail'">
                     <img src="./assets/Menu.png">
                 </button>
+            </div>
 
-                <div class="item-name-container">
-                    <p id="myText" class="text-file-name"><?php echo $global_variable; ?></p>
-                </div>
+            <div class="item-name-container">
+                <p id="myText" class="text-file-name"><?php echo $global_variable; ?></p>
             </div>
         </div>
 

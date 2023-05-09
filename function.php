@@ -20,8 +20,8 @@ if (isset($_FILES['file'])) {
        echo "<script type='text/javascript'>alert('$message');</script>";
     }
     $value = $file_name;
-    // header("Location: index.php?value=" . urlencode($file_name));
-    header("Location: detail");
+    header("Location: detail?value=" . urlencode($file_name));
+    // header("Location: detail");
 
     exit();
 }

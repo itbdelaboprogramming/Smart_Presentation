@@ -22,9 +22,15 @@
             break;
 
         default:
-            http_response_code(404);
-            include "./pages/404.php";
-            break;
+            if(strpos($request,'/detail') !== false){
+                include "./pages/details.php";
+                break;
+            }else{
+                http_response_code(404);
+                include "./pages/404.php";
+                break;
+            }
+
     }
 
     // function debug_to_console($data) {

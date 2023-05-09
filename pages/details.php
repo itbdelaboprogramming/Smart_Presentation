@@ -2,8 +2,12 @@
 <?php
     $global_variable = "MSD700_bucket_MCLA007A_00_2.glb";
     if (isset($_GET['value'])) {
+        echo "<script>console.log('disini: " . $global_variable . "' );</script>";
         $value = urldecode($_GET['value']);
         $global_variable = $value;
+    }else{
+        echo "<script>console.log('kesini: " . "' );</script>";
+        header("Location: detail/?value=" . urlencode($global_variable));
     }
 ?>
 

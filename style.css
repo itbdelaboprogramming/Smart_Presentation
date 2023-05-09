@@ -36,23 +36,36 @@ canvas {
 
 .upload-container {
 	position: absolute;
-	top: 0;
-	left: 0;
+	bottom: 0;
+	right: 0;
 	z-index: 1;
 	background-color: white;
-	padding: 10px;
 	border: 2px solid rgb(255, 255, 255);
 	border-radius: 5px;
+	margin-bottom: 23px;
+	margin-right: 23px;
 }
 
 .item-name-container {
 	position: absolute;
 	z-index: 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 23px;
+	width: 300px; /* Need a specific value to work */
 	background-color: white;
-	padding: 10px;
 	border: 2px solid rgb(255, 255, 255);
 	border-radius: 5px;
-	display: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.text-file-name {
+	position: relative;
 }
 
 .menu-container {
