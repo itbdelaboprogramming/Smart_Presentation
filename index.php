@@ -1,27 +1,36 @@
 <?php
-?>
+    // include "main.php";
+    $request = $_SERVER["REQUEST_URI"];
+    $curPageName = explode('/', $request);
+    $curPageName = end($curPageName);;
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Smart Presentation</title>
-        <link rel="icon" type="image/x-icon" href="assets/logo.png">
-        <meta charset="UTF-8">
-        <script type="importmap">
-            {
-                "imports": {
-                "three": "https://unpkg.com/three@0.139.2/build/three.module.js"
-                }
-            }
-        </script>
-        <link rel="stylesheet" href="style.css" >
+    // to check url
+    // echo "<script>console.log('Debug Objects: " . $request . "' );</script>";
+    // echo "<script>console.log('Debug Objects3: " . $curPageName . "' );</script>";
 
-    </head>
-    <body>
-        <!-- SMART PRESENTATION!! -->
-        <?php
-            // include("./pages/home.php")
-            include("./pages/details.php")
-        ?>
-    </body>
-</html>
+    switch ($curPageName){
+        case "":
+            include "main.php";
+            break;
+
+        case "home":
+            include "./pages/home.php";
+            break;
+        
+        case "detail":
+            include "./pages/details.php";
+            break;
+
+        default:
+            http_response_code(404);
+            include "./pages/404.php";
+            break;
+    }
+
+    // function debug_to_console($data) {
+    //     $output = $data;
+    //     if (is_array($output))
+    //         $output = implode(',', $output);
+    
+    //     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+    // }

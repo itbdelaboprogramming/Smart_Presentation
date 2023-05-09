@@ -18,7 +18,7 @@ canvas {
 	background-color: lightgray;
 }
 
-.container {
+.container-top-left {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -69,6 +69,41 @@ canvas {
 }
 
 .menu-container:hover {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #d4f2f4;
+	padding: 0;
+	border: 1px solid #189ab4;
+	border-radius: 14.3734px;
+	width: 46.99px;
+	height: 46.99px;
+	box-shadow: 0px 4px 4px #00000040;
+	cursor: pointer;
+}
+
+.container-top-right {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding-top: 23px;
+	padding-right: 23px;
+}
+
+.back-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #d4f2f4;
+	padding: 0;
+	border: 1px solid #189ab4;
+	border-radius: 14.3734px;
+	width: 46.99px;
+	height: 46.99px;
+	cursor: pointer;
+}
+
+.back-container:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;

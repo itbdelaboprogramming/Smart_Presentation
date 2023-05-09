@@ -16,10 +16,13 @@ if (isset($_FILES['file'])) {
       move_uploaded_file($file_tmp, $upload_path);
       // echo "File uploaded successfully.";
     } else {
-      // echo "Error: Invalid file type or file size too large.";
+       $message = "Error: Invalid file type or file size too large.";
+       echo "<script type='text/javascript'>alert('$message');</script>";
     }
     $value = $file_name;
-    header("Location: index.php?value=" . urlencode($file_name));
+    // header("Location: index.php?value=" . urlencode($file_name));
+    header("Location: detail");
+
     exit();
 }
   
