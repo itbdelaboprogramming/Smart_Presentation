@@ -1,10 +1,10 @@
 <?php
 
-if (isset($_FILES['file'])) {
-    $file_name = $_FILES['file']['name'];
-    $file_size = $_FILES['file']['size'];
-    $file_tmp = $_FILES['file']['tmp_name'];
-    $file_type = $_FILES['file']['type'];
+if (isset($_FILES['fileUpload'])) {
+    $file_name = $_FILES['fileUpload']['name'];
+    $file_size = $_FILES['fileUpload']['size'];
+    $file_tmp = $_FILES['fileUpload']['tmp_name'];
+    $file_type = $_FILES['fileUpload']['type'];
     $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
     $global_variable = $file_name;
@@ -15,14 +15,15 @@ if (isset($_FILES['file'])) {
       $upload_path = "files/" . $file_name;
       move_uploaded_file($file_tmp, $upload_path);
       // echo "File uploaded successfully.";
+      header("Location: detail?value=" . urlencode($file_name));
     } else {
        $message = "Error: Invalid file type or file size too large.";
        echo "<script type='text/javascript'>alert('$message');</script>";
+       header("Location: detail");
     }
-    $value = $file_name;
-    header("Location: detail?value=" . urlencode($file_name));
+    // $value = $file_name;
+    
     // header("Location: detail");
-
     exit();
 }
   

@@ -2,11 +2,9 @@
 <?php
     $global_variable = "MSD700_bucket_MCLA007A_00_2.glb";
     if (isset($_GET['value'])) {
-        echo "<script>console.log('disini: " . $global_variable . "' );</script>";
         $value = urldecode($_GET['value']);
         $global_variable = $value;
     }else{
-        echo "<script>console.log('kesini: " . "' );</script>";
         header("Location: detail/?value=" . urlencode($global_variable));
     }
 ?>
@@ -41,15 +39,41 @@
                 <p id="myText" class="text-file-name"><?php echo $global_variable; ?></p>
             </div>
 
-            <div class="upload-container">
+            
                 <form action="function.php" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="file">
-                    <input type="submit" value="Upload">
+                    <div class="container-bottom-right">
+                            <label for="fileUpload" class="upload-container">
+                                <img src="./assets/Upload-File-Button.png">
+                                <input id="fileUpload" type="file" name="fileUpload" onChange="onFileChange()" style="display:none">
+                            </label>
+                    </div>
+
+                    <div class="pop-up-container" id="submit-file-container">
+                        <div class="pop-up-box">
+                            <div class="pop-up-title">Upload Model</div>
+                            <div class="pop-up-text">Do you want to upload this model?</div>
+                            <div class="pop-up-button-container">
+                                <input type="submit" value="Upload" class="pop-up-button">
+                                <button type="button" class="pop-up-button" onclick="cancelSubmit()"> cancel </button>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </form>
-            </div>
+            
         </div>
 
         <script type="module" src="script.js"> </script>
+        <script> 
+            function onFileChange(){
+                console.log("kesini");
+                document.getElementById("submit-file-container").style.display = "block";
+            }
+
+            function cancelSubmit(){
+                document.getElementById("submit-file-container").style.display = "none";
+            }
+        </script>
     </body>
 </html>
 
