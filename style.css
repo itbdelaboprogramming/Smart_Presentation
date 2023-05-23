@@ -129,6 +129,10 @@ canvas {
 	padding-right: 23px;
 }
 
+input[type="file"] {
+	display: none;
+}
+
 .upload-container {
 	display: flex;
 	justify-content: center;
