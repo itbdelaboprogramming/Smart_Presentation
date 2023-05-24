@@ -26,7 +26,7 @@ function resizeCanvasToDisplaySize(canvas) {
 }
 
 // Creating a scene with background color
-const scene = new THREE.Scene();
+export const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xdbe9e9);
 // 0xdbe9e9 = light blue
 // 0xe0e4e7 = light gray
@@ -57,13 +57,9 @@ const divisions = 20;
 const colorCenterLine = 0xffffff;
 const colorGrid = 0xffffff;
 
-const gridHelper = new THREE.GridHelper(
-	size,
-	divisions,
-	colorCenterLine,
-	colorGrid
-);
-scene.add(gridHelper);
+const grid = new THREE.GridHelper(size, divisions, colorCenterLine, colorGrid);
+grid.name = "grid";
+scene.add(grid);
 
 /*
 	Light in 3D scene

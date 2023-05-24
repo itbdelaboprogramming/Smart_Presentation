@@ -32,6 +32,28 @@ body {
 	--text-color-200: #e0e1dc;
 }
 
+.dark-theme {
+	--primary-color-25: #d4f2f4;
+	--primary-color-50: #189ab4;
+	--primary-color-100: #74e7d4;
+	--primary-color-200: #04445f;
+
+	--secondary-color-25: #345d7d;
+	--secondary-color-50: #725b78;
+	--secondary-color-100: #c66e87;
+	--secondary-color-200: #ff7582;
+
+	--background-color-25: #f2f4f7;
+	--background-color-50: #98a2b3;
+	--background-color-100: #475467;
+	--background-color-200: #344054;
+
+	--text-color-25: #1d2538;
+	--text-color-50: #475b74;
+	--text-color-100: #7c8da5;
+	--text-color-200: #e0e1dc;
+}
+
 /* Canvas for 3d object */
 canvas {
 	/* border: 1px solid white; */

@@ -18,12 +18,12 @@
             break;
         
         case "databases":
-            include "./pages/databases.php";
+            include "./pages/databases-page.php";
             break;
 
         default:
             if(strpos($request,'/databases') !== false){
-                include "./pages/databases.php";
+                include "./pages/databases-page.php";
                 break;
             }else{
                 http_response_code(404);

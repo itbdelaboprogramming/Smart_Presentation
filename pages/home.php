@@ -20,6 +20,7 @@
             }
         </script>
         <link rel="stylesheet" href="./style/style.css" >
+        <link rel="stylesheet" href="./style/home.css" >
     </head>
     <body>
         <div class="databases-page">
@@ -34,9 +35,14 @@
             <div class="item-name-container">
                 <p id="myText" class="text-file-name"><?php echo $global_variable; ?></p>
             </div>
+
+            <div class="container-bottom-right">
+                <div class="toggle"></div>
+            </div>
         </div>
 
         <script type="module" src="script.js"> </script>
+        <script type="module" src="./js/home-page.js"></script>
     </body>
 </html>
 
