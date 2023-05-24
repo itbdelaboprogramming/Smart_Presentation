@@ -3,6 +3,23 @@ import * as THREE from "three";
 
 const toggle = document.querySelector(".toggle");
 
+let getMode = localStorage.getItem("mode");
+
+if (getMode && getMode === "dark-theme") {
+	document.body.classList.add("dark-theme");
+	toggle.classList.add("active");
+
+	scene.background = new THREE.Color(0x1d2538);
+
+	scene.remove(scene.getObjectByName("grid"));
+
+	const grid = new THREE.GridHelper(20, 20, 0x475b74, 0x475b74);
+	grid.name = "grid";
+	scene.add(grid);
+
+	localStorage.setItem("mode", "dark-theme");
+}
+
 toggle.addEventListener("click", () => toggle.classList.toggle("active"));
 
 toggle.addEventListener("click", () => {
@@ -16,6 +33,8 @@ toggle.addEventListener("click", () => {
 		const grid = new THREE.GridHelper(20, 20, 0x475b74, 0x475b74);
 		grid.name = "grid";
 		scene.add(grid);
+
+		localStorage.setItem("mode", "dark-theme");
 	} else {
 		scene.background = new THREE.Color(0xdbe9e9);
 
@@ -23,5 +42,7 @@ toggle.addEventListener("click", () => {
 		const grid = new THREE.GridHelper(20, 20, 0xffffff, 0xffffff);
 		grid.name = "grid";
 		scene.add(grid);
+
+		localStorage.setItem("mode", "light");
 	}
 });

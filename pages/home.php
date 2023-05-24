@@ -42,7 +42,7 @@
         </div>
 
         <script type="module" src="script.js"> </script>
-        <script type="module" src="./js/home-page.js"></script>
+        <script type="module" src="./js/toggle.js"></script>
     </body>
 </html>
 

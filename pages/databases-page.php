@@ -41,7 +41,7 @@
             </div>
             
             <form action="function.php" method="POST" enctype="multipart/form-data">
-                <div class="container-bottom-right">
+                <div class="container-bottom-right-mb1x">
                     <input type="file" id="fileUpload" type="file" name="fileUpload" onChange="onFileChange()">
                     <label for="fileUpload" class="upload-container">
                         <div class="menu-container">
@@ -62,10 +62,27 @@
                     </div>
                 </div>
             </form>
+
+            <div class="container-bottom-right">
+                <div class="toggle"></div>
+            </div>
         </div>
 
+        <script>
+            function onFileChange() {
+                document.getElementById("submit-file-container").style.display = "block";
+                var name = document.getElementById("fileUpload");
+                var nameContainer = document.getElementById("pop-up-text-fileName");
+                nameContainer.innerHTML = name.files.item(0).name;
+            }
+
+            function cancelSubmit() {
+                document.getElementById("submit-file-container").style.display = "none";
+            }
+        </script>
+
         <script type="module" src="script.js"> </script>
-        <script type="text/javascript" src="./js/databases-page.js"></script>
+        <script type="module" src="./js/toggle.js"></script>
     </body>
 </html>
 
