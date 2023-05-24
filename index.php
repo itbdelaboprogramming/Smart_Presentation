@@ -17,13 +17,13 @@
             include "./pages/home.php";
             break;
         
-        case "detail":
-            include "./pages/details.php";
+        case "databases":
+            include "./pages/databases.php";
             break;
 
         default:
-            if(strpos($request,'/detail') !== false){
-                include "./pages/details.php";
+            if(strpos($request,'/databases') !== false){
+                include "./pages/databases.php";
                 break;
             }else{
                 http_response_code(404);
@@ -32,11 +32,3 @@
             }
 
     }
-
-    // function debug_to_console($data) {
-    //     $output = $data;
-    //     if (is_array($output))
-    //         $output = implode(',', $output);
-    
-    //     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-    // }

@@ -19,15 +19,14 @@
                 }
             }
         </script>
-        <link rel="stylesheet" href="style.css" >
-
+        <link rel="stylesheet" href="./style/style.css" >
     </head>
     <body>
-            <div class="details-page">
+        <div class="databases-page">
             <canvas id="myCanvas">    </canvas>
 
             <div class="container-top-left">
-                <button class="menu-container" onClick="location.href='detail'">
+                <button class="menu-container" onClick="location.href='databases'">
                     <img src="./assets/Menu.png">
                 </button>
             </div>

@@ -5,7 +5,7 @@
         $value = urldecode($_GET['value']);
         $global_variable = $value;
     }else{
-        header("Location: detail/?value=" . urlencode($global_variable));
+        header("Location: databases/?value=" . urlencode($global_variable));
     }
 ?>
 
@@ -22,15 +22,16 @@
                 }
             }
         </script>
-        <link rel="stylesheet" href="style.css" >
+        <link rel="stylesheet" href="./style/style.css" >
+        <link rel="stylesheet" href="./style/databases.css" >
 
     </head>
     <body>
-        <div class="details-page">
+        <div class="databases-page">
             <canvas id="myCanvas">    </canvas>
 
             <div class="container-top-right">
-                <button class="back-container" onClick="location.href='home'">
+                <button class="menu-container" onClick="location.href='home'">
                     <img src="./assets/Back-Button.png">
                 </button>
             </div>
@@ -38,6 +39,7 @@
             <div class="item-name-container">
                 <p id="myText" class="text-file-name"><?php echo $global_variable; ?></p>
             </div>
+            
             <form action="function.php" method="POST" enctype="multipart/form-data">
                 <div class="container-bottom-right">
                     <input type="file" id="fileUpload" type="file" name="fileUpload" onChange="onFileChange()">

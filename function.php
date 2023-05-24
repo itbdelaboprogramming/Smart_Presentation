@@ -15,15 +15,15 @@ if (isset($_FILES['fileUpload'])) {
       $upload_path = "files/" . $file_name;
       move_uploaded_file($file_tmp, $upload_path);
       // echo "File uploaded successfully.";
-      header("Location: detail?value=" . urlencode($file_name));
+      header("Location: databases?value=" . urlencode($file_name));
     } else {
        $message = "Error: Invalid file type or file size too large.";
        echo "<script type='text/javascript'>alert('$message');</script>";
-       header("Location: detail");
+       header("Location: databases");
     }
     // $value = $file_name;
     
-    // header("Location: detail");
+    // header("Location: databases");
     exit();
 }
   
