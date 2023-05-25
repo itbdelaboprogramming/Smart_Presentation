@@ -23,13 +23,17 @@
         <link rel="stylesheet" href="./style/home.css" >
     </head>
     <body>
-        <div class="databases-page">
+        <div class="home-page">
             <canvas id="myCanvas">    </canvas>
 
             <div class="container-top-left">
                 <button class="menu-container" onClick="location.href='databases'">
                     <img src="./assets/Menu.png">
                 </button>
+
+                <div class="page-name-container">
+                    <div class="page-name-text">N-Presentation</div>
+                </div>
             </div>
 
             <div class="item-name-container">

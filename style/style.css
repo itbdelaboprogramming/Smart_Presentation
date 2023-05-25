@@ -32,7 +32,7 @@ body {
 
 .dark-theme {
 	--primary-color-25: #d4f2f4;
-	--primary-color-50: #189ab4;
+	--primary-color-50: #74e7d4;
 	--primary-color-100: #189ab4;
 	--primary-color-200: #04445f;
 
@@ -67,6 +67,10 @@ canvas {
 	left: 0;
 	padding-top: 23px;
 	padding-left: 23px;
+
+	display: flex;
+	flex-direction: row;
+	gap: 30px;
 }
 
 .container-top-right {
@@ -102,14 +106,6 @@ canvas {
 	margin-bottom: 70px;
 }
 
-.databases-page {
-	display: flex;
-	height: 100%;
-	width: 100%;
-	align-items: center;
-	vertical-align: text-top;
-}
-
 .item-name-container {
 	position: absolute;
 	z-index: 1;
@@ -119,17 +115,20 @@ canvas {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 23px;
-	width: 300px; /* Need a specific value to work */
+
+	/* Need a specific value to work */
+	width: 228px;
 	background-color: white;
 	border: 2px solid rgb(255, 255, 255);
 	border-radius: 5px;
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
 }
 
 .text-file-name {
 	position: relative;
+	font-size: smaller;
 }
 
 .menu-container {
@@ -164,9 +163,13 @@ canvas {
 	position: relative;
 	width: 68.21px;
 	height: 34.11px;
-	background: var(--primary-color-50);
+	background: #74e7d4;
 	border-radius: 34.1063px;
 	cursor: pointer;
+}
+
+.toggle.active {
+	background: #189ab4;
 }
 
 .toggle::before {
@@ -185,4 +188,21 @@ canvas {
 .toggle.active::before {
 	left: calc(100% - 26.53px - calc(50% - 26.53px / 2 - 15.54px));
 	background: #74e7d4;
+}
+
+/* Page Name */
+.page-name-container {
+	padding: 18px 50px 18px 50px;
+	background: var(--primary-color-50);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+}
+
+.page-name-text {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 28px;
+	text-align: center;
 }

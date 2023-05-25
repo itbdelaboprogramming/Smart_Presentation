@@ -30,6 +30,12 @@
         <div class="databases-page">
             <canvas id="myCanvas">    </canvas>
 
+            <div class="container-top-left">
+                <div class="page-name-container">
+                    <div class="page-name-text">Exhibition List</div>
+                </div>
+            </div>
+
             <div class="container-top-right">
                 <button class="menu-container" onClick="location.href='home'">
                     <img src="./assets/Back-Button.png">

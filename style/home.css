@@ -1,27 +1,8 @@
 /* home page style */
-
-.toggle {
-	position: relative;
-	width: 68.21px;
-	height: 34.11px;
-	background: var(--primary-color-50);
-	border-radius: 34.1063px;
-	cursor: pointer;
-}
-
-.toggle::before {
-	content: "";
-	position: absolute;
-	width: 26.53px;
-	height: 26.53px;
-	background: var(--primary-color-100);
-	border-radius: 50%;
-	top: 50%;
-	left: calc(50% - 26.53px / 2 - 15.54px);
-	transform: translateY(-50%);
-	transition: all 0.3s ease-in-out;
-}
-
-.toggle.active::before {
-	left: calc(100% - 26.53px - calc(50% - 26.53px / 2 - 15.54px));
+.home-page {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	align-items: center;
+	vertical-align: text-top;
 }
