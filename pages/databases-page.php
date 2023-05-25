@@ -57,6 +57,11 @@
                         </label>
                     </form>
                 </div>
+
+                <button class="menu-container">
+                    <img src="./assets/Delete-File-Button.png">
+                </button>
+
                 <div class="toggle"></div>
             </div>
             <div class="pop-up-container" id="submit-file-container">
