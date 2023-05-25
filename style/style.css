@@ -85,6 +85,11 @@ canvas {
 	right: 0;
 	padding-bottom: 23px;
 	padding-right: 23px;
+
+	display: flex;
+	align-items: flex-end;
+	flex-direction: column;
+	gap: 30px;
 }
 
 .container-bottom-mb1x-right-mb1x {

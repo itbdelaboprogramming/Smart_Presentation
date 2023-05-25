@@ -40,32 +40,30 @@
                 <p id="myText" class="text-file-name"><?php echo $global_variable; ?></p>
             </div>
             
-            <form action="function.php" method="POST" enctype="multipart/form-data">
-                <div class="container-bottom-mb1x-right-mb1x">
-                    <input type="file" id="fileUpload" type="file" name="fileUpload" onChange="onFileChange()">
-                    <label for="fileUpload" class="upload-container">
-                        <div class="menu-container">
-                            <img src="./assets/Upload-File-Button.png">
-                        </div>
-                    </label>
-                </div>
-
-                <div class="pop-up-container" id="submit-file-container">
-                    <div class="pop-up-box">
-                        <div class="pop-up-title">Upload Model</div>
-                        <div class="pop-up-text">Do you want to upload this model?</div>
-                        <div class="pop-up-text" id="pop-up-text-fileName">File name</div>
-                        <div class="pop-up-button-container">
-                            <input type="submit" value="Upload" class="pop-up-button">
-                            <button type="button" class="pop-up-button" onclick="cancelSubmit()"> cancel </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
             <div class="container-bottom-right">
+                <div>
+                    <form action="function.php" method="POST" enctype="multipart/form-data">
+                        <input type="file" id="fileUpload" type="file" name="fileUpload" onChange="onFileChange()">
+                        <label for="fileUpload" class="upload-container">
+                            <div class="menu-container">
+                                <img src="./assets/Upload-File-Button.png">
+                            </div>
+                        </label>
+                    </form>
+                </div>
                 <div class="toggle"></div>
             </div>
+            <div class="pop-up-container" id="submit-file-container">
+                <div class="pop-up-box">
+                    <div class="pop-up-title">Upload Model</div>
+                    <div class="pop-up-text">Do you want to upload this model?</div>
+                    <div class="pop-up-text" id="pop-up-text-fileName">File name</div>
+                    <div class="pop-up-button-container">
+                        <input type="submit" value="Upload" class="pop-up-button">
+                        <button type="button" class="pop-up-button" onclick="cancelSubmit()"> cancel </button>
+                    </div>
+                </div>
+            </div>      
         </div>
 
         <script>
