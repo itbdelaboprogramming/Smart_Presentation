@@ -6,8 +6,6 @@ body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
-	/* display: grid;
-	grid-template-columns: 4fr 1fr 1fr; */
 }
 
 :root {
@@ -35,7 +33,7 @@ body {
 .dark-theme {
 	--primary-color-25: #d4f2f4;
 	--primary-color-50: #189ab4;
-	--primary-color-100: #74e7d4;
+	--primary-color-100: #189ab4;
 	--primary-color-200: #04445f;
 
 	--secondary-color-25: #345d7d;
@@ -56,7 +54,6 @@ body {
 
 /* Canvas for 3d object */
 canvas {
-	/* border: 1px solid white; */
 	width: 100%;
 	min-height: 100%;
 	background-color: lightgray;
@@ -90,7 +87,7 @@ canvas {
 	padding-right: 23px;
 }
 
-.container-bottom-right-mb1x {
+.container-bottom-mb1x-right-mb1x {
 	position: absolute;
 	z-index: 1;
 	bottom: 0;
@@ -172,7 +169,7 @@ canvas {
 	position: absolute;
 	width: 26.53px;
 	height: 26.53px;
-	background: var(--primary-color-100);
+	background: #189ab4;
 	border-radius: 50%;
 	top: 50%;
 	left: calc(50% - 26.53px / 2 - 15.54px);
@@ -182,4 +179,5 @@ canvas {
 
 .toggle.active::before {
 	left: calc(100% - 26.53px - calc(50% - 26.53px / 2 - 15.54px));
+	background: #74e7d4;
 }

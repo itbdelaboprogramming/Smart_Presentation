@@ -41,7 +41,7 @@
             </div>
             
             <form action="function.php" method="POST" enctype="multipart/form-data">
-                <div class="container-bottom-right-mb1x">
+                <div class="container-bottom-mb1x-right-mb1x">
                     <input type="file" id="fileUpload" type="file" name="fileUpload" onChange="onFileChange()">
                     <label for="fileUpload" class="upload-container">
                         <div class="menu-container">
