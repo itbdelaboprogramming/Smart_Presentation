@@ -6,3 +6,113 @@
 	align-items: center;
 	vertical-align: text-top;
 }
+
+/* For Button Information */
+.menu-container-blue-information {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #189ab4;
+	padding: 0;
+	border-radius: 14.3734px;
+	width: 46.99px;
+	height: 46.99px;
+	cursor: pointer;
+	transition: background-color 0.3s ease-in;
+}
+
+.menu-container-blue-information:hover {
+	box-shadow: 0px 4px 4px #00000040;
+}
+
+.menu-container-blue-information.active {
+	background-color: #74e7d4;
+}
+
+/* For Button Information */
+.menu-container-blue-sound {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #189ab4;
+	padding: 0;
+	border-radius: 14.3734px;
+	width: 46.99px;
+	height: 46.99px;
+	cursor: pointer;
+	transition: background-color 0.3s ease-in;
+}
+
+.menu-container-blue-sound:hover {
+	box-shadow: 0px 4px 4px #00000040;
+}
+
+.menu-container-blue-sound.active {
+	background-color: #74e7d4;
+}
+
+/* For Button Animation */
+.menu-container-blue-animation {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #189ab4;
+	padding: 0;
+	border-radius: 14.3734px;
+	width: 46.99px;
+	height: 46.99px;
+	cursor: pointer;
+	transition: background-color 0.3s ease-in;
+}
+
+.menu-container-blue-animation:hover {
+	box-shadow: 0px 4px 4px #00000040;
+}
+
+.menu-container-blue-animation.active {
+	background-color: #74e7d4;
+}
+
+/* For Button Album */
+.menu-container-blue-album {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #189ab4;
+	padding: 0;
+	border-radius: 14.3734px;
+	width: 46.99px;
+	height: 46.99px;
+	cursor: pointer;
+	transition: background-color 0.3s ease-in;
+}
+
+.menu-container-blue-album:hover {
+	box-shadow: 0px 4px 4px #00000040;
+}
+
+.menu-container-blue-album.active {
+	background-color: #74e7d4;
+}
+
+/* For Button Lightning Controller */
+.menu-container-blue-lightning {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #189ab4;
+	padding: 0;
+	border-radius: 14.3734px;
+	width: 46.99px;
+	height: 46.99px;
+	cursor: pointer;
+	transition: background-color 0.3s ease-in;
+}
+
+.menu-container-blue-lightning:hover {
+	box-shadow: 0px 4px 4px #00000040;
+}
+
+.menu-container-blue-lightning.active {
+	background-color: #74e7d4;
+}
