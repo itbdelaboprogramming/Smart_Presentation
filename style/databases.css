@@ -1,0 +1,191 @@
+/* databases page style */
+
+.databases-page {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	align-items: center;
+	vertical-align: text-top;
+}
+
+/* Input button */
+input[type="file"] {
+	display: none;
+}
+
+.upload-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--primary-color-25);
+	padding: 0;
+	border: 1px solid var(--primary-color-100);
+	border-radius: 14.3734px;
+	width: 46.99px;
+	height: 46.99px;
+	cursor: pointer;
+}
+
+.upload-container:hover {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--primary-color-25);
+	padding: 0;
+	border: 1px solid var(--primary-color-100);
+	border-radius: 14.3734px;
+	width: 46.99px;
+	height: 46.99px;
+	box-shadow: 0px 4px 4px #00000040;
+	cursor: pointer;
+}
+
+/* Pop up notification */
+.pop-up-container {
+	display: none;
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.pop-up-box {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	margin: auto;
+	justify-content: space-between;
+	align-items: flex-start;
+
+	padding: 14px;
+
+	box-sizing: border-box;
+
+	width: 290px;
+	height: 141px;
+
+	/* Background Color/Gray/25 */
+
+	background: var(--background-color-25);
+	/* Primary Color (Main Theme)/Ocean Wave/200 */
+
+	border: 1px solid var(--primary-color-200);
+	box-shadow: 0px 4px 4px var(--primary-color-100);
+	border-radius: 2px;
+}
+
+.pop-up-button {
+	box-sizing: border-box;
+
+	width: 109px;
+	height: 31px;
+
+	border: 1px solid var(--primary-color-50);
+	border-radius: 2px;
+
+	/* Content/Normal */
+
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 18px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+
+	/* Primary Color (Main Theme)/Ocean Wave/100 */
+
+	color: var(--primary-color-100);
+}
+
+.pop-up-button:hover {
+	box-sizing: border-box;
+
+	width: 109px;
+	height: 31px;
+
+	border: 1px solid var(--primary-color-50);
+	filter: drop-shadow(0px 4px 4px var(--primary-color-100));
+	border-radius: 2px;
+
+	/* Content/Normal */
+
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 18px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+
+	/* Primary Color (Main Theme)/Ocean Wave/100 */
+
+	color: var(--primary-color-100);
+}
+
+.pop-up-title {
+	/* Title/H2 */
+
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 18px;
+	line-height: 21px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+
+	/* Primary Color (Main Theme)/Ocean Wave/100 */
+
+	color: var(--primary-color-100);
+}
+
+.pop-up-text {
+	/* Content/Normal */
+
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 18px;
+	display: flex;
+	align-items: center;
+	text-align: start;
+
+	/* Primary Color (Main Theme)/Ocean Wave/100 */
+
+	color: var(--primary-color-100);
+}
+
+.pop-up-text-file-name {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
+	display: flex;
+	align-items: center;
+	text-align: start;
+
+	/* Primary Color (Main Theme)/Ocean Wave/100 */
+
+	color: var(--primary-color-100);
+}
+
+.pop-up-button-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}

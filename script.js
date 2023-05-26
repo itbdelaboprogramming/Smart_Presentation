@@ -4,8 +4,8 @@ var myText = document.getElementById("myText").textContent;
 import * as THREE from "three";
 import { OrbitControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js";
-import { STLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/STLLoader.js";
-import { VRMLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/VRMLLoader.js";
+// import { STLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/STLLoader.js";
+// import { VRMLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/VRMLLoader.js";
 
 function resizeCanvasToDisplaySize(canvas) {
 	// Lookup the size the browser is displaying the canvas in CSS pixels.
@@ -26,7 +26,7 @@ function resizeCanvasToDisplaySize(canvas) {
 }
 
 // Creating a scene with background color
-const scene = new THREE.Scene();
+export const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xdbe9e9);
 // 0xdbe9e9 = light blue
 // 0xe0e4e7 = light gray
@@ -54,11 +54,12 @@ resizeCanvasToDisplaySize(myCanvas);
 // create grid helper
 const size = 20;
 const divisions = 20;
-const colorCenterLine = 0xFFFFFF
-const colorGrid = 0xFFFFFF
+const colorCenterLine = 0xffffff;
+const colorGrid = 0xffffff;
 
-const gridHelper = new THREE.GridHelper(size, divisions, colorCenterLine, colorGrid);
-scene.add(gridHelper);
+const grid = new THREE.GridHelper(size, divisions, colorCenterLine, colorGrid);
+grid.name = "grid";
+scene.add(grid);
 
 /*
 	Light in 3D scene
@@ -99,7 +100,7 @@ renderer.setClearColor(0xffffff, 1.0);
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(myCanvas.offsetWidth, myCanvas.offsetHeight);
 
-const orbitControls = new OrbitControls(camera, renderer.domElement);
+export const orbitControls = new OrbitControls(camera, renderer.domElement);
 
 const loader = new GLTFLoader();
 
@@ -115,6 +116,8 @@ loader.load(
 		console.error(error);
 	}
 );
+
+// orbitControls.autoRotate = true;
 
 renderer.setAnimationLoop(() => {
 	orbitControls.update();
