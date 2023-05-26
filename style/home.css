@@ -143,7 +143,7 @@ canvas {
 
 	background: #e6f5f8;
 
-	border: 0.870307px solid #189ab4;
+	border: 0.870307px solid var(--primary-color-100);
 }
 
 .select-menu-button img {
@@ -160,7 +160,7 @@ canvas {
 	font-size: 13.9249px;
 	line-height: 21px;
 
-	color: #475b74;
+	color: var(--text-color-50);
 
 	opacity: 0.75;
 
@@ -176,7 +176,7 @@ canvas {
 	padding: 0;
 	/* margin-top: 10px; */
 	margin: 10px 0px 0px 0px;
-	background: #f2f4f7;
+	background: var(--background-color-25);
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 	display: none;
 }
@@ -189,21 +189,17 @@ canvas {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
-	/* align-items: flex-start; */
 	padding: 8.70307px 12.1843px;
 	gap: 6.96px;
 	cursor: pointer;
 
-	/* Background Color/Gray/25 */
+	background: var(--background-color-25);
 
-	background: #f2f4f7;
-	/* Primary Color (Main Theme)/Ocean Wave/100 */
-
-	border: 0.870307px solid #189ab4;
+	border: 0.870307px solid var(--primary-color-100);
 }
 
 .options .option:hover {
-	background: #d4f2f4;
+	background: var(--primary-color-25);
 }
 
 .option .option-text {
@@ -212,11 +208,8 @@ canvas {
 	font-weight: 500;
 	font-size: 13.9249px;
 	line-height: 21px;
-	/* identical to box height, or 150% */
 
-	/* Text Color/Office/50 */
-
-	color: #475b74;
+	color: var(--text-color-50);
 
 	opacity: 0.75;
 
@@ -244,7 +237,7 @@ canvas {
 	width: 250px;
 	height: 40%;
 
-	background: #d4f2f4;
+	background: var(--primary-color-25);
 	opacity: 0.8;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 15px;
@@ -260,11 +253,10 @@ canvas {
 	text-align: justify;
 	padding-right: 16px;
 
-	color: #475b74;
+	color: var(--text-color-50);
 }
 
 .information-description-title {
-	font-style: normal;
 	font-weight: 700;
 	font-size: 18px;
 	line-height: 21px;
@@ -272,34 +264,23 @@ canvas {
 	align-items: center;
 	text-align: center;
 
-	color: #1d2538;
+	color: var(--text-color-25);
 }
 
 .information-description-model-number {
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 18px;
 	display: flex;
 	align-items: center;
 	text-align: center;
 	justify-content: center;
 
-	color: #344054;
+	color: var(--text-color-background-color-200);
 }
 
 .information-description-specification {
-	font-style: normal;
 	font-weight: 700;
-	font-size: 16px;
-	line-height: 18px;
 	display: flex;
 	align-items: center;
 	text-align: justify;
-
-	/* Text Color/Office/50 */
-
-	color: #475b74;
 }
 
 .information-link {
@@ -311,8 +292,6 @@ canvas {
 	text-align: justify;
 	text-decoration-line: underline;
 
-	/* Primary Color (Main Theme)/Ocean Wave/200 */
-
-	color: #04445f;
+	color: var(--text-color-primary-color-200);
 	padding-right: 16px;
 }
