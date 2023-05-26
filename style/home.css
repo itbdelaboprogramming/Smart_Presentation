@@ -222,3 +222,97 @@ canvas {
 
 	height: 24.66px;
 }
+
+/* information section */
+.information-container {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	bottom: 10%;
+	left: 0;
+	margin-left: 23px;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 12px 0px 12px 16px;
+	gap: 5px;
+
+	width: 250px;
+	height: 40%;
+
+	background: #d4f2f4;
+	opacity: 0.8;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 15px;
+}
+
+.information-description {
+	overflow-y: scroll;
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 18px;
+	text-align: justify;
+	padding-right: 16px;
+
+	color: #475b74;
+}
+
+.information-description-title {
+	font-style: normal;
+	font-weight: 700;
+	font-size: 18px;
+	line-height: 21px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+
+	color: #1d2538;
+}
+
+.information-description-model-number {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 18px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+
+	color: #344054;
+}
+
+.information-description-specification {
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 18px;
+	display: flex;
+	align-items: center;
+	text-align: justify;
+
+	/* Text Color/Office/50 */
+
+	color: #475b74;
+}
+
+.information-link {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 18px;
+	text-align: justify;
+	text-decoration-line: underline;
+
+	/* Primary Color (Main Theme)/Ocean Wave/200 */
+
+	color: #04445f;
+	padding-right: 16px;
+}

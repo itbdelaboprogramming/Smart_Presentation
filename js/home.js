@@ -2,13 +2,22 @@ import { orbitControls } from "../script.js";
 import { scene } from "../script.js";
 import * as THREE from "three";
 
+// Menu information button
 const menuInformation = document.querySelector(
 	".menu-container-blue-information"
 );
-menuInformation.addEventListener("click", () =>
-	menuInformation.classList.toggle("active")
-);
+const informationContainer = document.getElementById("information-container");
+menuInformation.addEventListener("click", () => {
+	menuInformation.classList.toggle("active");
 
+	if (menuInformation.classList.contains("active")) {
+		informationContainer.style.display = "flex";
+	} else {
+		informationContainer.style.display = "none";
+	}
+});
+
+// Menu sound button
 const menuSound = document.querySelector(".menu-container-blue-sound");
 const iconSoundOff = document.getElementById("sound-off");
 const iconSoundOn = document.getElementById("sound-on");
@@ -24,6 +33,7 @@ menuSound.addEventListener("click", () => {
 	}
 });
 
+// Menu animation button
 const menuAnimation = document.querySelector(".menu-container-blue-animation");
 const iconAnimationOff = document.getElementById("animation-off");
 const iconAnimationOn = document.getElementById("animation-on");
@@ -41,9 +51,11 @@ menuAnimation.addEventListener("click", () => {
 	}
 });
 
+// Menu album button
 const menuAlbum = document.querySelector(".menu-container-blue-album");
 menuAlbum.addEventListener("click", () => menuAlbum.classList.toggle("active"));
 
+// Menu lightning button
 const menuLightning = document.querySelector(".menu-container-blue-lightning");
 menuLightning.addEventListener("click", () =>
 	menuLightning.classList.toggle("active")
