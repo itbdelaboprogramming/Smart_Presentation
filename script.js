@@ -100,7 +100,7 @@ renderer.setClearColor(0xffffff, 1.0);
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(myCanvas.offsetWidth, myCanvas.offsetHeight);
 
-const orbitControls = new OrbitControls(camera, renderer.domElement);
+export const orbitControls = new OrbitControls(camera, renderer.domElement);
 
 const loader = new GLTFLoader();
 
@@ -116,6 +116,8 @@ loader.load(
 		console.error(error);
 	}
 );
+
+// orbitControls.autoRotate = true;
 
 renderer.setAnimationLoop(() => {
 	orbitControls.update();
