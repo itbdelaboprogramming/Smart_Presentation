@@ -42,9 +42,7 @@
                 </button>
             </div>
 
-            <div class="item-name-container">
-                <p id="myText" class="text-file-name"><?php echo $global_variable; ?></p>
-            </div>
+            <p id="myText" style="display: none;"><?php echo $global_variable; ?></p>
 
             <form action="function.php" method="POST" enctype="multipart/form-data">
                 <div class="container-bottom-mb2x-right">
@@ -57,7 +55,7 @@
                     <div class="pop-up-box">
                         <div class="pop-up-title">Upload Model</div>
                         <div class="pop-up-text">Do you want to upload this model?</div>
-                        <div class="pop-up-text" id="pop-up-text-fileName">File name</div>
+                        <div class="pop-up-text-file-name" id="pop-up-text-fileName">File name</div>
                         <div class="pop-up-button-container">
                             <input type="submit" value="Upload" class="pop-up-button">
                             <button type="button" class="pop-up-button" onclick="cancelSubmit()"> cancel </button>

@@ -36,8 +36,29 @@
                 </div>
             </div>
 
-            <div class="item-name-container">
-                <p id="myText" class="text-file-name"><?php echo $global_variable; ?></p>
+            <p id="myText" style="display: none;"><?php echo $global_variable; ?></p>
+
+            <div class="item-name-container" id="item-category">
+                <p class="text-file-name">Nakayama's Product</p>
+                <div class="select-menu">
+                    <div class="select-menu-button">
+                        <span class="select-menu-text">
+                            Select the product
+                        </span>
+                        <img src="./assets/Dropdown-Off.png"/>
+                    </div>
+                    <ul class="options">
+                        <li class="option">
+                            <span class="option-text">MSD700</span>
+                        </li>
+                        <li class="option">
+                            <span class="option-text">Dendoman</span>
+                        </li>
+                        <li class="option">
+                            <span class="option-text">Crusher</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div class="container-bottom-left">
@@ -67,7 +88,7 @@
 
         <script type="module" src="script.js"> </script>
         <script type="module" src="./js/toggle.js"></script>
-        <script type="module" src="./js/menu-button.js"></script>
+        <script type="module" src="./js/home.js"></script>
     </body>
 </html>
 
