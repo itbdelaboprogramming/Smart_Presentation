@@ -28,7 +28,13 @@
     </head>
     <body>
         <div class="databases-page">
-            <canvas id="myCanvas">    </canvas>
+            <div class="left-content">
+                aaa
+            </div>
+            <div class="right-content">
+                <canvas id="myCanvas">    </canvas>
+            </div>
+            
 
             <div class="container-top-left">
                 <div class="page-name-container">
@@ -88,7 +94,7 @@
         </script>
 
         <script type="module" src="script.js"> </script>
-        <script type="module" src="./js/toggle.js"></script>
+        <script type="module" src="./js/databases.js"></script>
     </body>
 </html>
 

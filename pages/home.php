@@ -87,7 +87,6 @@
         </div>
 
         <script type="module" src="script.js"> </script>
-        <script type="module" src="./js/toggle.js"></script>
         <script type="module" src="./js/home.js"></script>
     </body>
 </html>

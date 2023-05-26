@@ -6,6 +6,31 @@
 	width: 100%;
 	align-items: center;
 	vertical-align: text-top;
+
+	background-color: var(--primary-color-main);
+}
+
+/* Canvas for 3d object */
+canvas {
+	width: 320px;
+	height: 291px;
+	background-color: lightgray;
+
+	border: 2px solid #04445f;
+	border-radius: 10px;
+}
+
+/* Content */
+.left-content {
+	width: 70%;
+}
+
+.right-content {
+	display: flex;
+	justify-content: flex-end;
+	width: 30%;
+
+	padding-right: 12px;
 }
 
 /* Input button */

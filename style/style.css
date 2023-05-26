@@ -12,6 +12,8 @@ body {
 }
 
 :root {
+	--primary-color-main: #e6f5f8;
+
 	--primary-color-25: #d4f2f4;
 	--primary-color-50: #74e7d4;
 	--primary-color-100: #189ab4;
@@ -34,6 +36,8 @@ body {
 }
 
 .dark-theme {
+	--primary-color-main: #1d2538;
+
 	--primary-color-25: #d4f2f4;
 	--primary-color-50: #74e7d4;
 	--primary-color-100: #189ab4;
@@ -53,13 +57,6 @@ body {
 	--text-color-50: #475b74;
 	--text-color-100: #7c8da5;
 	--text-color-200: #e0e1dc;
-}
-
-/* Canvas for 3d object */
-canvas {
-	width: 100%;
-	min-height: 100%;
-	background-color: lightgray;
 }
 
 /* Container for floating object */
