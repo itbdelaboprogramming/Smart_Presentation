@@ -9,7 +9,7 @@
         <title>Smart Presentation</title>
         <link rel="icon" type="image/x-icon" href="assets/logo.png">
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css" >
+        <link rel="stylesheet" href="./style/style.css" >
 
     </head>
     <body>

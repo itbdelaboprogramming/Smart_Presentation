@@ -1,5 +1,4 @@
-import { orbitControls } from "../script.js";
-import { scene } from "../script.js";
+import { scene, camera, orbitControls } from "../script.js";
 import * as THREE from "three";
 
 // Menu information button
@@ -133,4 +132,12 @@ toggle.addEventListener("click", () => {
 
 		localStorage.setItem("mode", "light");
 	}
+});
+
+// Resize canvas
+window.addEventListener("resize", () => {
+	myCanvas.style.width = window.innerWidth + "px";
+	myCanvas.style.height = window.innerHeight + "px";
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
 });
