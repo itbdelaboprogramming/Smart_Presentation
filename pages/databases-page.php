@@ -7,6 +7,7 @@
     }else{
         header("Location: databases/?value=" . urlencode($global_variable));
     }
+    // include_once './database/config.php'
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +30,32 @@
     <body>
         <div class="databases-page">
             <div class="left-content">
-                aaa
+                <?php 
+                    // $sql = "SELECT * FROM model_detail;";
+                    // $result = mysqli_query($conn, $sql);
+                    // $resultCheck = mysqli_num_rows($result);
+
+                    // if($resultCheck > 0){
+                    //     while($row = mysqli_fetch_assoc($result)){
+                    //         echo $row['model_name'] . "<br>";
+                    //         // echo '<div id="item-category">';
+                    //         // echo '<p>' . $row['model_name'] . '</p>';
+                    //         // echo '<div>';
+                    //         // echo '<div>';
+                    //         // echo '<span>';
+                    //         // echo '</div>';
+                    //         // echo '<ul >';
+                    //         // echo '<li >';
+                    //         // echo '<span>' . $row['model_name'] . '</span>';
+                    //         // echo '</li>';
+                    //         // echo '</ul>';
+                    //         // echo '</div>';
+                    //         // echo '</div>';
+                    //     }
+                    // }
+
+
+                ?>
             </div>
             <div class="right-content">
                 <canvas id="myCanvas">    </canvas>

@@ -52,13 +52,21 @@ menuAnimation.addEventListener("click", () => {
 
 // Menu album button
 const menuAlbum = document.querySelector(".menu-container-blue-album");
-menuAlbum.addEventListener("click", () => menuAlbum.classList.toggle("active"));
+const catalogueContainer = document.getElementById("catalogue-container");
+menuAlbum.addEventListener("click", () => {
+	menuAlbum.classList.toggle("active");
+	if (menuAlbum.classList.contains("active")) {
+		catalogueContainer.style.display = "flex";
+	} else {
+		catalogueContainer.style.display = "none";
+	}
+});
 
 // Menu lightning button
 const menuLightning = document.querySelector(".menu-container-blue-lightning");
-menuLightning.addEventListener("click", () =>
-	menuLightning.classList.toggle("active")
-);
+menuLightning.addEventListener("click", () => {
+	menuLightning.classList.toggle("active");
+});
 
 // for 3d category dropdown
 const optionMenu = document.querySelector(".select-menu");

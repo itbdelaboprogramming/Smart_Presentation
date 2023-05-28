@@ -4,6 +4,7 @@
     //     $value = urldecode($_GET['value']);
     //     $global_variable = $value;
     // }
+    // include_once './database/config.php'
 ?>
 
 <!DOCTYPE html>
@@ -84,6 +85,26 @@
                     <img src="./assets/Animation-Off-Button.png" id="animation-off">
                     <img src="./assets/Animation-On-Button.png" id="animation-on" style="display: none;">
                 </div>
+            </div>
+
+            <div class="catalogue-container" id="catalogue-container">
+
+                    <p class="catalogue-description-title">Dendoman Series</p>
+                    <div class="catalogue-description">
+                        <div class="catalogue-product-list">
+                            <img class="catalogue-image-preview" src="./files/image-preview.png"/>
+                        </div>
+                        <div class="catalogue-product-list">
+                            <img class="catalogue-image-preview" src="./files/image-preview.png"/>
+                        </div>
+                        <div class="catalogue-product-list">
+                            <img class="catalogue-image-preview" src="./files/image-preview.png"/>
+                        </div>
+                        <div class="catalogue-product-list">
+                            <img class="catalogue-image-preview" src="./files/image-preview.png"/>
+                        </div>
+                    </div>
+
             </div>
 
             <div class="container-bottom-right">
