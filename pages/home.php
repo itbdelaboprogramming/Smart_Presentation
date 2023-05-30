@@ -50,7 +50,7 @@
                     </div>
                     <ul class="options">
                         <?php 
-                            $sql = "SELECT DISTINCT category FROM model_detail ORDER BY category;";
+                            $sql = "SELECT DISTINCT category FROM model_detail;";
                             $result = mysqli_query($conn, $sql);
                             $resultCheck = mysqli_num_rows($result);
 
@@ -96,15 +96,19 @@
                     <p class="catalogue-description-title">Dendoman Series</p>
                     <div class="catalogue-description">
                         <div class="catalogue-product-list">
+                            <div class="catalogue-product-list-text">Battery Jaw Crusher</div>
                             <img class="catalogue-image-preview" src="./files/image-preview.png"/>
                         </div>
                         <div class="catalogue-product-list">
+                            <div class="catalogue-product-list-text">Jaw Crusher</div>
                             <img class="catalogue-image-preview" src="./files/image-preview.png"/>
                         </div>
                         <div class="catalogue-product-list">
+                            <div class="catalogue-product-list-text">Roll Crusher</div>
                             <img class="catalogue-image-preview" src="./files/image-preview.png"/>
                         </div>
                         <div class="catalogue-product-list">
+                            <div class="catalogue-product-list-text">Cone crusher</div>
                             <img class="catalogue-image-preview" src="./files/image-preview.png"/>
                         </div>
                     </div>

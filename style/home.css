@@ -377,6 +377,7 @@ canvas {
 	margin-top: 17px;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
 
 	padding: 0px;
 
@@ -385,6 +386,14 @@ canvas {
 
 	height: 187px;
 	width: 225px;
+}
+
+.catalogue-product-list-text {
+	margin: 20px 0px 0px 0px;
+
+	/* Text Color/Office/50 */
+
+	color: #475b74;
 }
 
 .catalogue-image-preview {
