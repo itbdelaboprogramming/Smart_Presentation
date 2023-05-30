@@ -221,6 +221,12 @@ body {
 	border-radius: 5px;
 }
 
+@media (max-width: 1000px) {
+	.page-name-container {
+		display: none;
+	}
+}
+
 .page-name-text {
 	font-family: "Ubuntu";
 	font-style: normal;
