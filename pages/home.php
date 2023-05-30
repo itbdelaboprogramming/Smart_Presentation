@@ -101,7 +101,7 @@
                         </div>
                         <div class="catalogue-product-list">
                             <div class="catalogue-product-list-text">Jaw Crusher</div>
-                            <img class="catalogue-image-preview" src="./files/image-preview.png"/>
+                            <img class="catalogue-image-preview" src="./files/image-preview2.png"/>
                         </div>
                         <div class="catalogue-product-list">
                             <div class="catalogue-product-list-text">Roll Crusher</div>
@@ -109,7 +109,7 @@
                         </div>
                         <div class="catalogue-product-list">
                             <div class="catalogue-product-list-text">Cone crusher</div>
-                            <img class="catalogue-image-preview" src="./files/image-preview.png"/>
+                            <img class="catalogue-image-preview" src="./files/image-preview2.png"/>
                         </div>
                     </div>
 
