@@ -1,22 +1,47 @@
 <?php
-    // $user = 'root';
-    // $pass = '';
-    // $db = 'smart_presentation';
-    $dbservername = 'localhost';
-    $dbusername = 'root';
-    $dbpassword = '';
-    $dbname = 'smart_presentation';
 
-    $conn = mysqli_connect($dbservername, $dbusername, $dbpassword, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-        
+    function connect(){
+        $dbservername = 'localhost';
+        $dbusername = 'root';
+        $dbpassword = '';
+        $dbname = 'smart_presentation';
+    
+        $conn = mysqli_connect($dbservername, $dbusername, $dbpassword, $dbname);
+    
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+            
+        }else{
+            return $conn;
+        }
+        // echo "Connected successfully";
     }
-    // echo "Connected successfully";
+
+    function getAllCategory(){
+        $conn = connect();
+        $sql = "SELECT DISTINCT category FROM model_detail;";
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+    
+        if($resultCheck > 0){
+            return $result;
+        }
+    }
+
+
+    function getAllModelName(){
+        $conn = connect();
+        $sql = "SELECT DISTINCT model_name, image_preview FROM model;";
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+    
+        if($resultCheck > 0){
+            return $result;
+        }
+    }
 ?>
 
-
+<!-- version 30 mei 17:12 -->
 <!-- create database "smart_presentation" -->
 
 <!-- sql code to create table and insert data -->
@@ -70,37 +95,37 @@ INSERT INTO model_detail(
     ;
     
 INSERT INTO model (model_name, model_number, image_preview, date_modified, file, file_type, size) VALUES 
-    ('Dendoman Battery Jaw Crusher', 'NE100HBJ', 'image_preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
-    ('Dendoman Battery Jaw Crusher', 'NE200HBJ', 'image_preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
-    ('Dendoman Jaw Crusher', 'NE100J', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Dendoman Jaw Crusher', 'NE150J', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Dendoman Jaw Crusher', 'NE200J', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('New Jaw Crusher RC', 'RC3624', 'image_preview.png', null, 'MSD700_bucket_MCLA007A_00.glb', '3D Object', '123 kb'),
-    ('New Jaw Crusher RC', 'RC4224', 'image_preview.png', null, 'MSD700_bucket_MCLA007A_00.glb', '3D Object', '123 kb'),
-    ('Jaw Crusher AC', 'AC1410', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Jaw Crusher AC', 'AC2415', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Bucket', 'Bucket1', 'image_preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
-    ('Bucket', 'Bucket2', 'image_preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
-    ('Blade', 'Blade1', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Blade', 'Blade2', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Backhoe', 'Backhoe1', 'image_preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
-    ('Backhoe', 'Backhoe2', 'image_preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
-    ('Dump', 'Dump1', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Dump', 'Dump2', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF616H', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF826H', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF926H', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF930H', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF1030H', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF1230H', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF1236H', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF1440H', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF1045H', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Reciprocating Plate Feeder PFS', 'PFS616', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Vibrating Feeder VF', 'VF402', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Inclined Vibrating Screen NSR', 'NSR362', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Vibrating Grizzly Screen GS', 'GS382', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF', 'GVF718', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF', 'GVF820', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF', 'GVF926', 'image_preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb')
+    ('Dendoman Battery Jaw Crusher', 'NE100HBJ', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
+    ('Dendoman Battery Jaw Crusher', 'NE200HBJ', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
+    ('Dendoman Jaw Crusher', 'NE100J', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Dendoman Jaw Crusher', 'NE150J', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Dendoman Jaw Crusher', 'NE200J', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('New Jaw Crusher RC', 'RC3624', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00.glb', '3D Object', '123 kb'),
+    ('New Jaw Crusher RC', 'RC4224', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00.glb', '3D Object', '123 kb'),
+    ('Jaw Crusher AC', 'AC1410', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Jaw Crusher AC', 'AC2415', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Bucket', 'Bucket1', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
+    ('Bucket', 'Bucket2', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
+    ('Blade', 'Blade1', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Blade', 'Blade2', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Backhoe', 'Backhoe1', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
+    ('Backhoe', 'Backhoe2', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
+    ('Dump', 'Dump1', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Dump', 'Dump2', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Grizzly Vibrating Feeder GVF-H', 'GVF616H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Grizzly Vibrating Feeder GVF-H', 'GVF826H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Grizzly Vibrating Feeder GVF-H', 'GVF926H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Grizzly Vibrating Feeder GVF-H', 'GVF930H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Grizzly Vibrating Feeder GVF-H', 'GVF1030H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Grizzly Vibrating Feeder GVF-H', 'GVF1230H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Grizzly Vibrating Feeder GVF-H', 'GVF1236H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Grizzly Vibrating Feeder GVF-H', 'GVF1440H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Grizzly Vibrating Feeder GVF-H', 'GVF1045H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Reciprocating Plate Feeder PFS', 'PFS616', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Vibrating Feeder VF', 'VF402', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Inclined Vibrating Screen NSR', 'NSR362', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Vibrating Grizzly Screen GS', 'GS382', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Grizzly Vibrating Feeder GVF', 'GVF718', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Grizzly Vibrating Feeder GVF', 'GVF820', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
+    ('Grizzly Vibrating Feeder GVF', 'GVF926', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb')
 ; -->

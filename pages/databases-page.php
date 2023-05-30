@@ -76,7 +76,7 @@
 
             <p id="myText" style="display: none;"><?php echo $global_variable; ?></p>
 
-            <form action="function.php" method="POST" enctype="multipart/form-data">
+            <form action="uploadFile.php" method="POST" enctype="multipart/form-data">
                 <div class="container-bottom-mb2x-right">
                     <input type="file" id="fileUpload" type="file" name="fileUpload" onChange="onFileChange()">
                     <label for="fileUpload" class="upload-container">

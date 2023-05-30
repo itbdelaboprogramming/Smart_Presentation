@@ -73,6 +73,7 @@ const optionMenu = document.querySelector(".select-menu");
 const selectBtn = optionMenu.querySelector(".select-menu-button");
 const options = optionMenu.querySelectorAll(".option");
 const sBtn_text = optionMenu.querySelector(".select-menu-text");
+const catalogueTitle = document.querySelector(".catalogue-description-title");
 
 selectBtn.addEventListener("click", () => {
 	optionMenu.classList.toggle("active");
@@ -82,6 +83,8 @@ options.forEach(function (option) {
 	option.addEventListener("click", () => {
 		let selectedOption = option.querySelector(".option-text").innerText;
 		sBtn_text.innerText = selectedOption;
+
+		catalogueTitle.innerText = selectedOption + " Series";
 
 		optionMenu.classList.toggle("active");
 	});

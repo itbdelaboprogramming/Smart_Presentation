@@ -379,12 +379,12 @@ canvas {
 	justify-content: center;
 	flex-direction: column;
 
-	padding: 0px;
+	padding: 15px 0px 0px 0px;
 
 	border: 1px solid #74e7d4;
 	border-radius: 10px;
 
-	height: 187px;
+	height: 190px;
 	width: 225px;
 
 	cursor: pointer;
@@ -395,11 +395,12 @@ canvas {
 }
 
 .catalogue-product-list-text {
-	margin: 20px 0px 0px 0px;
+	/* margin: 20px 0px 0px 0px; */
 
 	/* Text Color/Office/50 */
 
 	color: #475b74;
+	text-align: center;
 }
 
 .catalogue-image-preview {
