@@ -4,7 +4,7 @@
     //     $value = urldecode($_GET['value']);
     //     $global_variable = $value;
     // }
-    // include_once './database/config.php'
+    include_once './database/config.php'
 ?>
 
 <!DOCTYPE html>
@@ -49,15 +49,19 @@
                         <img src="./assets/Dropdown-Off.png"/>
                     </div>
                     <ul class="options">
-                        <li class="option">
-                            <span class="option-text">MSD700</span>
-                        </li>
-                        <li class="option">
-                            <span class="option-text">Dendoman</span>
-                        </li>
-                        <li class="option">
-                            <span class="option-text">Crusher</span>
-                        </li>
+                        <?php 
+                            $sql = "SELECT DISTINCT category FROM model_detail ORDER BY category;";
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
+
+                            if($resultCheck > 0){
+                                while($row = mysqli_fetch_assoc($result)){
+                                    echo '<li class="option">';
+                                    echo '<span class="option-text">' . $row['category'] . "</span>";
+                                    echo '</li >';
+                                }
+                            }
+                        ?>
                     </ul>
                 </div>
             </div>
