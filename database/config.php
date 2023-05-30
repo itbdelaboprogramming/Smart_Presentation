@@ -36,96 +36,24 @@
         $resultCheck = mysqli_num_rows($result);
     
         if($resultCheck > 0){
-            return $result;
+            while($row = $result->fetch_assoc()){
+                $product2[] = $row;
+            }
+            return $product2;
+        }
+    }
+
+    function getModelName($modelname){
+        $conn = connect();
+        $sql = "SELECT DISTINCT model.model_name, model.image_preview, model_detail.category FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name WHERE category = '$modelname' ORDER BY category;";
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+    
+        if($resultCheck > 0){
+            while($row = $result->fetch_assoc()){
+                $product2[] = $row;
+            }
+            return $product2;
         }
     }
 ?>
-
-<!-- version 30 mei 17:12 -->
-<!-- create database "smart_presentation" -->
-
-<!-- sql code to create table and insert data -->
-
-<!-- CREATE TABLE model_detail ( 
-    model_name varchar(255) not null PRIMARY KEY, 
-    category varchar(255) not null, 
-    description varchar(255) not null, 
-    specification varchar(255) not null 
-);
-
-CREATE TABLE model ( 
-    model_number varchar(255) not null PRIMARY KEY, 
-    model_name varchar(255) not null, 
-    image_preview varchar(255) not null, 
-    date_modified timestamp default now() on update now(), 
-    file_type varchar(255) not null,
-    size varchar(255), 
-    file varchar(255) not null,
-    FOREIGN KEY (model_name) REFERENCES model_detail(model_name) 
-);
-
-INSERT INTO model_detail(
-    model_name, category, description, specification
-) VALUES 
-    ('Dendoman Battery Jaw Crusher', 'Dendoman', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Dendoman Jaw Crusher', 'Dendoman', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Dendoman Roll Crusher', 'Dendoman', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Dendoman Cone Crusher', 'Dendoman', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Dendoman Impact Crusher', 'Dendoman', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Dendoman VSI(Gyropactor)', 'Dendoman', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Dendoman Screen', 'Dendoman', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Hydraulic crushing chamber release system', 'Crusher', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('New Jaw Crusher RC', 'Crusher', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Jaw Crusher AC', 'Crusher', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Power Roll Crusher PRC', 'Crusher', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Neo Cone Crusher NSC', 'Crusher', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Impact Crusher ACD', 'Crusher', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('VSI(Gyropactor) SR', 'Crusher', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Fritter FR', 'Crusher', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Bucket', 'MSD700', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Blade', 'MSD700', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Backhoe', 'MSD700', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Dump', 'MSD700', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Grizzly Vibrating Feeder GVF-H', 'Screen / Feeder', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Grizzly Vibrating Feeder GVF', 'Screen / Feeder', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Reciprocating Plate Feeder PFS', 'Screen / Feeder', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Vibrating Feeder VF', 'Screen / Feeder', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Inclined Vibrating Screen NSR', 'Screen / Feeder', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement'),
-    ('Vibrating Grizzly Screen GS', 'Screen / Feeder', 'Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system)', 'Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement')
-    ;
-    
-INSERT INTO model (model_name, model_number, image_preview, date_modified, file, file_type, size) VALUES 
-    ('Dendoman Battery Jaw Crusher', 'NE100HBJ', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
-    ('Dendoman Battery Jaw Crusher', 'NE200HBJ', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
-    ('Dendoman Jaw Crusher', 'NE100J', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Dendoman Jaw Crusher', 'NE150J', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Dendoman Jaw Crusher', 'NE200J', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('New Jaw Crusher RC', 'RC3624', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00.glb', '3D Object', '123 kb'),
-    ('New Jaw Crusher RC', 'RC4224', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00.glb', '3D Object', '123 kb'),
-    ('Jaw Crusher AC', 'AC1410', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Jaw Crusher AC', 'AC2415', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Bucket', 'Bucket1', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
-    ('Bucket', 'Bucket2', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
-    ('Blade', 'Blade1', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Blade', 'Blade2', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Backhoe', 'Backhoe1', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
-    ('Backhoe', 'Backhoe2', 'image-preview.png', null, 'MSD700_bucket_MCLA007A_00_2.glb', '3D Object', '123 kb'),
-    ('Dump', 'Dump1', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Dump', 'Dump2', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF616H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF826H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF926H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF930H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF1030H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF1230H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF1236H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF1440H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF-H', 'GVF1045H', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Reciprocating Plate Feeder PFS', 'PFS616', 'image-preview2.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Vibrating Feeder VF', 'VF402', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Inclined Vibrating Screen NSR', 'NSR362', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Vibrating Grizzly Screen GS', 'GS382', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF', 'GVF718', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF', 'GVF820', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb'),
-    ('Grizzly Vibrating Feeder GVF', 'GVF926', 'image-preview.png', null, 'MSD700_ブレードモデル_MCLA15A.glb', '3D Object', '123 kb')
-; -->

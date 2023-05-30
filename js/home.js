@@ -74,6 +74,7 @@ const selectBtn = optionMenu.querySelector(".select-menu-button");
 const options = optionMenu.querySelectorAll(".option");
 const sBtn_text = optionMenu.querySelector(".select-menu-text");
 const catalogueTitle = document.querySelector(".catalogue-description-title");
+const catalogueDescription = document.querySelector(".catalogue-description");
 
 selectBtn.addEventListener("click", () => {
 	optionMenu.classList.toggle("active");
@@ -87,6 +88,29 @@ options.forEach(function (option) {
 		catalogueTitle.innerText = selectedOption + " Series";
 
 		optionMenu.classList.toggle("active");
+
+		let http = new XMLHttpRequest();
+
+		http.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				let response = JSON.parse(this.responseText);
+				let out = "";
+				for (let item of response) {
+					out += `
+						<div class="catalogue-product-list">
+							<div class="catalogue-product-list-text">${item.model_name}</div>
+							<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
+						</div>	
+					
+					`;
+				}
+				catalogueDescription.innerHTML = out;
+			}
+		};
+
+		http.open("POST", "./utils/model_name.php", true);
+		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		http.send("category=" + selectedOption);
 	});
 });
 

@@ -97,14 +97,14 @@
                     <div class="catalogue-description">
                         <?php
                             $result2 = getAllModelName();
-                            while($row2 = mysqli_fetch_assoc($result2)){
+                            
+                            foreach ($result2 as $row2){
                                 ?>
                                 <div class="catalogue-product-list">
                                     <div class="catalogue-product-list-text"><?php echo $row2['model_name']; ?></div>
                                     <?php 
                                         echo '<img class="catalogue-image-preview" src="./files/' . $row2['image_preview'] .'" />';
                                     ?>
-                                    <!-- <img class="catalogue-image-preview" src="./files/{$row2['image_preview']}"/> -->
                                 </div>
                                 <?php
                             }
