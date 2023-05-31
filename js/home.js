@@ -1,21 +1,6 @@
 import { scene, camera, orbitControls } from "../script.js";
 import * as THREE from "three";
 
-// Menu information button
-const menuInformation = document.querySelector(
-	".menu-container-blue-information"
-);
-const informationContainer = document.getElementById("information-container");
-menuInformation.addEventListener("click", () => {
-	menuInformation.classList.toggle("active");
-
-	if (menuInformation.classList.contains("active")) {
-		informationContainer.style.display = "flex";
-	} else {
-		informationContainer.style.display = "none";
-	}
-});
-
 // Menu sound button
 const menuSound = document.querySelector(".menu-container-blue-sound");
 const iconSoundOff = document.getElementById("sound-off");
@@ -68,6 +53,51 @@ menuLightning.addEventListener("click", () => {
 	menuLightning.classList.toggle("active");
 });
 
+// Menu information button
+const menuInformation = document.querySelector(
+	".menu-container-blue-information"
+);
+const informationContainer = document.getElementById("information-container");
+
+var catalogue_product_list = document.querySelectorAll(
+	".catalogue-product-list"
+);
+
+// file name in html code
+var myText = document.getElementById("myText").textContent;
+
+function loadCatalogue(catalogue_product_list) {
+	catalogue_product_list.forEach(function (product_list) {
+		product_list.addEventListener("click", () => {
+			let product_list_text = product_list.querySelector(
+				".catalogue-product-list-text"
+			).innerText;
+			console.log(product_list.getAttribute("data-value"));
+
+			resetCatalogueSelect();
+			product_list.classList.toggle("active");
+		});
+	});
+}
+
+function resetCatalogueSelect() {
+	catalogue_product_list.forEach(function (product_list) {
+		product_list.classList.remove("active");
+	});
+}
+
+loadCatalogue(catalogue_product_list);
+
+menuInformation.addEventListener("click", () => {
+	menuInformation.classList.toggle("active");
+
+	if (menuInformation.classList.contains("active")) {
+		informationContainer.style.display = "flex";
+	} else {
+		informationContainer.style.display = "none";
+	}
+});
+
 // for 3d category dropdown
 const optionMenu = document.querySelector(".select-menu");
 const selectBtn = optionMenu.querySelector(".select-menu-button");
@@ -97,7 +127,7 @@ options.forEach(function (option) {
 				let out = "";
 				for (let item of response) {
 					out += `
-						<div class="catalogue-product-list">
+						<div class="catalogue-product-list" data-value="${item.id}">
 							<div class="catalogue-product-list-text">${item.model_name}</div>
 							<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
 						</div>	
@@ -105,6 +135,10 @@ options.forEach(function (option) {
 					`;
 				}
 				catalogueDescription.innerHTML = out;
+				catalogue_product_list = document.querySelectorAll(
+					".catalogue-product-list"
+				);
+				loadCatalogue(catalogue_product_list);
 			}
 		};
 

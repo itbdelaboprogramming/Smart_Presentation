@@ -92,21 +92,16 @@
             </div>
 
             <div class="catalogue-container" id="catalogue-container">
-
                     <p class="catalogue-description-title">All Series</p>
                     <div class="catalogue-description">
                         <?php
                             $result2 = getAllModelName();
                             
                             foreach ($result2 as $row2){
-                                ?>
-                                <div class="catalogue-product-list">
-                                    <div class="catalogue-product-list-text"><?php echo $row2['model_name']; ?></div>
-                                    <?php 
-                                        echo '<img class="catalogue-image-preview" src="./files/' . $row2['image_preview'] .'" />';
-                                    ?>
-                                </div>
-                                <?php
+                                echo '<div class="catalogue-product-list" data-value="' . $row2['id'] . '">';
+                                    echo '<div class="catalogue-product-list-text">' . $row2['model_name'] . '</div>';
+                                    echo '<img class="catalogue-image-preview" src="./files/' . $row2['image_preview'] .'" />';
+                                echo '</div>';
                             }
                         ?>
                     </div>
