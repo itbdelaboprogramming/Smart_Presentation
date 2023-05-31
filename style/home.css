@@ -387,6 +387,8 @@ canvas {
 	width: 225px;
 
 	cursor: pointer;
+
+	transition: all 0.3s ease-in;
 }
 
 .catalogue-product-list:hover {
