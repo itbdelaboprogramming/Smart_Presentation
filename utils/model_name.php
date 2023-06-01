@@ -12,6 +12,17 @@
 
         echo json_encode($product2);
     }
+    if(isset($_POST['id'])){
+        $id = $_POST['id'];
+
+        if($id === "" || $id === "All"){
+            $product2 = getAllModelName();
+        }else{
+            $product2 = getModelName($id);
+        }
+
+        echo json_encode($product2);
+    }
 
 
 ?>

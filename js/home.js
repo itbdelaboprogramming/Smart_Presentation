@@ -65,6 +65,9 @@ var catalogue_product_list = document.querySelectorAll(
 
 // file name in html code
 var myText = document.getElementById("myText").textContent;
+let information_description_title = document.querySelector(
+	".information-description-title"
+);
 
 function loadCatalogue(catalogue_product_list) {
 	catalogue_product_list.forEach(function (product_list) {
@@ -76,6 +79,10 @@ function loadCatalogue(catalogue_product_list) {
 
 			resetCatalogueSelect();
 			product_list.classList.toggle("active");
+
+			if (product_list.classList.contains("active")) {
+				information_description_title.innerText = product_list_text;
+			}
 		});
 	});
 }
@@ -125,15 +132,45 @@ options.forEach(function (option) {
 			if (this.readyState == 4 && this.status == 200) {
 				let response = JSON.parse(this.responseText);
 				let out = "";
-				for (let item of response) {
-					out += `
-						<div class="catalogue-product-list" data-value="${item.id}">
-							<div class="catalogue-product-list-text">${item.model_name}</div>
-							<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
-						</div>	
-					
-					`;
-				}
+				let desc = "";
+
+				response.forEach((item, index) => {
+					if (index == 0) {
+						out += `
+							<div class="catalogue-product-list active" data-value="${item.id}">
+								<div class="catalogue-product-list-text">${item.model_name}</div>
+								<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
+							</div>
+						`;
+						let information_description_description = document.querySelector(
+							".information-description-description"
+						);
+
+						let array_description = item.description.split(".");
+
+						array_description.forEach((item, index, array) => {
+							if (index === 0 && index === array.length - 1) {
+								desc += `<p class="information-description-description"> ${item} </p>`;
+							} else if (index === 0) {
+								desc += `<p class="information-description-description"> ${item} <br><br>`;
+							} else if (index === array.length - 1) {
+								desc += `${item} </p>`;
+							} else {
+								desc += `${item} <br><br>`;
+							}
+						});
+						information_description_description.innerHTML = desc;
+						information_description_title.innerText = item.model_name;
+					} else {
+						out += `
+							<div class="catalogue-product-list" data-value="${item.id}">
+								<div class="catalogue-product-list-text">${item.model_name}</div>
+								<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
+							</div>	
+						`;
+					}
+				});
+
 				catalogueDescription.innerHTML = out;
 				catalogue_product_list = document.querySelectorAll(
 					".catalogue-product-list"

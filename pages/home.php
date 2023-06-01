@@ -70,7 +70,7 @@
                 <div class="information-description">
                     <p class="information-description-title">Dendoman Battery Jaw Crusher</p>
                     <p class="information-description-model-number">NE100HBJ | NE200HBJ</p>
-                    <p>Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system) </p>
+                    <p class="information-description-description">Driven by the Lithium Ion battery With the power management function <br><br> Also equipped with the N-Link (IoT remote controlled management system) </p>
                     <p class="information-description-specification">Specifications</p>
                     <p>Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement</p>
                 </div>
@@ -92,20 +92,26 @@
             </div>
 
             <div class="catalogue-container" id="catalogue-container">
-                    <p class="catalogue-description-title">All Series</p>
-                    <div class="catalogue-description">
-                        <?php
-                            $result2 = getAllModelName();
-                            
-                            foreach ($result2 as $row2){
+                <p class="catalogue-description-title">All Series</p>
+                <div class="catalogue-description">
+                    <?php
+                        $result2 = getAllModelName();
+                        
+                        foreach ($result2 as $key => $row2){
+                            if ($key === array_key_first($result2)) {
+                                echo '<div class="catalogue-product-list active" data-value="' . $row2['id'] . '">';
+                                    echo '<div class="catalogue-product-list-text">' . $row2['model_name'] . '</div>';
+                                    echo '<img class="catalogue-image-preview" src="./files/' . $row2['image_preview'] .'" />';
+                                echo '</div>';
+                            }else{
                                 echo '<div class="catalogue-product-list" data-value="' . $row2['id'] . '">';
                                     echo '<div class="catalogue-product-list-text">' . $row2['model_name'] . '</div>';
                                     echo '<img class="catalogue-image-preview" src="./files/' . $row2['image_preview'] .'" />';
                                 echo '</div>';
                             }
-                        ?>
-                    </div>
-
+                        }
+                    ?>
+                </div>
             </div>
 
             <div class="container-bottom-right">

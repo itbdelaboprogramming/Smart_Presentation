@@ -31,7 +31,7 @@
 
     function getAllModelName(){
         $conn = connect();
-        $sql = "SELECT DISTINCT id, model_name, image_preview FROM model;";
+        $sql = "SELECT DISTINCT model.id, model.model_name, model.image_preview, model_detail.category, model_detail.description FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name ORDER BY model_name;";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
     
@@ -45,7 +45,7 @@
 
     function getModelName($modelname){
         $conn = connect();
-        $sql = "SELECT DISTINCT model.id, model.model_name, model.image_preview, model_detail.category FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name WHERE category = '$modelname' ORDER BY category;";
+        $sql = "SELECT DISTINCT model.id, model.model_name, model.image_preview, model_detail.category, model_detail.description FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name WHERE category = '$modelname' ORDER BY model_name;";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
     
