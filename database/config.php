@@ -71,4 +71,20 @@
             return $product2;
         }
     }
+
+
+    function getFileById($id){
+        $conn = connect();
+        $sql = "SELECT model.id, model.file FROM model WHERE id = '$id';";
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+    
+        if($resultCheck > 0){
+            while($row = $result->fetch_assoc()){
+                $product2[] = $row;
+            }
+
+            return $product2;
+        }
+    }
 ?>
