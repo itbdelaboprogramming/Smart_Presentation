@@ -355,9 +355,10 @@ canvas {
 	line-height: 18px;
 	display: flex;
 	align-items: center;
-	text-align: center;
+	text-align: left;
 
 	min-height: 29px;
+	max-width: 170px;
 
 	color: #475b74;
 
@@ -419,6 +420,30 @@ canvas {
 .catalogue-image-preview {
 	height: 100%;
 	width: 100%;
+}
+
+.catalogue-description-header {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.catalogue-back-button {
+	/* box-sizing: border-box; */
+
+	width: 29px;
+	height: 29px;
+
+	background: #74e7d4;
+	border: 1px solid #04445f;
+	border-radius: 50%;
+
+	display: flex;
+	cursor: pointer;
+}
+
+.catalogue-back-button-img {
+	margin: auto;
 }
 
 /* catalogue model number home */
@@ -528,28 +553,4 @@ canvas {
 .catalogue-image-preview-2 {
 	height: 100%;
 	width: 100%;
-}
-
-.catalogue-description-header {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-}
-
-.catalogue-back-button {
-	box-sizing: border-box;
-
-	width: 29px;
-	height: 29px;
-
-	background: #74e7d4;
-	border: 1px solid #04445f;
-	border-radius: 14.8102px;
-
-	display: flex;
-	cursor: pointer;
-}
-
-.catalogue-back-button-img {
-	margin: auto;
 }

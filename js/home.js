@@ -28,6 +28,9 @@ const catalogueDetailBack = document.querySelector(".catalogue-back-button");
 const catalogueDetailDescription = document.querySelector(
 	".catalogue-description"
 );
+const catalogueDetailTitle = document.querySelector(
+	".catalogue-description-title"
+);
 
 // ------------ lightning ------------
 const menuLightning = document.querySelector(".menu-container-blue-lightning");
@@ -47,7 +50,7 @@ const optionMenu = document.querySelector(".select-menu");
 const selectBtn = optionMenu.querySelector(".select-menu-button");
 const options = optionMenu.querySelectorAll(".option");
 const sBtn_text = optionMenu.querySelector(".select-menu-text");
-const catalogueTitle = document.querySelector(".catalogue-description-title");
+const catalogueTitle = document.querySelector(".catalogue-description-title-2");
 const catalogueDescription = document.querySelector(".catalogue-description-2");
 
 // ------------ dark/light mode ------------
@@ -328,9 +331,7 @@ function loadCatalogue(catalogue_product_list) {
 
 				updateInformation(product_list_text);
 			}
-			// else {
-			// 	loadFile3D(product_list.dataset.value);
-			// }
+
 			resetCatalogueSelect();
 			product_list.classList.toggle("active");
 
@@ -425,6 +426,7 @@ function loadCatalogueDetail(model_name) {
 			});
 
 			catalogueDetailDescription.innerHTML = out;
+			catalogueDetailTitle.innerText = model_name + " Models";
 
 			let catalogue_product_list_detail = document.querySelectorAll(
 				".catalogue-product-list"
