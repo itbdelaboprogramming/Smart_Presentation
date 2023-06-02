@@ -2,25 +2,21 @@
     include '../database/config.php';
 
     if(isset($_POST['category'])){
-        $modelname = $_POST['category'];
+        $category = $_POST['category'];
 
-        if($modelname === "" || $modelname === "All"){
+        if($category === "" || $category === "All"){
             $product2 = getAllModelName();
         }else{
-            $product2 = getModelName($modelname);
+            $product2 = getModelName($category);
         }
 
         echo json_encode($product2);
     }
-    if(isset($_POST['id'])){
-        $id = $_POST['id'];
 
-        if($id === "" || $id === "All"){
-            $product2 = getAllModelName();
-        }else{
-            $product2 = getModelName($id);
-        }
+    if(isset($_POST['modelname'])){
+        $model_name = $_POST['modelname'];
 
+        $product2 = getDescription($model_name);
         echo json_encode($product2);
     }
 
