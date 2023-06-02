@@ -1,5 +1,6 @@
 import { scene, camera, orbitControls } from "../script.js";
 import * as THREE from "three";
+import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js";
 
 // Const, Var, Let
 // ------------ sound ------------
@@ -14,7 +15,22 @@ const iconAnimationOn = document.getElementById("animation-on");
 
 // ------------ catalogue ------------
 const menuAlbum = document.querySelector(".menu-container-blue-album");
-const catalogueContainer = document.getElementById("catalogue-container");
+const catalogueContainer = document.getElementById("catalogue-container-2");
+var catalogue_product_list = document.querySelectorAll(
+	".catalogue-product-list-2"
+);
+let product_list_text = document.querySelector(
+	".catalogue-product-list-text-2"
+).innerText;
+
+const catalogueDetailContainer = document.getElementById("catalogue-container");
+const catalogueDetailBack = document.querySelector(".catalogue-back-button");
+const catalogueDetailDescription = document.querySelector(
+	".catalogue-description"
+);
+const catalogueDetailTitle = document.querySelector(
+	".catalogue-description-title"
+);
 
 // ------------ lightning ------------
 const menuLightning = document.querySelector(".menu-container-blue-lightning");
@@ -24,24 +40,18 @@ const menuInformation = document.querySelector(
 	".menu-container-blue-information"
 );
 const informationContainer = document.getElementById("information-container");
-var catalogue_product_list = document.querySelectorAll(
-	".catalogue-product-list"
-);
 var myText = document.getElementById("myText").textContent;
 let information_description_title = document.querySelector(
 	".information-description-title"
 );
-let product_list_text = document.querySelector(
-	".catalogue-product-list-text"
-).innerText;
 
 // ------------ 3d category dropdown ------------
 const optionMenu = document.querySelector(".select-menu");
 const selectBtn = optionMenu.querySelector(".select-menu-button");
 const options = optionMenu.querySelectorAll(".option");
 const sBtn_text = optionMenu.querySelector(".select-menu-text");
-const catalogueTitle = document.querySelector(".catalogue-description-title");
-const catalogueDescription = document.querySelector(".catalogue-description");
+const catalogueTitle = document.querySelector(".catalogue-description-title-2");
+const catalogueDescription = document.querySelector(".catalogue-description-2");
 
 // ------------ dark/light mode ------------
 const toggle = document.querySelector(".toggle");
@@ -81,11 +91,17 @@ menuAlbum.addEventListener("click", () => {
 	menuAlbum.classList.toggle("active");
 	if (menuAlbum.classList.contains("active")) {
 		catalogueContainer.style.display = "flex";
+		catalogueDetailContainer.style.display = "none";
 	} else {
 		catalogueContainer.style.display = "none";
+		catalogueDetailContainer.style.display = "none";
 	}
 });
 loadCatalogue(catalogue_product_list);
+catalogueDetailBack.addEventListener("click", () => {
+	catalogueContainer.style.display = "flex";
+	catalogueDetailContainer.style.display = "none";
+});
 
 // Menu lightning button
 menuLightning.addEventListener("click", () => {
@@ -93,7 +109,6 @@ menuLightning.addEventListener("click", () => {
 });
 
 // Menu information button
-
 menuInformation.addEventListener("click", () => {
 	menuInformation.classList.toggle("active");
 
@@ -106,7 +121,6 @@ menuInformation.addEventListener("click", () => {
 updateInformation(product_list_text);
 
 // for 3d category dropdown
-
 selectBtn.addEventListener("click", () => {
 	optionMenu.classList.toggle("active");
 });
@@ -126,21 +140,20 @@ options.forEach(function (option) {
 			if (this.readyState == 4 && this.status == 200) {
 				let response = JSON.parse(this.responseText);
 				let out = "";
-				let desc = "";
 
 				response.forEach((item, index) => {
 					if (index == 0) {
 						out += `
-							<div class="catalogue-product-list active" data-value="${item.id}" id="model_name">
-								<div class="catalogue-product-list-text">${item.model_name}</div>
-								<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
+							<div class="catalogue-product-list-2 active" id="model_name">
+								<div class="catalogue-product-list-text-2">${item.model_name}</div>
+								<img class="catalogue-image-preview-2" src="./files/${item.image_preview}" />
 							</div>
 						`;
 					} else {
 						out += `
-							<div class="catalogue-product-list" data-value="${item.id}">
-								<div class="catalogue-product-list-text">${item.model_name}</div>
-								<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
+							<div class="catalogue-product-list-2" >
+								<div class="catalogue-product-list-text-2">${item.model_name}</div>
+								<img class="catalogue-image-preview-2" src="./files/${item.image_preview}" />
 							</div>	
 						`;
 					}
@@ -148,13 +161,13 @@ options.forEach(function (option) {
 
 				catalogueDescription.innerHTML = out;
 				catalogue_product_list = document.querySelectorAll(
-					".catalogue-product-list"
+					".catalogue-product-list-2"
 				);
 				loadCatalogue(catalogue_product_list);
 			}
 		};
 
-		http.open("POST", "./utils/model_name.php", true);
+		http.open("POST", "./utils/database.php", true);
 		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		http.send("category=" + selectedOption);
 	});
@@ -169,7 +182,6 @@ window.addEventListener("click", function (e) {
 });
 
 // dark/light mode toggle
-
 if (getMode && getMode === "dark-theme") {
 	document.body.classList.add("dark-theme");
 	toggle.classList.add("active");
@@ -220,15 +232,21 @@ window.addEventListener("resize", () => {
 	camera.updateProjectionMatrix();
 });
 
+let loader = new GLTFLoader();
+loader.name = "loader";
+
 // helper function
-function updateInformation($model_name) {
+function updateInformation(model_name) {
 	let http = new XMLHttpRequest();
 
 	http.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
-			console.log(this.responseText);
 			let response = JSON.parse(this.responseText);
 			let out = "";
+
+			// update file (canvas)
+			myText = response[0].file;
+			updateFile3D(myText);
 
 			// update title
 			information_description_title.innerText = response[0].model_name;
@@ -240,10 +258,10 @@ function updateInformation($model_name) {
 			response.forEach((item, index, array) => {
 				if (index == 0 && index == array.length - 1) {
 					out += `${item.model_number}`;
-				} else if (index == 0) {
-					out += `${item.model_number} | `;
 				} else if (index == array.length - 1) {
 					out += `${item.model_number}`;
+				} else {
+					out += `${item.model_number} | `;
 				}
 			});
 			information_description_model_name.innerText = out;
@@ -294,27 +312,24 @@ function updateInformation($model_name) {
 			out = "";
 			let information_link = document.querySelector(".information-link");
 			information_link.href = response[0].link_to_web;
-			information_link.innerText = ` ${$model_name} Series | Nakayama Iron Works (ncjpn.com))`;
+			information_link.innerText = ` ${model_name} Series | Nakayama Iron Works (ncjpn.com))`;
 		}
 	};
-	http.open("POST", "./utils/model_name.php", true);
+	http.open("POST", "./utils/database.php", true);
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	http.send("modelname=" + $model_name);
+	http.send("modelname=" + model_name);
 }
 
 function loadCatalogue(catalogue_product_list) {
 	catalogue_product_list.forEach(function (product_list) {
 		product_list.addEventListener("click", () => {
 			let temp_product_list_text = product_list.querySelector(
-				".catalogue-product-list-text"
+				".catalogue-product-list-text-2"
 			).innerText;
 			if (temp_product_list_text != product_list_text) {
 				product_list_text = temp_product_list_text;
-				console.log(product_list.getAttribute("data-value"));
-				console.log(product_list_text);
+
 				updateInformation(product_list_text);
-			} else {
-				console.log("sama");
 			}
 
 			resetCatalogueSelect();
@@ -323,11 +338,15 @@ function loadCatalogue(catalogue_product_list) {
 			if (product_list.classList.contains("active")) {
 				information_description_title.innerText = product_list_text;
 			}
+
+			catalogueContainer.style.display = "none";
+			catalogueDetailContainer.style.display = "flex";
+			loadCatalogueDetail(product_list_text);
 		});
 
 		if (product_list.classList.contains("active")) {
 			let product_list_text = product_list.querySelector(
-				".catalogue-product-list-text"
+				".catalogue-product-list-text-2"
 			).innerText;
 
 			updateInformation(product_list_text);
@@ -335,8 +354,96 @@ function loadCatalogue(catalogue_product_list) {
 	});
 }
 
+function loadFile3D(id) {
+	let http = new XMLHttpRequest();
+
+	http.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			let response = JSON.parse(this.responseText);
+
+			updateFile3D(response[0].file);
+		}
+	};
+	http.open("POST", "./utils/database.php", true);
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.send("id=" + id);
+}
+
 function resetCatalogueSelect() {
 	catalogue_product_list.forEach(function (product_list) {
 		product_list.classList.remove("active");
 	});
+}
+
+function updateFile3D(file_name) {
+	try {
+		let file3D = scene.getObjectByName("file3D");
+		file3D.name = "file3D";
+
+		scene.remove(file3D);
+
+		loader.load(
+			`./files/${file_name}`,
+			function (gltf) {
+				file3D = gltf.scene;
+				file3D.name = "file3D";
+				scene.add(file3D);
+			},
+			undefined,
+			function (error) {
+				console.error(error);
+			}
+		);
+	} catch (e) {
+		// do nothing
+	}
+}
+
+function loadCatalogueDetail(model_name) {
+	let http = new XMLHttpRequest();
+
+	http.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			let response = JSON.parse(this.responseText);
+			let out = "";
+
+			response.forEach((item, index) => {
+				if (index == 0) {
+					out += `
+						<div class="catalogue-product-list active" data-value="${item.id}" id="model_name">
+							<div class="catalogue-product-list-text">${item.model_number}</div>
+							<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
+						</div>
+					`;
+				} else {
+					out += `
+						<div class="catalogue-product-list" data-value="${item.id}">
+							<div class="catalogue-product-list-text">${item.model_number}</div>
+							<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
+						</div>	
+					`;
+				}
+			});
+
+			catalogueDetailDescription.innerHTML = out;
+			catalogueDetailTitle.innerText = model_name + " Models";
+
+			let catalogue_product_list_detail = document.querySelectorAll(
+				".catalogue-product-list"
+			);
+			catalogue_product_list_detail.forEach(function (product_list_detail) {
+				product_list_detail.addEventListener("click", () => {
+					loadFile3D(product_list_detail.dataset.value);
+
+					catalogue_product_list_detail.forEach(function (product_list) {
+						product_list.classList.remove("active");
+					});
+					product_list_detail.classList.toggle("active");
+				});
+			});
+		}
+	};
+	http.open("POST", "./utils/database.php", true);
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.send("getmodelnumber=" + model_name);
 }

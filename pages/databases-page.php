@@ -53,8 +53,6 @@
                     //         // echo '</div>';
                     //     }
                     // }
-
-
                 ?>
             </div>
             <div class="right-content">
