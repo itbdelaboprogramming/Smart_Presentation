@@ -81,14 +81,17 @@ renderer.setSize(myCanvas.offsetWidth, myCanvas.offsetHeight);
 
 export const orbitControls = new OrbitControls(camera, renderer.domElement);
 
-const loader = new GLTFLoader();
+export const loader = new GLTFLoader();
+loader.name = "loader";
 
 let path = "files/" + myText;
 
 loader.load(
 	path,
 	function (gltf) {
-		scene.add(gltf.scene);
+		let file3D = gltf.scene;
+		file3D.name = "file3D";
+		scene.add(file3D);
 	},
 	undefined,
 	function (error) {

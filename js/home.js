@@ -1,5 +1,6 @@
 import { scene, camera, orbitControls } from "../script.js";
 import * as THREE from "three";
+import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js";
 
 // Const, Var, Let
 // ------------ sound ------------
@@ -93,7 +94,6 @@ menuLightning.addEventListener("click", () => {
 });
 
 // Menu information button
-
 menuInformation.addEventListener("click", () => {
 	menuInformation.classList.toggle("active");
 
@@ -106,7 +106,6 @@ menuInformation.addEventListener("click", () => {
 updateInformation(product_list_text);
 
 // for 3d category dropdown
-
 selectBtn.addEventListener("click", () => {
 	optionMenu.classList.toggle("active");
 });
@@ -126,7 +125,6 @@ options.forEach(function (option) {
 			if (this.readyState == 4 && this.status == 200) {
 				let response = JSON.parse(this.responseText);
 				let out = "";
-				let desc = "";
 
 				response.forEach((item, index) => {
 					if (index == 0) {
@@ -169,7 +167,6 @@ window.addEventListener("click", function (e) {
 });
 
 // dark/light mode toggle
-
 if (getMode && getMode === "dark-theme") {
 	document.body.classList.add("dark-theme");
 	toggle.classList.add("active");
@@ -220,15 +217,38 @@ window.addEventListener("resize", () => {
 	camera.updateProjectionMatrix();
 });
 
+let loader = new GLTFLoader();
+loader.name = "loader";
+
 // helper function
 function updateInformation($model_name) {
 	let http = new XMLHttpRequest();
 
 	http.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
-			console.log(this.responseText);
 			let response = JSON.parse(this.responseText);
 			let out = "";
+
+			// update image
+			myText = response[0].file;
+
+			let file3D = scene.getObjectByName("file3D");
+			file3D.name = "file3D";
+
+			scene.remove(file3D);
+
+			loader.load(
+				`./files/${response[0].file}`,
+				function (gltf) {
+					file3D = gltf.scene;
+					file3D.name = "file3D";
+					scene.add(file3D);
+				},
+				undefined,
+				function (error) {
+					console.error(error);
+				}
+			);
 
 			// update title
 			information_description_title.innerText = response[0].model_name;
@@ -310,13 +330,9 @@ function loadCatalogue(catalogue_product_list) {
 			).innerText;
 			if (temp_product_list_text != product_list_text) {
 				product_list_text = temp_product_list_text;
-				console.log(product_list.getAttribute("data-value"));
-				console.log(product_list_text);
-				updateInformation(product_list_text);
-			} else {
-				console.log("sama");
-			}
 
+				updateInformation(product_list_text);
+			}
 			resetCatalogueSelect();
 			product_list.classList.toggle("active");
 
