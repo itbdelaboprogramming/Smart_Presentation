@@ -243,10 +243,10 @@ function updateInformation(model_name) {
 			response.forEach((item, index, array) => {
 				if (index == 0 && index == array.length - 1) {
 					out += `${item.model_number}`;
-				} else if (index == 0) {
-					out += `${item.model_number} | `;
 				} else if (index == array.length - 1) {
 					out += `${item.model_number}`;
+				} else {
+					out += `${item.model_number} | `;
 				}
 			});
 			information_description_model_name.innerText = out;
