@@ -15,7 +15,19 @@ const iconAnimationOn = document.getElementById("animation-on");
 
 // ------------ catalogue ------------
 const menuAlbum = document.querySelector(".menu-container-blue-album");
-const catalogueContainer = document.getElementById("catalogue-container");
+const catalogueContainer = document.getElementById("catalogue-container-2");
+var catalogue_product_list = document.querySelectorAll(
+	".catalogue-product-list-2"
+);
+let product_list_text = document.querySelector(
+	".catalogue-product-list-text-2"
+).innerText;
+
+const catalogueDetailContainer = document.getElementById("catalogue-container");
+const catalogueDetailBack = document.querySelector(".catalogue-back-button");
+const catalogueDetailDescription = document.querySelector(
+	".catalogue-description"
+);
 
 // ------------ lightning ------------
 const menuLightning = document.querySelector(".menu-container-blue-lightning");
@@ -25,16 +37,10 @@ const menuInformation = document.querySelector(
 	".menu-container-blue-information"
 );
 const informationContainer = document.getElementById("information-container");
-var catalogue_product_list = document.querySelectorAll(
-	".catalogue-product-list"
-);
 var myText = document.getElementById("myText").textContent;
 let information_description_title = document.querySelector(
 	".information-description-title"
 );
-let product_list_text = document.querySelector(
-	".catalogue-product-list-text"
-).innerText;
 
 // ------------ 3d category dropdown ------------
 const optionMenu = document.querySelector(".select-menu");
@@ -42,7 +48,7 @@ const selectBtn = optionMenu.querySelector(".select-menu-button");
 const options = optionMenu.querySelectorAll(".option");
 const sBtn_text = optionMenu.querySelector(".select-menu-text");
 const catalogueTitle = document.querySelector(".catalogue-description-title");
-const catalogueDescription = document.querySelector(".catalogue-description");
+const catalogueDescription = document.querySelector(".catalogue-description-2");
 
 // ------------ dark/light mode ------------
 const toggle = document.querySelector(".toggle");
@@ -82,11 +88,17 @@ menuAlbum.addEventListener("click", () => {
 	menuAlbum.classList.toggle("active");
 	if (menuAlbum.classList.contains("active")) {
 		catalogueContainer.style.display = "flex";
+		catalogueDetailContainer.style.display = "none";
 	} else {
 		catalogueContainer.style.display = "none";
+		catalogueDetailContainer.style.display = "none";
 	}
 });
 loadCatalogue(catalogue_product_list);
+catalogueDetailBack.addEventListener("click", () => {
+	catalogueContainer.style.display = "flex";
+	catalogueDetailContainer.style.display = "none";
+});
 
 // Menu lightning button
 menuLightning.addEventListener("click", () => {
@@ -129,16 +141,16 @@ options.forEach(function (option) {
 				response.forEach((item, index) => {
 					if (index == 0) {
 						out += `
-							<div class="catalogue-product-list active" data-value="${item.id}" id="model_name">
-								<div class="catalogue-product-list-text">${item.model_name}</div>
-								<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
+							<div class="catalogue-product-list-2 active" id="model_name">
+								<div class="catalogue-product-list-text-2">${item.model_name}</div>
+								<img class="catalogue-image-preview-2" src="./files/${item.image_preview}" />
 							</div>
 						`;
 					} else {
 						out += `
-							<div class="catalogue-product-list" data-value="${item.id}">
-								<div class="catalogue-product-list-text">${item.model_name}</div>
-								<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
+							<div class="catalogue-product-list-2" >
+								<div class="catalogue-product-list-text-2">${item.model_name}</div>
+								<img class="catalogue-image-preview-2" src="./files/${item.image_preview}" />
 							</div>	
 						`;
 					}
@@ -146,7 +158,7 @@ options.forEach(function (option) {
 
 				catalogueDescription.innerHTML = out;
 				catalogue_product_list = document.querySelectorAll(
-					".catalogue-product-list"
+					".catalogue-product-list-2"
 				);
 				loadCatalogue(catalogue_product_list);
 			}
@@ -309,26 +321,31 @@ function loadCatalogue(catalogue_product_list) {
 	catalogue_product_list.forEach(function (product_list) {
 		product_list.addEventListener("click", () => {
 			let temp_product_list_text = product_list.querySelector(
-				".catalogue-product-list-text"
+				".catalogue-product-list-text-2"
 			).innerText;
 			if (temp_product_list_text != product_list_text) {
 				product_list_text = temp_product_list_text;
 
 				updateInformation(product_list_text);
-			} else {
-				loadFile3D(product_list.dataset.value);
 			}
+			// else {
+			// 	loadFile3D(product_list.dataset.value);
+			// }
 			resetCatalogueSelect();
 			product_list.classList.toggle("active");
 
 			if (product_list.classList.contains("active")) {
 				information_description_title.innerText = product_list_text;
 			}
+
+			catalogueContainer.style.display = "none";
+			catalogueDetailContainer.style.display = "flex";
+			loadCatalogueDetail(product_list_text);
 		});
 
 		if (product_list.classList.contains("active")) {
 			let product_list_text = product_list.querySelector(
-				".catalogue-product-list-text"
+				".catalogue-product-list-text-2"
 			).innerText;
 
 			updateInformation(product_list_text);
@@ -379,4 +396,52 @@ function updateFile3D(file_name) {
 	} catch (e) {
 		// do nothing
 	}
+}
+
+function loadCatalogueDetail(model_name) {
+	let http = new XMLHttpRequest();
+
+	http.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			let response = JSON.parse(this.responseText);
+			let out = "";
+
+			response.forEach((item, index) => {
+				if (index == 0) {
+					out += `
+						<div class="catalogue-product-list active" data-value="${item.id}" id="model_name">
+							<div class="catalogue-product-list-text">${item.model_number}</div>
+							<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
+						</div>
+					`;
+				} else {
+					out += `
+						<div class="catalogue-product-list" data-value="${item.id}">
+							<div class="catalogue-product-list-text">${item.model_number}</div>
+							<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
+						</div>	
+					`;
+				}
+			});
+
+			catalogueDetailDescription.innerHTML = out;
+
+			let catalogue_product_list_detail = document.querySelectorAll(
+				".catalogue-product-list"
+			);
+			catalogue_product_list_detail.forEach(function (product_list_detail) {
+				product_list_detail.addEventListener("click", () => {
+					loadFile3D(product_list_detail.dataset.value);
+
+					catalogue_product_list_detail.forEach(function (product_list) {
+						product_list.classList.remove("active");
+					});
+					product_list_detail.classList.toggle("active");
+				});
+			});
+		}
+	};
+	http.open("POST", "./utils/database.php", true);
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.send("getmodelnumber=" + model_name);
 }

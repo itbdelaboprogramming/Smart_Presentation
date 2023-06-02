@@ -5,9 +5,9 @@
         $category = $_POST['category'];
 
         if($category === "" || $category === "All"){
-            $product2 = getAllModelName();
+            $product2 = getAllDistinctModelName();
         }else{
-            $product2 = getModelName($category);
+            $product2 = getDistinctModelName($category);
         }
 
         echo json_encode($product2);
@@ -27,5 +27,12 @@
         echo json_encode($product2);
     }
 
+    if(isset($_POST['getmodelnumber'])){
+        $model_name = $_POST['getmodelnumber'];
+
+        $product2 = getModelNumber($model_name);
+        echo json_encode($product2);
+    }
+    
 
 ?>

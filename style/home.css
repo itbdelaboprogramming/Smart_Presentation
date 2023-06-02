@@ -357,6 +357,8 @@ canvas {
 	align-items: center;
 	text-align: center;
 
+	min-height: 29px;
+
 	color: #475b74;
 
 	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -417,4 +419,137 @@ canvas {
 .catalogue-image-preview {
 	height: 100%;
 	width: 100%;
+}
+
+/* catalogue model number home */
+.catalogue-container-2 {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	bottom: 15%;
+	right: 0;
+	margin-right: 23px;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	display: none;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 12px 18px 12px 18px;
+	gap: 5px;
+
+	width: 225px;
+	height: 55%;
+
+	background: linear-gradient(
+		180deg,
+		#f7fbfc 0%,
+		rgba(233, 254, 255, 0.62) 100%
+	);
+	opacity: 0.8;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.catalogue-description-title-2 {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 18px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+
+	min-height: 29px;
+
+	color: #475b74;
+
+	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	margin: 1px 16px 0px 0px;
+}
+
+.catalogue-description-2 {
+	overflow-y: scroll;
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 18px;
+	text-align: justify;
+
+	color: var(--text-color-50);
+}
+
+.catalogue-product-list-2 {
+	display: flex;
+	margin-top: 17px;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	padding: 15px 0px 0px 0px;
+
+	border: 1px solid #74e7d4;
+	border-radius: 10px;
+
+	height: 190px;
+	width: 225px;
+
+	cursor: pointer;
+
+	transition: all 0.3s ease-in;
+}
+
+.catalogue-product-list-2:hover {
+	box-shadow: 0px 4px 4px #74e7d4;
+}
+
+.catalogue-product-list-2.active {
+	border: 3px solid #189ab4;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.catalogue-product-list-2.active:hover {
+	box-shadow: 0px 4px 4px #74e7d4;
+}
+
+.catalogue-product-list-text-2 {
+	color: #475b74;
+	text-align: center;
+	font-size: 16px;
+}
+
+.catalogue-image-preview-2 {
+	height: 100%;
+	width: 100%;
+}
+
+.catalogue-description-header {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.catalogue-back-button {
+	box-sizing: border-box;
+
+	width: 29px;
+	height: 29px;
+
+	background: #74e7d4;
+	border: 1px solid #04445f;
+	border-radius: 14.8102px;
+
+	display: flex;
+	cursor: pointer;
+}
+
+.catalogue-back-button-img {
+	margin: auto;
 }

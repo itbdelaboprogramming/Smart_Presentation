@@ -54,40 +54,26 @@
                 </div>
             </div>
 
-            <div class="catalogue-container-2" id="catalogue-container-2">
-                <div>
-                    <p class="catalogue-description-title-2">All Series</p>
-                </div>
-                <div class="catalogue-description-2">
+            <div class="catalogue-container" id="catalogue-container">
+                <p class="catalogue-description-title">All Series</p>
+                <div class="catalogue-description">
                     <?php
-                        $result2 = getAllDistinctModelName();
+                        $result2 = getAllModelName();
                         
                         foreach ($result2 as $key => $row2){
                             if ($key === array_key_first($result2)) {
-                                echo '<div class="catalogue-product-list-2 active" id="model_name">';
-                                    echo '<div class="catalogue-product-list-text-2">' . $row2['model_name'] . '</div>';
-                                    echo '<img class="catalogue-image-preview-2" src="./files/' . $row2['image_preview'] .'" />';
+                                echo '<div class="catalogue-product-list active" data-value="' . $row2['id'] . '" id="model_name">';
+                                    echo '<div class="catalogue-product-list-text">' . $row2['model_name'] . '</div>';
+                                    echo '<img class="catalogue-image-preview" src="./files/' . $row2['image_preview'] .'" />';
                                 echo '</div>';
                             }else{
-                                echo '<div class="catalogue-product-list-2" >';
-                                    echo '<div class="catalogue-product-list-text-2">' . $row2['model_name'] . '</div>';
-                                    echo '<img class="catalogue-image-preview-2" src="./files/' . $row2['image_preview'] .'" />';
+                                echo '<div class="catalogue-product-list" data-value="' . $row2['id'] . '">';
+                                    echo '<div class="catalogue-product-list-text">' . $row2['model_name'] . '</div>';
+                                    echo '<img class="catalogue-image-preview" src="./files/' . $row2['image_preview'] .'" />';
                                 echo '</div>';
                             }
                         }
                     ?>
-                </div>
-            </div>
-
-            <div class="catalogue-container" id="catalogue-container">
-                <div class="catalogue-description-header">
-                    <p class="catalogue-description-title">All Series</p>
-                    <div class="catalogue-back-button">
-                        <img src="./assets/Catalogue-Back-Button.png" class="catalogue-back-button-img">
-                    </div>
-                </div>
-                <div class="catalogue-description">
-                    AAAA DETAIL
                 </div>
             </div>
 
