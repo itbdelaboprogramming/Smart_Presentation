@@ -12,6 +12,8 @@ body {
 }
 
 :root {
+	--primary-color-main: #e6f5f8;
+
 	--primary-color-25: #d4f2f4;
 	--primary-color-50: #74e7d4;
 	--primary-color-100: #189ab4;
@@ -31,9 +33,14 @@ body {
 	--text-color-50: #475b74;
 	--text-color-100: #7c8da5;
 	--text-color-200: #e0e1dc;
+
+	--text-color-primary-color-200: #04445f;
+	--text-color-background-color-200: #344054;
 }
 
 .dark-theme {
+	--primary-color-main: #1d2538;
+
 	--primary-color-25: #d4f2f4;
 	--primary-color-50: #74e7d4;
 	--primary-color-100: #189ab4;
@@ -53,13 +60,9 @@ body {
 	--text-color-50: #475b74;
 	--text-color-100: #7c8da5;
 	--text-color-200: #e0e1dc;
-}
 
-/* Canvas for 3d object */
-canvas {
-	width: 100%;
-	min-height: 100%;
-	background-color: lightgray;
+	--text-color-primary-color-200: #04445f;
+	--text-color-background-color-200: #344054;
 }
 
 /* Container for floating object */
@@ -216,6 +219,12 @@ canvas {
 	background: var(--primary-color-50);
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 5px;
+}
+
+@media (max-width: 1000px) {
+	.page-name-container {
+		display: none;
+	}
 }
 
 .page-name-text {
