@@ -221,7 +221,7 @@ let loader = new GLTFLoader();
 loader.name = "loader";
 
 // helper function
-function updateInformation($model_name) {
+function updateInformation(model_name) {
 	let http = new XMLHttpRequest();
 
 	http.onreadystatechange = function () {
@@ -229,26 +229,9 @@ function updateInformation($model_name) {
 			let response = JSON.parse(this.responseText);
 			let out = "";
 
-			// update image
+			// update file (canvas)
 			myText = response[0].file;
-
-			let file3D = scene.getObjectByName("file3D");
-			file3D.name = "file3D";
-
-			scene.remove(file3D);
-
-			loader.load(
-				`./files/${response[0].file}`,
-				function (gltf) {
-					file3D = gltf.scene;
-					file3D.name = "file3D";
-					scene.add(file3D);
-				},
-				undefined,
-				function (error) {
-					console.error(error);
-				}
-			);
+			updateFile3D(myText);
 
 			// update title
 			information_description_title.innerText = response[0].model_name;
@@ -314,12 +297,12 @@ function updateInformation($model_name) {
 			out = "";
 			let information_link = document.querySelector(".information-link");
 			information_link.href = response[0].link_to_web;
-			information_link.innerText = ` ${$model_name} Series | Nakayama Iron Works (ncjpn.com))`;
+			information_link.innerText = ` ${model_name} Series | Nakayama Iron Works (ncjpn.com))`;
 		}
 	};
 	http.open("POST", "./utils/database.php", true);
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	http.send("modelname=" + $model_name);
+	http.send("modelname=" + model_name);
 }
 
 function loadCatalogue(catalogue_product_list) {
@@ -332,6 +315,8 @@ function loadCatalogue(catalogue_product_list) {
 				product_list_text = temp_product_list_text;
 
 				updateInformation(product_list_text);
+			} else {
+				loadFile3D(product_list.dataset.value);
 			}
 			resetCatalogueSelect();
 			product_list.classList.toggle("active");
@@ -351,8 +336,47 @@ function loadCatalogue(catalogue_product_list) {
 	});
 }
 
+function loadFile3D(id) {
+	let http = new XMLHttpRequest();
+
+	http.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			let response = JSON.parse(this.responseText);
+
+			updateFile3D(response[0].file);
+		}
+	};
+	http.open("POST", "./utils/database.php", true);
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.send("id=" + id);
+}
+
 function resetCatalogueSelect() {
 	catalogue_product_list.forEach(function (product_list) {
 		product_list.classList.remove("active");
 	});
+}
+
+function updateFile3D(file_name) {
+	try {
+		let file3D = scene.getObjectByName("file3D");
+		file3D.name = "file3D";
+
+		scene.remove(file3D);
+
+		loader.load(
+			`./files/${file_name}`,
+			function (gltf) {
+				file3D = gltf.scene;
+				file3D.name = "file3D";
+				scene.add(file3D);
+			},
+			undefined,
+			function (error) {
+				console.error(error);
+			}
+		);
+	} catch (e) {
+		// do nothing
+	}
 }

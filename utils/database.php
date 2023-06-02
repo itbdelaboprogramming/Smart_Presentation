@@ -20,5 +20,12 @@
         echo json_encode($product2);
     }
 
+    if(isset($_POST['id'])){
+        $id = $_POST['id'];
+
+        $product2 = getFileById($id);
+        echo json_encode($product2);
+    }
+
 
 ?>
