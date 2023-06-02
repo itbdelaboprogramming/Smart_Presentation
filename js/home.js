@@ -154,7 +154,7 @@ options.forEach(function (option) {
 			}
 		};
 
-		http.open("POST", "./utils/model_name.php", true);
+		http.open("POST", "./utils/database.php", true);
 		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		http.send("category=" + selectedOption);
 	});
@@ -297,7 +297,7 @@ function updateInformation($model_name) {
 			information_link.innerText = ` ${$model_name} Series | Nakayama Iron Works (ncjpn.com))`;
 		}
 	};
-	http.open("POST", "./utils/model_name.php", true);
+	http.open("POST", "./utils/database.php", true);
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	http.send("modelname=" + $model_name);
 }
