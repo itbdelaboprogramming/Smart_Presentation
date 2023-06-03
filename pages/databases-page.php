@@ -39,6 +39,16 @@
                             <input type="text" placeholder="Search.." name="search" class="search-text">
                             <button type="submit" class="search-img"><img src="./assets/Search-Button.png"></button>
                         </div>
+                        <div class="filter-container">
+                            <div class="filter-text">
+                                <img src="./assets/Filter-Icon.svg" class="filter-img">
+                                Filter
+                            </div>
+                            <div class="filter-sort-box">
+                                <img src="./assets/Filter-Ascending.svg" id="filter-asc" value="asc">
+                                <img src="./assets/Filter-Descending.svg" id="filter-desc" value="asc" style="display: none;">
+                            </div>
+                        </div>
                     </div>
 
                 </div>

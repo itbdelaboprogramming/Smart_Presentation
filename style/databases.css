@@ -184,6 +184,11 @@ input[type="file"] {
 }
 
 /* database header (search bar, filter, etc) */
+.database-header {
+	display: flex;
+	gap: 17px;
+}
+
 .search-container {
 	width: 287px;
 	height: 32px;
@@ -222,5 +227,61 @@ input[type="file"] {
 	width: fit-content;
 	background-color: transparent;
 	border: none;
+	cursor: pointer;
+}
+
+.filter-container {
+	width: 177px;
+	height: 33px;
+
+	background: #f2f4f7;
+
+	border: 2px solid #189ab4;
+	border-radius: 10px;
+
+	display: flex;
+	align-items: center;
+
+	padding: 5px 5px 5px 5px;
+
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+
+	color: #04445f;
+}
+
+.filter-img {
+	width: fit-content;
+}
+
+.filter-text {
+	width: 100%;
+	cursor: pointer;
+
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 21px;
+
+	color: #04445f;
+}
+
+.filter-sort-box {
+	min-width: 25px;
+	min-height: 25px;
+
+	background: #d4f2f4;
+	border-radius: 5px;
+
+	display: flex;
+	justify-content: center;
+
 	cursor: pointer;
 }

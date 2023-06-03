@@ -1,11 +1,20 @@
 import { scene } from "../script.js";
 import * as THREE from "three";
 
-// dark/light mode toggle
+// Const, Var, Let
+// ------------ dark/light mode toggle ------------
 const toggle = document.querySelector(".toggle");
-
 let getMode = localStorage.getItem("mode");
 
+// ------------ filter (ascending/descending) ------------
+const filter_sort_box = document.querySelector(".filter-sort-box");
+const filter_asc = document.getElementById("filter-asc");
+const filter_desc = document.getElementById("filter-desc");
+
+// ------------ filter (sort by) ------------
+const filter_text = document.querySelector(".filter-text");
+
+// dark/light mode toggle
 if (getMode && getMode === "dark-theme") {
 	document.body.classList.add("dark-theme");
 	toggle.classList.add("active");
@@ -46,4 +55,20 @@ toggle.addEventListener("click", () => {
 
 		localStorage.setItem("mode", "light");
 	}
+});
+
+// filter (ascending/descending)
+filter_sort_box.addEventListener("click", () => {
+	if (filter_asc.style.display != "none") {
+		filter_asc.style.display = "none";
+		filter_desc.style.display = "block";
+	} else {
+		filter_asc.style.display = "block";
+		filter_desc.style.display = "none";
+	}
+});
+
+// filter (sort by)
+filter_text.addEventListener("click", () => {
+	// do something
 });
