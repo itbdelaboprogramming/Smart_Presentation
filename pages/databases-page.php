@@ -30,40 +30,21 @@
     <body>
         <div class="databases-page">
             <div class="left-content">
-                <?php 
-                    // $sql = "SELECT * FROM model_detail;";
-                    // $result = mysqli_query($conn, $sql);
-                    // $resultCheck = mysqli_num_rows($result);
+                <div class="left-content-wraper">
+                    <div class="page-name-container">
+                        <div class="page-name-text">Exhibition List</div>
+                    </div>
+                    <div class="database-header">
+                        <div class="search-container">
+                            <input type="text" placeholder="Search.." name="search" class="search-text">
+                            <button type="submit" class="search-img"><img src="./assets/Search-Button.png"></button>
+                        </div>
+                    </div>
 
-                    // if($resultCheck > 0){
-                    //     while($row = mysqli_fetch_assoc($result)){
-                    //         echo $row['model_name'] . "<br>";
-                    //         // echo '<div id="item-category">';
-                    //         // echo '<p>' . $row['model_name'] . '</p>';
-                    //         // echo '<div>';
-                    //         // echo '<div>';
-                    //         // echo '<span>';
-                    //         // echo '</div>';
-                    //         // echo '<ul >';
-                    //         // echo '<li >';
-                    //         // echo '<span>' . $row['model_name'] . '</span>';
-                    //         // echo '</li>';
-                    //         // echo '</ul>';
-                    //         // echo '</div>';
-                    //         // echo '</div>';
-                    //     }
-                    // }
-                ?>
+                </div>
             </div>
             <div class="right-content">
                 <canvas id="myCanvas">    </canvas>
-            </div>
-            
-
-            <div class="container-top-left">
-                <div class="page-name-container">
-                    <div class="page-name-text">Exhibition List</div>
-                </div>
             </div>
 
             <div class="container-top-right">
