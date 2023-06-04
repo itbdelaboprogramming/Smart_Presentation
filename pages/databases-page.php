@@ -40,13 +40,34 @@
                             <button type="submit" class="search-img"><img src="./assets/Search-Button.png"></button>
                         </div>
                         <div class="filter-container">
-                            <div class="filter-text">
-                                <img src="./assets/Filter-Icon.svg" class="filter-img">
-                                Filter
+                            <div class="filter-wrap">
+                                <div class="filter-text">
+                                    <img src="./assets/Filter-Icon.svg" class="filter-img">
+                                    Filter
+                                </div>
+                                <div class="filter-sort-box">
+                                    <img src="./assets/Filter-Ascending.svg" id="filter-asc" value="asc">
+                                    <img src="./assets/Filter-Descending.svg" id="filter-desc" value="asc" style="display: none;">
+                                </div>
                             </div>
-                            <div class="filter-sort-box">
-                                <img src="./assets/Filter-Ascending.svg" id="filter-asc" value="asc">
-                                <img src="./assets/Filter-Descending.svg" id="filter-desc" value="asc" style="display: none;">
+                            <div class="filter-drop-down" style="display: none;">
+                                <div class="filter-drop-down-wrap">
+                                    <div class="filter-drop-down-title">
+                                        SORT BY:
+                                    </div>
+                                    <div class="filter-drop-down-item" id="div_sort_model_name">
+                                        <label for="sort_model_name"> Model Name </label>
+                                        <input type="radio" id="sort_model_name" name="sort" value="model_name" checked>
+                                    </div>
+                                    <div class="filter-drop-down-item" id="div_sort_model_number">
+                                        <label for="sort_model_number"> Model Number </label>
+                                        <input type="radio" id="sort_model_number" name="sort" value="model_number">
+                                    </div>
+                                    <div class="filter-drop-down-item" id="div_sort_date_modified">
+                                        <label for="sort_date_modified"> Date Modified </label>
+                                        <input type="radio" id="sort_date_modified" name="sort" value="date_modified">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

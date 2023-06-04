@@ -14,6 +14,13 @@ const filter_desc = document.getElementById("filter-desc");
 // ------------ filter (sort by) ------------
 const filter_text = document.querySelector(".filter-text");
 
+const divMNa = document.getElementById("div_sort_model_name");
+const radMNa = document.getElementById("sort_model_name");
+const divMNu = document.getElementById("div_sort_model_number");
+const radMNu = document.getElementById("sort_model_number");
+const divDM = document.getElementById("div_sort_date_modified");
+const radDM = document.getElementById("sort_date_modified");
+
 // dark/light mode toggle
 if (getMode && getMode === "dark-theme") {
 	document.body.classList.add("dark-theme");
@@ -71,4 +78,31 @@ filter_sort_box.addEventListener("click", () => {
 // filter (sort by)
 filter_text.addEventListener("click", () => {
 	// do something
+	let filter_drop_down = document.querySelector(".filter-drop-down");
+	if (filter_drop_down.style.display == "none") {
+		filter_drop_down.style.display = "flex";
+	} else {
+		filter_drop_down.style.display = "none";
+	}
+});
+
+window.addEventListener("click", function (e) {
+	if (!document.querySelector(".filter-container").contains(e.target)) {
+		let filter_drop_down = document.querySelector(".filter-drop-down");
+		if (filter_drop_down.style.display != "none") {
+			filter_drop_down.style.display = "none";
+		}
+	}
+});
+
+divMNa.addEventListener("click", () => {
+	radMNa.checked = true;
+});
+
+divMNu.addEventListener("click", () => {
+	radMNu.checked = true;
+});
+
+divDM.addEventListener("click", () => {
+	radDM.checked = true;
 });

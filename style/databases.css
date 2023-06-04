@@ -242,7 +242,7 @@ input[type="file"] {
 	display: flex;
 	align-items: center;
 
-	padding: 5px 5px 5px 5px;
+	padding: 5px 5px 0px 5px;
 
 	font-family: "Ubuntu";
 	font-style: normal;
@@ -250,6 +250,7 @@ input[type="file"] {
 	font-size: 18px;
 
 	color: #04445f;
+	flex-direction: column;
 }
 
 .filter-img {
@@ -283,5 +284,82 @@ input[type="file"] {
 	display: flex;
 	justify-content: center;
 
+	cursor: pointer;
+
+	padding: 3px;
+}
+
+.filter-wrap {
+	display: flex;
+	width: 100%;
+}
+
+.filter-drop-down {
+	position: relative;
+	z-index: 3;
+
+	width: 187px;
+	/* height: 169px; */
+
+	background: #f2f4f7;
+
+	border: 1px solid #189ab4;
+	border-radius: 10px;
+
+	margin-top: 20px;
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+
+}
+
+.filter-drop-down-wrap {
+	margin: 10px 10px 10px 10px;
+
+	width: 100%;
+}
+
+.filter-drop-down-title {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+
+	color: #189ab4;
+	margin-bottom: 10px;
+}
+
+.filter-drop-down-item {
+	display: flex;
+	justify-content: space-between;
+	padding: 12px 4px 12px 4px;
+
+	cursor: pointer;
+}
+
+.filter-drop-down-item:hover {
+	background: #d4f2f4;
+	border-radius: 5px;
+}
+
+input[type="radio"] {
+	appearance: none;
+	content: "";
+	background-color: transparent;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	transition: 0.25s ease;
+	box-shadow: inset 0 0 0 1.5px #189ab4;
+}
+
+input[type="radio"]:checked {
+	box-shadow: inset 0 0 0 5.2px #189ab4;
+}
+
+label {
 	cursor: pointer;
 }
