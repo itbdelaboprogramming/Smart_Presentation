@@ -241,8 +241,9 @@ input[type="file"] {
 
 	display: flex;
 	align-items: center;
+	/* justify-content: center; */
 
-	padding: 5px 5px 0px 5px;
+	padding: 5px 5px 5px 5px;
 
 	font-family: "Ubuntu";
 	font-style: normal;
@@ -292,6 +293,7 @@ input[type="file"] {
 .filter-wrap {
 	display: flex;
 	width: 100%;
+	margin-top: 1px;
 }
 
 .filter-drop-down {
@@ -312,7 +314,6 @@ input[type="file"] {
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 16px;
-
 }
 
 .filter-drop-down-wrap {
