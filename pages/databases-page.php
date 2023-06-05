@@ -70,7 +70,111 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="category">
+                            Category
+                        </div>
                     </div>
+                    <table id="database-data">
+                        <div>
+                            <th class="left-table">NO.</th>
+                            <th>MODEL NAME</th>
+                            <th>MODEL NUMBER</th>
+                            <th>CATEGORY</th>
+                            <th>DATE MODIFIED</th>
+                            <th>TYPE</th>
+                            <th class="right-table">SIZE</th>
+                        </div>
+                        <tr>
+                            <td>1. </td>
+                            <td>Battery Jaw Crusher</td>
+                            <td>NE100HBJ</td>
+                            <td>Dendoman</td>
+                            <td>23-01-31 10:04 AM</td>
+                            <td>3D Object</td>
+                            <td>52,540 KB</td>
+                        </tr>
+                        <tr>
+                            <td>2. </td>
+                            <td>Battery Jaw Crusher</td>
+                            <td>NE100HBJ</td>
+                            <td>Dendoman</td>
+                            <td>23-01-31 10:04 AM</td>
+                            <td>3D Object</td>
+                            <td>52,540 KB</td>
+                        </tr>
+                        <tr>
+                            <td>3. </td>
+                            <td>Battery Jaw Crusher</td>
+                            <td>NE100HBJ</td>
+                            <td>Dendoman</td>
+                            <td>23-01-31 10:04 AM</td>
+                            <td>3D Object</td>
+                            <td>52,540 KB</td>
+                        </tr>
+                        <tr>
+                            <td>4. </td>
+                            <td>Battery Jaw Crusher</td>
+                            <td>NE100HBJ</td>
+                            <td>Dendoman</td>
+                            <td>23-01-31 10:04 AM</td>
+                            <td>3D Object</td>
+                            <td>52,540 KB</td>
+                        </tr>
+                        <tr>
+                            <td>5. </td>
+                            <td>Battery Jaw Crusher</td>
+                            <td>NE100HBJ</td>
+                            <td>Dendoman</td>
+                            <td>23-01-31 10:04 AM</td>
+                            <td>3D Object</td>
+                            <td>52,540 KB</td>
+                        </tr>
+                        <tr>
+                            <td>6. </td>
+                            <td>Battery Jaw Crusher</td>
+                            <td>NE100HBJ</td>
+                            <td>Dendoman</td>
+                            <td>23-01-31 10:04 AM</td>
+                            <td>3D Object</td>
+                            <td>52,540 KB</td>
+                        </tr>
+                        <tr>
+                            <td>7. </td>
+                            <td>Battery Jaw Crusher</td>
+                            <td>NE100HBJ</td>
+                            <td>Dendoman</td>
+                            <td>23-01-31 10:04 AM</td>
+                            <td>3D Object</td>
+                            <td>52,540 KB</td>
+                        </tr>
+                        <tr>
+                            <td>8. </td>
+                            <td>Battery Jaw Crusher</td>
+                            <td>NE100HBJ</td>
+                            <td>Dendoman</td>
+                            <td>23-01-31 10:04 AM</td>
+                            <td>3D Object</td>
+                            <td>52,540 KB</td>
+                        </tr>
+                        <tr>
+                            <td>9. </td>
+                            <td>Battery Jaw Crusher</td>
+                            <td>NE100HBJ</td>
+                            <td>Dendoman</td>
+                            <td>23-01-31 10:04 AM</td>
+                            <td>3D Object</td>
+                            <td>52,540 KB</td>
+                        </tr>
+                        <tr>
+                            <td>10. </td>
+                            <td>Battery Jaw Crusher</td>
+                            <td>NE100HBJ</td>
+                            <td>Dendoman</td>
+                            <td>23-01-31 10:04 AM</td>
+                            <td>3D Object</td>
+                            <td>52,540 KB</td>
+                        </tr>
+                    </table>
 
                 </div>
             </div>

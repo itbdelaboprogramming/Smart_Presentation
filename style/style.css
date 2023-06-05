@@ -36,6 +36,10 @@ body {
 
 	--text-color-primary-color-200: #04445f;
 	--text-color-background-color-200: #344054;
+
+	/* database table */
+	--background-header: #f2f4f7;
+	--text-color-database-data: #04445f;
 }
 
 .dark-theme {
@@ -63,6 +67,10 @@ body {
 
 	--text-color-primary-color-200: #04445f;
 	--text-color-background-color-200: #344054;
+
+	/* database table */
+	--background-header: #d4f2f4;
+	--text-color-database-data: #74e7d4;
 }
 
 /* Container for floating object */
@@ -212,5 +220,3 @@ body {
 	left: calc(100% - 26.53px - calc(50% - 26.53px / 2 - 15.54px));
 	background: #74e7d4;
 }
-
-
