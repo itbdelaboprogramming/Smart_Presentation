@@ -339,9 +339,9 @@ function loadCatalogue(catalogue_product_list) {
 				information_description_title.innerText = product_list_text;
 			}
 
+			loadCatalogueDetail(product_list_text);
 			catalogueContainer.style.display = "none";
 			catalogueDetailContainer.style.display = "flex";
-			loadCatalogueDetail(product_list_text);
 		});
 
 		if (product_list.classList.contains("active")) {

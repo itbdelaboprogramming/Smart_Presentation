@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="catalogue-description">
-                    AAAA DETAIL
+                    
                 </div>
             </div>
 

@@ -1,9 +1,13 @@
 <?php
 
     function connect(){
-        $dbservername = 'localhost';
-        $dbusername = 'root';
-        $dbpassword = '';
+        // $dbservername = 'localhost';
+        // $dbusername = 'root';
+        // $dbpassword = '';
+        // $dbname = 'smart_presentation';
+        $dbservername = '10.243.158.97';
+        $dbusername = 'admin';
+        $dbpassword = 'admin';
         $dbname = 'smart_presentation';
     
         $conn = mysqli_connect($dbservername, $dbusername, $dbpassword, $dbname);
