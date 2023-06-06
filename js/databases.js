@@ -106,3 +106,11 @@ divMNu.addEventListener("click", () => {
 divDM.addEventListener("click", () => {
 	radDM.checked = true;
 });
+
+const database_data = document.querySelectorAll("tr");
+
+database_data.forEach(function (data) {
+	data.addEventListener("click", () => {
+		data.classList.toggle("active");
+	});
+});
