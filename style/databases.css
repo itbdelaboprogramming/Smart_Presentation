@@ -410,7 +410,7 @@ label {
 }
 
 #database-data tr.active {
-	background: #d4f2f4;
+	background: var(--background-database-data-select);
 }
 
 #database-data tr:hover {

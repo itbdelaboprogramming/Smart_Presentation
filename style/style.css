@@ -40,6 +40,7 @@ body {
 	/* database table */
 	--background-header: #f2f4f7;
 	--text-color-database-data: #04445f;
+	--background-database-data-select: #d4f2f4;
 }
 
 .dark-theme {
@@ -71,6 +72,7 @@ body {
 	/* database table */
 	--background-header: #d4f2f4;
 	--text-color-database-data: #74e7d4;
+	--background-database-data-select: #7c8da5;
 }
 
 /* Container for floating object */
