@@ -22,7 +22,7 @@ canvas {
 
 /* Content */
 .left-content {
-	width: 70%;
+	width: 75%;
 	height: 100%;
 	display: flex;
 
@@ -41,7 +41,7 @@ canvas {
 .right-content {
 	display: flex;
 	justify-content: flex-end;
-	width: 30%;
+	width: 25%;
 
 	padding-right: 12px;
 }
@@ -376,6 +376,9 @@ label {
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 21px;
+
+	color: var(--text-color-database-data);
+	margin-left: 40px;
 }
 
 /* database data (search bar, filter, etc) */
