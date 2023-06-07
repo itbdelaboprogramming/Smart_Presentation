@@ -502,6 +502,10 @@ label {
 	text-shadow: none;
 }
 
+#database-data tr.noHover {
+	text-shadow: none;
+	cursor: context-menu;
+}
 #database-data tr.noHover:hover {
 	text-shadow: none;
 }

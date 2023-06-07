@@ -1,4 +1,4 @@
-import { scene } from "../script.js";
+import { scene, camera } from "../script.js";
 import * as THREE from "three";
 
 // Const, Var, Let
@@ -142,6 +142,30 @@ window.addEventListener("click", function (e) {
 			optionMenu.classList.toggle("active");
 		}
 	}
+});
+
+// canvas
+let right_content = document.querySelector(".right-content");
+// let width = window.innerWidth * 0.4;
+let width = right_content.offsetWidth * 0.9;
+if (width < 275) {
+	width = 275;
+}
+myCanvas.style.width = width + "px";
+myCanvas.style.height = width + "px";
+
+window.addEventListener("resize", () => {
+	right_content = document.querySelector(".right-content");
+	// let width = window.innerWidth * 0.4;
+	width = right_content.offsetWidth * 0.9;
+
+	if (width < 275) {
+		width = 275;
+	}
+	myCanvas.style.width = width + "px";
+	myCanvas.style.height = width + "px";
+	camera.aspect = width / width;
+	camera.updateProjectionMatrix();
 });
 
 // FUNCTION HELPER
