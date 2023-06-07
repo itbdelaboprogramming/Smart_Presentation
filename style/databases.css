@@ -490,8 +490,8 @@ label {
 
 #database-data tr:hover {
 	width: 100%;
-	/* border: 1.5px solid #98a2b3; */
-	filter: drop-shadow(0px 4px 18px var(--text-color-database-data));
+
+	text-shadow: 0px 0px 45px var(--text-color-database-data);
 }
 
 #database-data tr.active {
@@ -499,11 +499,11 @@ label {
 }
 
 #database-data tr.active:hover {
-	filter: none;
+	text-shadow: none;
 }
 
 #database-data tr.noHover:hover {
-	filter: none;
+	text-shadow: none;
 }
 
 #database-data th {
