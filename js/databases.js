@@ -111,6 +111,7 @@ const database_data = document.querySelectorAll("tr");
 
 database_data.forEach(function (data) {
 	data.addEventListener("click", () => {
+		resetDatabaseDataSelect();
 		data.classList.toggle("active");
 	});
 });
@@ -120,8 +121,6 @@ const optionMenu = document.querySelector(".select-menu");
 const selectBtn = optionMenu.querySelector(".select-menu-button");
 const options = optionMenu.querySelectorAll(".option");
 const sBtn_text = optionMenu.querySelector(".select-menu-text");
-const catalogueTitle = document.querySelector(".catalogue-description-title-2");
-const catalogueDescription = document.querySelector(".catalogue-description-2");
 
 // for 3d category dropdown
 selectBtn.addEventListener("click", () => {
@@ -144,3 +143,10 @@ window.addEventListener("click", function (e) {
 		}
 	}
 });
+
+// FUNCTION HELPER
+function resetDatabaseDataSelect() {
+	database_data.forEach(function (data) {
+		data.classList.remove("active");
+	});
+}
