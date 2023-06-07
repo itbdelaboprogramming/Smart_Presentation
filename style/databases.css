@@ -412,6 +412,7 @@ label {
 	align-items: center;
 
 	height: 24.66px;
+	margin-right: 10px;
 }
 
 .select-menu.active .select-menu-button img {
@@ -421,11 +422,13 @@ label {
 .select-menu .options {
 	position: relative;
 	padding: 0;
-	/* margin-top: 10px; */
+
 	margin: 10px 0px 0px 0px;
-	background: var(--background-color-25);
+	background: var(--primary-color-main);
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 	display: none;
+
+	border-radius: 15px;
 }
 
 .select-menu.active .options {
@@ -440,25 +443,19 @@ label {
 	gap: 6.96px;
 	cursor: pointer;
 
-	background: var(--background-color-25);
+	background: var(--primary-color-main);
 
 	border: 0.870307px solid var(--primary-color-100);
 }
 
 .options .option:hover {
-	background: var(--primary-color-25);
+	background: var(--background-database-data-select);
 }
 
 .option .option-text {
-	font-family: "Inter";
-	font-style: normal;
-	font-weight: 500;
 	font-size: 13.9249px;
-	line-height: 21px;
 
-	color: var(--text-color-50);
-
-	opacity: 0.75;
+	color: var(--text-color-database-data);
 
 	height: 24.66px;
 }
