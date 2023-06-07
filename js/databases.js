@@ -114,3 +114,33 @@ database_data.forEach(function (data) {
 		data.classList.toggle("active");
 	});
 });
+
+// ------------ 3d category dropdown ------------
+const optionMenu = document.querySelector(".select-menu");
+const selectBtn = optionMenu.querySelector(".select-menu-button");
+const options = optionMenu.querySelectorAll(".option");
+const sBtn_text = optionMenu.querySelector(".select-menu-text");
+const catalogueTitle = document.querySelector(".catalogue-description-title-2");
+const catalogueDescription = document.querySelector(".catalogue-description-2");
+
+// for 3d category dropdown
+selectBtn.addEventListener("click", () => {
+	optionMenu.classList.toggle("active");
+});
+
+options.forEach(function (option) {
+	option.addEventListener("click", () => {
+		let selectedOption = option.querySelector(".option-text").innerText;
+		sBtn_text.innerText = selectedOption;
+
+		optionMenu.classList.toggle("active");
+	});
+});
+
+window.addEventListener("click", function (e) {
+	if (!document.getElementById("item-category").contains(e.target)) {
+		if (optionMenu.classList.contains("active")) {
+			optionMenu.classList.toggle("active");
+		}
+	}
+});

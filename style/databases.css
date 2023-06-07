@@ -366,10 +366,12 @@ label {
 	cursor: pointer;
 }
 
+/* 3d File Kategori Dropdown */
 .category {
 	display: flex;
 
 	align-items: center;
+	gap: 10px;
 
 	font-family: "Ubuntu";
 	font-style: normal;
@@ -379,6 +381,86 @@ label {
 
 	color: var(--text-color-database-data);
 	margin-left: 40px;
+}
+
+.select-menu {
+	min-width: 122px;
+	height: 37px;
+}
+
+.select-menu .select-menu-button {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 5px 10px;
+	cursor: pointer;
+	justify-content: space-between;
+
+	background: transparent;
+
+	border: 1px solid #189ab4;
+	border-radius: 15px;
+}
+
+.select-menu-button img {
+	font-size: 25px;
+	transition: 0.3s;
+}
+
+.select-menu-button span {
+	display: flex;
+	align-items: center;
+
+	height: 24.66px;
+}
+
+.select-menu.active .select-menu-button img {
+	transform: rotate(-180deg);
+}
+
+.select-menu .options {
+	position: relative;
+	padding: 0;
+	/* margin-top: 10px; */
+	margin: 10px 0px 0px 0px;
+	background: var(--background-color-25);
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+	display: none;
+}
+
+.select-menu.active .options {
+	display: block;
+}
+
+.options .option {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	padding: 8.70307px 12.1843px;
+	gap: 6.96px;
+	cursor: pointer;
+
+	background: var(--background-color-25);
+
+	border: 0.870307px solid var(--primary-color-100);
+}
+
+.options .option:hover {
+	background: var(--primary-color-25);
+}
+
+.option .option-text {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 13.9249px;
+	line-height: 21px;
+
+	color: var(--text-color-50);
+
+	opacity: 0.75;
+
+	height: 24.66px;
 }
 
 /* database data (search bar, filter, etc) */

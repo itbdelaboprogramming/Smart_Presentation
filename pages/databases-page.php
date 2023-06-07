@@ -70,12 +70,38 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="category">
+                        <div class="category" id="item-category">
                             Category
+                            <div class="select-menu">
+                                <div class="select-menu-button">
+                                    <span class="select-menu-text">
+                                        All
+                                    </span>
+                                    <img src="./assets/Dropdown-Off.png"/>
+                                </div>
+                                <ul class="options">
+                                    <li class="option">
+                                        <span class="option-text"> All </span>
+                                    </li>
+                                    <li class="option">
+                                        <span class="option-text"> MSD700 </span>
+                                    </li>
+                                    <li class="option">
+                                        <span class="option-text"> Dendoman </span>
+                                    </li>
+                                    <li class="option">
+                                        <span class="option-text"> Crusher </span>
+                                    </li>
+                                    <li class="option">
+                                        <span class="option-text"> Screen / Feeder </span>
+                                    </li>
+                                </ul>
+                            </div>
+
                         </div>
                     </div>
                     <table id="database-data">
-                        <div>
+                        <tr class="noHover">
                             <th class="left-table">NO.</th>
                             <th>MODEL NAME</th>
                             <th>MODEL NUMBER</th>
@@ -83,7 +109,7 @@
                             <th>DATE MODIFIED</th>
                             <th>TYPE</th>
                             <th class="right-table">SIZE</th>
-                        </div>
+                        </tr>
                         <tr>
                             <td>1. </td>
                             <td>Battery Jaw Crusher</td>
