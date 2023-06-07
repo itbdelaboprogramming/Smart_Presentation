@@ -383,7 +383,7 @@ label {
 
 /* database data (search bar, filter, etc) */
 #database-data {
-	margin: 20px 0px 0px 0px;
+	/* margin: 20px 0px 0px 0px; */
 
 	border-collapse: separate;
 	border-spacing: 0 10px;
@@ -409,14 +409,18 @@ label {
 	cursor: pointer;
 }
 
+#database-data tr:hover {
+	width: 100%;
+	/* border: 1.5px solid #98a2b3; */
+	filter: drop-shadow(0px 4px 18px var(--text-color-database-data));
+}
+
 #database-data tr.active {
 	background: var(--background-database-data-select);
 }
 
-#database-data tr:hover {
-	width: 100%;
-	border: 1px solid #98a2b3;
-	/* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
+#database-data tr.active:hover {
+	filter: none;
 }
 
 #database-data th {

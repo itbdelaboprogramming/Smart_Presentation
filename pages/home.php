@@ -81,7 +81,7 @@
 
             <div class="catalogue-container" id="catalogue-container">
                 <div class="catalogue-description-header">
-                    <p class="catalogue-description-title">All Series</p>
+                    <p class="catalogue-description-title"></p>
                     <div class="catalogue-back-button">
                         <img src="./assets/Catalogue-Back-Button.png" class="catalogue-back-button-img">
                     </div>

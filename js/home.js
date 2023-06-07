@@ -101,6 +101,8 @@ loadCatalogue(catalogue_product_list);
 catalogueDetailBack.addEventListener("click", () => {
 	catalogueContainer.style.display = "flex";
 	catalogueDetailContainer.style.display = "none";
+	catalogueDetailTitle.innerText = "";
+	catalogueDetailDescription.innerHTML = "";
 });
 
 // Menu lightning button
