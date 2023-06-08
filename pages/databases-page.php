@@ -108,16 +108,39 @@
                             <th>TYPE</th>
                             <th class="right-table">SIZE</th>
                         </tr>
-                        <tr>
-                            <td>1. </td>
-                            <td>Battery Jaw Crusher</td>
-                            <td>NE100HBJ</td>
-                            <td>Dendoman</td>
-                            <td>23-01-31 10:04 AM</td>
-                            <td>3D Object</td>
-                            <td>52,540 KB</td>
-                        </tr>
-                        <tr>
+                        <?php 
+                            $number = 1;
+                            $result2 = getAllData();
+                            // while ($row = mysqli_fetch_assoc($result2)) {
+                            foreach($result2 as $row){
+                                $date_modified_date = explode(" ",$row['date_modified']);
+                                $date_modified_time = explode(":",$date_modified_date[1]);
+
+                                if($date_modified_time[0] > 12){
+                                    $date_modified_time_display = ($date_modified_time[0] - 12) . ":" . $date_modified_time[1] . " PM";
+                                }else{
+                                    $date_modified_time_display = $date_modified_time[0] . ":" . $date_modified_time[1] . " AM";
+                                }
+                                
+                            ?>
+
+                                <tr>
+                                    <td><?php echo $number . '.';?></td>
+                                    <td><?php echo $row['model_name'];?></td>
+                                    <td><?php echo $row['model_number'];?></td>
+                                    <td><?php echo $row['category'];?></td>
+                                    <td><?php echo $date_modified_date[0] . " " . $date_modified_time_display;?></td>
+                                    <td><?php echo $row['file_type'];?></td>
+                                    <td><?php echo $row['size'];?></td>
+                                </tr>
+
+                            <?php  
+                            $number++;                     
+                            }
+                        
+                        ?>
+
+                        <!-- <tr>
                             <td>2. </td>
                             <td>Battery Jaw Crusher</td>
                             <td>NE100HBJ</td>
@@ -197,7 +220,7 @@
                             <td>23-01-31 10:04 AM</td>
                             <td>3D Object</td>
                             <td>52,540 KB</td>
-                        </tr>
+                        </tr> -->
                     </table>
 
                 </div>
@@ -241,7 +264,6 @@
 
                 <div class="toggle"></div>
             </div>
-  
         </div>
 
         <script>

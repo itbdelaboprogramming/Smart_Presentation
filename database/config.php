@@ -132,4 +132,18 @@
             return $product2;
         }
     }
+
+    function getAllData(){
+        $conn = connect();
+        $sql = "SELECT model_detail.model_name, model_detail.category, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name ORDER BY model_name;";
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+    
+        if($resultCheck > 0){
+            while($row = $result->fetch_assoc()){
+                $product2[] = $row;
+            }
+            return $product2;
+        }
+    }
 ?>
