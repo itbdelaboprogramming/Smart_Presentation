@@ -144,6 +144,39 @@ window.addEventListener("click", function (e) {
 	}
 });
 
+// for pagination dropdown
+const optionMenu_pagination = document.querySelector(".pagination-select-menu");
+const selectBtn_pagination = optionMenu_pagination.querySelector(
+	".pagination-select-menu-button"
+);
+const options_pagination =
+	optionMenu_pagination.querySelectorAll(".pagination-option");
+const sBtn_text_pagination = optionMenu_pagination.querySelector(
+	".pagination-select-menu-text"
+);
+selectBtn_pagination.addEventListener("click", () => {
+	optionMenu_pagination.classList.toggle("active");
+});
+
+options_pagination.forEach(function (option) {
+	option.addEventListener("click", () => {
+		let selectedOption = option.querySelector(
+			".pagination-option-text"
+		).innerText;
+		sBtn_text_pagination.innerText = selectedOption;
+
+		optionMenu_pagination.classList.toggle("active");
+	});
+});
+
+window.addEventListener("click", function (e) {
+	if (!document.getElementById("pagination-dropdown").contains(e.target)) {
+		if (optionMenu_pagination.classList.contains("active")) {
+			optionMenu_pagination.classList.toggle("active");
+		}
+	}
+});
+
 // canvas
 let right_content = document.querySelector(".right-content");
 // let width = window.innerWidth * 0.4;

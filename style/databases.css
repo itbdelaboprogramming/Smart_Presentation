@@ -465,7 +465,7 @@ label {
 	/* margin: 20px 0px 0px 0px; */
 
 	border-collapse: separate;
-	border-spacing: 0 10px;
+	border-spacing: 0 5px;
 	width: 100%;
 
 	font-family: "Ubuntu";
@@ -481,7 +481,7 @@ label {
 
 #database-data td,
 #database-data th {
-	padding: 17px;
+	padding: 15px;
 }
 
 #database-data tr {
@@ -511,8 +511,8 @@ label {
 }
 
 #database-data th {
-	padding-top: 19px;
-	padding-bottom: 19px;
+	padding-top: 17px;
+	padding-bottom: 17px;
 
 	background: var(--background-header);
 	color: #04445f;
@@ -532,4 +532,112 @@ label {
 }
 .right-table {
 	border-right: 1.5px solid #189ab4;
+}
+
+/* table controller style */
+.table-controller {
+	display: flex;
+	justify-content: space-between;
+
+	width: 100%;
+
+	background: var(--background-header);
+
+	border: 1px solid #189ab4;
+
+	padding: 14px 22px 14px 22px;
+
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 21px;
+
+	color: #04445f;
+}
+
+.pagination-dropdown-wrapper {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+.pagination-select-menu {
+	min-width: 57px;
+	height: 35px;
+}
+
+.pagination-select-menu .pagination-select-menu-button {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 5px 10px;
+	cursor: pointer;
+	justify-content: space-between;
+
+	background: transparent;
+
+	border: 1px solid #189ab4;
+}
+
+.pagination-select-menu-button img {
+	font-size: 25px;
+	transition: 0.3s;
+}
+
+.pagination-select-menu-button span {
+	display: flex;
+	align-items: center;
+
+	height: 24.66px;
+	margin-right: 10px;
+}
+
+.pagination-select-menu.active .pagination-select-menu-button img {
+	transform: rotate(-180deg);
+}
+
+.pagination-select-menu .pagination-options {
+	position: relative;
+	padding: 0;
+
+	margin: 0px 0px 0px 0px;
+	background: var(--primary-color-main);
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+	display: none;
+
+	border-radius: 15px;
+}
+
+.pagination-select-menu.active .pagination-options {
+	display: block;
+}
+
+.pagination-options .pagination-option {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	padding: 5px 9px;
+	gap: 6.96px;
+	cursor: pointer;
+
+	background: var(--primary-color-main);
+
+	border: 0.870307px solid var(--primary-color-100);
+}
+
+.pagination-options .pagination-option:hover {
+	background: var(--background-database-data-select);
+}
+
+.pagination-option .pagination-option-text {
+	font-size: 13.9249px;
+
+	color: var(--text-color-database-data);
+
+	height: 24.66px;
+}
+
+.page-filler {
+	min-height: 20px;
 }

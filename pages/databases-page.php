@@ -110,7 +110,7 @@
                         </tr>
                         <?php 
                             $number = 1;
-                            $result2 = getAllData();
+                            $result2 = getAllData10();
                             // while ($row = mysqli_fetch_assoc($result2)) {
                             foreach($result2 as $row){
                                 $date_modified_date = explode(" ",$row['date_modified']);
@@ -137,92 +137,35 @@
                             <?php  
                             $number++;                     
                             }
-                        
                         ?>
-
-                        <!-- <tr>
-                            <td>2. </td>
-                            <td>Battery Jaw Crusher</td>
-                            <td>NE100HBJ</td>
-                            <td>Dendoman</td>
-                            <td>23-01-31 10:04 AM</td>
-                            <td>3D Object</td>
-                            <td>52,540 KB</td>
-                        </tr>
-                        <tr>
-                            <td>3. </td>
-                            <td>Battery Jaw Crusher</td>
-                            <td>NE100HBJ</td>
-                            <td>Dendoman</td>
-                            <td>23-01-31 10:04 AM</td>
-                            <td>3D Object</td>
-                            <td>52,540 KB</td>
-                        </tr>
-                        <tr>
-                            <td>4. </td>
-                            <td>Battery Jaw Crusher</td>
-                            <td>NE100HBJ</td>
-                            <td>Dendoman</td>
-                            <td>23-01-31 10:04 AM</td>
-                            <td>3D Object</td>
-                            <td>52,540 KB</td>
-                        </tr>
-                        <tr>
-                            <td>5. </td>
-                            <td>Battery Jaw Crusher</td>
-                            <td>NE100HBJ</td>
-                            <td>Dendoman</td>
-                            <td>23-01-31 10:04 AM</td>
-                            <td>3D Object</td>
-                            <td>52,540 KB</td>
-                        </tr>
-                        <tr>
-                            <td>6. </td>
-                            <td>Battery Jaw Crusher</td>
-                            <td>NE100HBJ</td>
-                            <td>Dendoman</td>
-                            <td>23-01-31 10:04 AM</td>
-                            <td>3D Object</td>
-                            <td>52,540 KB</td>
-                        </tr>
-                        <tr>
-                            <td>7. </td>
-                            <td>Battery Jaw Crusher</td>
-                            <td>NE100HBJ</td>
-                            <td>Dendoman</td>
-                            <td>23-01-31 10:04 AM</td>
-                            <td>3D Object</td>
-                            <td>52,540 KB</td>
-                        </tr>
-                        <tr>
-                            <td>8. </td>
-                            <td>Battery Jaw Crusher</td>
-                            <td>NE100HBJ</td>
-                            <td>Dendoman</td>
-                            <td>23-01-31 10:04 AM</td>
-                            <td>3D Object</td>
-                            <td>52,540 KB</td>
-                        </tr>
-                        <tr>
-                            <td>9. </td>
-                            <td>Battery Jaw Crusher</td>
-                            <td>NE100HBJ</td>
-                            <td>Dendoman</td>
-                            <td>23-01-31 10:04 AM</td>
-                            <td>3D Object</td>
-                            <td>52,540 KB</td>
-                        </tr>
-                        <tr>
-                            <td>10. </td>
-                            <td>Battery Jaw Crusher</td>
-                            <td>NE100HBJ</td>
-                            <td>Dendoman</td>
-                            <td>23-01-31 10:04 AM</td>
-                            <td>3D Object</td>
-                            <td>52,540 KB</td>
-                        </tr> -->
                     </table>
-
+                    <div class="table-controller">
+                        <div id="pagination-dropdown" class="pagination-dropdown-wrapper">
+                            Rows per page
+                            <div class="pagination-select-menu">
+                                <div class="pagination-select-menu-button">
+                                    <span class="pagination-select-menu-text">
+                                        10
+                                    </span>
+                                    <img src="./assets/Dropdown-Off.png"/>
+                                </div>
+                                <ul class="pagination-options">
+                                    <li class="pagination-option">
+                                        <span class="pagination-option-text"> 10 </span>
+                                    </li>
+                                    <li class="pagination-option">
+                                        <span class="pagination-option-text"> 15 </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            
+                        </div>
+                    </div>
+                    <div class="page-filler">
+                        
+                    </div>
                 </div>
             </div>
             <div class="right-content">
