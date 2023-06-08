@@ -7,7 +7,8 @@
     }else{
         header("Location: databases/?value=" . urlencode($global_variable));
     }
-    // include_once './database/config.php'
+
+    include_once './database/config.php'
 ?>
 
 <!DOCTYPE html>
@@ -83,21 +84,18 @@
                                     <li class="option">
                                         <span class="option-text"> All </span>
                                     </li>
-                                    <li class="option">
-                                        <span class="option-text"> MSD700 </span>
-                                    </li>
-                                    <li class="option">
-                                        <span class="option-text"> Dendoman </span>
-                                    </li>
-                                    <li class="option">
-                                        <span class="option-text"> Crusher </span>
-                                    </li>
-                                    <li class="option">
-                                        <span class="option-text"> Screen / Feeder </span>
-                                    </li>
+                                    <?php 
+                                        $result = getAllCategory();
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            ?>
+                                            <li class="option">
+                                                <span class="option-text"><?php echo $row['category'];?></span>
+                                            </li>
+                                            <?php
+                                        }
+                                    ?>
                                 </ul>
                             </div>
-
                         </div>
                     </div>
                     <table id="database-data">
