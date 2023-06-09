@@ -107,14 +107,10 @@ divDM.addEventListener("click", () => {
 	radDM.checked = true;
 });
 
-const database_data = document.querySelectorAll("tr");
+// const database_data = document.querySelectorAll("tr");
+const database_table = document.getElementById("database-data");
 
-database_data.forEach(function (data) {
-	data.addEventListener("click", () => {
-		resetDatabaseDataSelect();
-		data.classList.toggle("active");
-	});
-});
+updateDatabaseDataSelect(database_table);
 
 // ------------ 3d category dropdown ------------
 const optionMenu = document.querySelector(".select-menu");
@@ -164,7 +160,10 @@ options_pagination.forEach(function (option) {
 		let selectedOptionPagination = option.querySelector(
 			".pagination-option-text"
 		).innerText;
-		sBtn_text_pagination.innerText = selectedOptionPagination;
+		if (sBtn_text_pagination.innerText != selectedOptionPagination) {
+			sBtn_text_pagination.innerText = selectedOptionPagination;
+			updateDatabaseData(selectedOptionPagination);
+		}
 
 		optionMenu_pagination.classList.toggle("active");
 	});
@@ -190,7 +189,7 @@ myCanvas.style.height = width + "px";
 
 window.addEventListener("resize", () => {
 	right_content = document.querySelector(".right-content");
-	// let width = window.innerWidth * 0.4;
+
 	width = right_content.offsetWidth * 0.9;
 
 	if (width < 275) {
@@ -203,8 +202,75 @@ window.addEventListener("resize", () => {
 });
 
 // FUNCTION HELPER
-function resetDatabaseDataSelect() {
+function resetDatabaseDataSelect(database_data) {
 	database_data.forEach(function (data) {
 		data.classList.remove("active");
+	});
+}
+
+function updateDatabaseData(amount) {
+	let http = new XMLHttpRequest();
+
+	http.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			let response = JSON.parse(this.responseText);
+			let out = "";
+			out += `
+				<tr class="noHover">
+					<th class="left-table">NO.</th>
+					<th>MODEL NAME</th>
+					<th>MODEL NUMBER</th>
+					<th>CATEGORY</th>
+					<th>DATE MODIFIED</th>
+					<th>TYPE</th>
+					<th class="right-table">SIZE</th>
+				</tr>
+			`;
+			let number = 1;
+
+			response.forEach((item) => {
+				let date_modified_date = item.date_modified.split(" ");
+				let date_modified_time = date_modified_date[1].split(":");
+				let date_modified_time_display;
+
+				if (date_modified_time[0] > 12) {
+					date_modified_time_display =
+						date_modified_time[0] - 12 + ":" + date_modified_time[1] + " PM";
+				} else {
+					date_modified_time_display =
+						date_modified_time[0] + ":" + date_modified_time[1] + " AM";
+				}
+
+				out += `
+					<tr>
+						<td>${number}</td>
+						<td>${item.model_name}</td>
+						<td>${item.model_number}</td>
+						<td>${item.category}</td>
+						<td>${date_modified_date[0]} ${date_modified_time_display}</td>
+						<td>${item.file_type}</td>
+						<td>${item.size}</td>
+					</tr>
+				`;
+				number++;
+			});
+
+			database_table.innerHTML = out;
+			updateDatabaseDataSelect(database_table);
+		}
+	};
+	http.open("POST", "./utils/database.php", true);
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.send("dataamount=" + amount);
+}
+
+function updateDatabaseDataSelect(database_table) {
+	const database_data = database_table.querySelectorAll("tr");
+
+	database_data.forEach(function (data) {
+		data.addEventListener("click", () => {
+			resetDatabaseDataSelect(database_data);
+			data.classList.toggle("active");
+		});
 	});
 }

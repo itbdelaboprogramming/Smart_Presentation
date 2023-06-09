@@ -125,7 +125,7 @@
                             ?>
 
                                 <tr>
-                                    <td><?php echo $number . '.';?></td>
+                                    <td><?php echo $number;?></td>
                                     <td><?php echo $row['model_name'];?></td>
                                     <td><?php echo $row['model_number'];?></td>
                                     <td><?php echo $row['category'];?></td>
@@ -155,6 +155,9 @@
                                     </li>
                                     <li class="pagination-option">
                                         <span class="pagination-option-text"> 15 </span>
+                                    </li>
+                                    <li class="pagination-option">
+                                        <span class="pagination-option-text"> 20 </span>
                                     </li>
                                 </ul>
                             </div>

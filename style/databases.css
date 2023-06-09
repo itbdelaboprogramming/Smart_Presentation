@@ -539,8 +539,6 @@ label {
 	display: flex;
 	justify-content: space-between;
 
-	width: 100%;
-
 	background: var(--background-header);
 
 	border: 1px solid #189ab4;
