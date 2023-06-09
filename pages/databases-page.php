@@ -110,7 +110,7 @@
                         </tr>
                         <?php 
                             $number = 1;
-                            $result2 = getAllData(10);
+                            $result2 = getAllData(10, "All");
                             
                             foreach($result2 as $row){
                                 $date_modified_date = explode(" ",$row['date_modified']);

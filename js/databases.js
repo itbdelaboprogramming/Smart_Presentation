@@ -127,8 +127,8 @@ options.forEach(function (option) {
 	option.addEventListener("click", () => {
 		let selectedOption = option.querySelector(".option-text").innerText;
 		sBtn_text.innerText = selectedOption;
-
 		optionMenu.classList.toggle("active");
+		updateDatabaseData(sBtn_text_pagination.innerText, sBtn_text.innerText);
 	});
 });
 
@@ -162,7 +162,7 @@ options_pagination.forEach(function (option) {
 		).innerText;
 		if (sBtn_text_pagination.innerText != selectedOptionPagination) {
 			sBtn_text_pagination.innerText = selectedOptionPagination;
-			updateDatabaseData(selectedOptionPagination);
+			updateDatabaseData(sBtn_text_pagination.innerText, sBtn_text.innerText);
 		}
 
 		optionMenu_pagination.classList.toggle("active");
@@ -208,7 +208,7 @@ function resetDatabaseDataSelect(database_data) {
 	});
 }
 
-function updateDatabaseData(amount) {
+function updateDatabaseData(amount, category) {
 	let http = new XMLHttpRequest();
 
 	http.onreadystatechange = function () {
@@ -261,7 +261,7 @@ function updateDatabaseData(amount) {
 	};
 	http.open("POST", "./utils/database.php", true);
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	http.send("dataamount=" + amount);
+	http.send("dataamount=" + amount + "&tablecategory=" + category);
 }
 
 function updateDatabaseDataSelect(database_table) {
