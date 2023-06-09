@@ -622,7 +622,7 @@ label {
 	gap: 6.96px;
 	cursor: pointer;
 
-	background: var(--primary-color-main);
+	background: var(--background-header);
 
 	border: 0.870307px solid var(--primary-color-100);
 }
@@ -634,7 +634,7 @@ label {
 .pagination-option .pagination-option-text {
 	font-size: 14px;
 
-	color: var(--text-color-database-data);
+	/* color: var(--text-color-database-data); */
 
 	height: 24.66px;
 }
