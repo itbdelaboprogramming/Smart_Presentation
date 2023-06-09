@@ -110,8 +110,8 @@
                         </tr>
                         <?php 
                             $number = 1;
-                            $result2 = getAllData10();
-                            // while ($row = mysqli_fetch_assoc($result2)) {
+                            $result2 = getAllData(10);
+                            
                             foreach($result2 as $row){
                                 $date_modified_date = explode(" ",$row['date_modified']);
                                 $date_modified_time = explode(":",$date_modified_date[1]);

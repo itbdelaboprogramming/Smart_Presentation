@@ -154,16 +154,17 @@ const options_pagination =
 const sBtn_text_pagination = optionMenu_pagination.querySelector(
 	".pagination-select-menu-text"
 );
+
 selectBtn_pagination.addEventListener("click", () => {
 	optionMenu_pagination.classList.toggle("active");
 });
 
 options_pagination.forEach(function (option) {
 	option.addEventListener("click", () => {
-		let selectedOption = option.querySelector(
+		let selectedOptionPagination = option.querySelector(
 			".pagination-option-text"
 		).innerText;
-		sBtn_text_pagination.innerText = selectedOption;
+		sBtn_text_pagination.innerText = selectedOptionPagination;
 
 		optionMenu_pagination.classList.toggle("active");
 	});

@@ -545,7 +545,7 @@ label {
 
 	border: 1px solid #189ab4;
 
-	padding: 14px 22px 14px 22px;
+	padding: 13px 22px 13px 22px;
 
 	font-family: "Ubuntu";
 	font-style: normal;
@@ -565,6 +565,9 @@ label {
 .pagination-select-menu {
 	min-width: 57px;
 	height: 35px;
+
+	display: flex;
+	flex-direction: column-reverse;
 }
 
 .pagination-select-menu .pagination-select-menu-button {
@@ -617,7 +620,7 @@ label {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
-	padding: 5px 9px;
+	padding: 9px 9px;
 	gap: 6.96px;
 	cursor: pointer;
 
@@ -631,7 +634,7 @@ label {
 }
 
 .pagination-option .pagination-option-text {
-	font-size: 13.9249px;
+	font-size: 14px;
 
 	color: var(--text-color-database-data);
 

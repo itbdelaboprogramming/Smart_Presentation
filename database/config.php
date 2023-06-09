@@ -133,9 +133,9 @@
         }
     }
 
-    function getAllData10(){
+    function getAllData($amount){
         $conn = connect();
-        $sql = "SELECT model_detail.model_name, model_detail.category, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name ORDER BY model_name LIMIT 10;";
+        $sql = "SELECT model_detail.model_name, model_detail.category, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name ORDER BY model_name LIMIT $amount;";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
     
