@@ -1,5 +1,6 @@
 import { scene, camera } from "../script.js";
 import * as THREE from "three";
+import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js";
 
 // Const, Var, Let
 // ------------ dark/light mode toggle ------------
@@ -242,7 +243,7 @@ function updateDatabaseData(amount, category) {
 				}
 
 				out += `
-					<tr>
+					<tr data-value="${item.id}">
 						<td>${number}</td>
 						<td>${item.model_name}</td>
 						<td>${item.model_number}</td>
@@ -269,8 +270,54 @@ function updateDatabaseDataSelect(database_table) {
 
 	database_data.forEach(function (data) {
 		data.addEventListener("click", () => {
-			resetDatabaseDataSelect(database_data);
-			data.classList.toggle("active");
+			if (!data.classList.contains("noHover")) {
+				console.log("clicked", data.getAttribute("data-value"));
+				loadFile3D(data.getAttribute("data-value"));
+				resetDatabaseDataSelect(database_data);
+				data.classList.toggle("active");
+			}
 		});
 	});
+}
+
+function loadFile3D(id) {
+	let http = new XMLHttpRequest();
+
+	http.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			let response = JSON.parse(this.responseText);
+
+			updateFile3D(response[0].file);
+		}
+	};
+	http.open("POST", "./utils/database.php", true);
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.send("id=" + id);
+}
+
+let loader = new GLTFLoader();
+loader.name = "loader";
+function updateFile3D(file_name) {
+	console.log(file_name);
+	try {
+		let file3D = scene.getObjectByName("file3D");
+		file3D.name = "file3D";
+
+		scene.remove(file3D);
+
+		loader.load(
+			`./files/${file_name}`,
+			function (gltf) {
+				file3D = gltf.scene;
+				file3D.name = "file3D";
+				scene.add(file3D);
+			},
+			undefined,
+			function (error) {
+				console.error(error);
+			}
+		);
+	} catch (e) {
+		// do nothing
+	}
 }

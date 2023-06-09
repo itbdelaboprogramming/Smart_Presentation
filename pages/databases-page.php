@@ -124,7 +124,7 @@
                                 
                             ?>
 
-                                <tr>
+                                <tr data-value="<?php echo $row['id'];?>">
                                     <td><?php echo $number;?></td>
                                     <td><?php echo $row['model_name'];?></td>
                                     <td><?php echo $row['model_number'];?></td>
