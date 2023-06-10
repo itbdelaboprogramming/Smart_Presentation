@@ -187,27 +187,31 @@ window.addEventListener("click", function (e) {
 let right_content = document.querySelector(".right-content");
 // let width = window.innerWidth * 0.4;
 let width = right_content.offsetWidth * 0.9;
-if (width < 275) {
-	width = 275;
-}
-myCanvas.style.width = width + "px";
-myCanvas.style.height = width + "px";
+resizeCanvas();
 
 window.addEventListener("resize", () => {
+	resizeCanvas();
+});
+
+// FUNCTION HELPER
+function resizeCanvas() {
 	right_content = document.querySelector(".right-content");
 
 	width = right_content.offsetWidth * 0.9;
 
-	if (width < 275) {
-		width = 275;
+	// if (width < 275) {
+	// 	width = 275;
+	// }
+
+	if (window.innerWidth <= 1140) {
+		width = window.innerWidth * 0.4;
 	}
 	myCanvas.style.width = width + "px";
 	myCanvas.style.height = width + "px";
 	camera.aspect = width / width;
 	camera.updateProjectionMatrix();
-});
+}
 
-// FUNCTION HELPER
 function resetDatabaseDataSelect(database_data) {
 	database_data.forEach(function (data) {
 		data.classList.remove("active");
@@ -285,7 +289,6 @@ function updateDatabaseDataSelect(database_table) {
 	database_data.forEach(function (data) {
 		data.addEventListener("click", () => {
 			if (!data.classList.contains("noHover")) {
-				console.log("clicked", data.getAttribute("data-value"));
 				loadFile3D(data.getAttribute("data-value"));
 				resetDatabaseDataSelect(database_data);
 				data.classList.toggle("active");
@@ -312,7 +315,6 @@ function loadFile3D(id) {
 let loader = new GLTFLoader();
 loader.name = "loader";
 function updateFile3D(file_name) {
-	console.log(file_name);
 	try {
 		let file3D = scene.getObjectByName("file3D");
 		file3D.name = "file3D";

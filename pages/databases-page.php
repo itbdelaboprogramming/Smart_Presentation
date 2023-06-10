@@ -16,8 +16,7 @@
     <head>
         <title>Smart Presentation</title>
         <link rel="icon" type="image/x-icon" href="assets/logo.png">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="importmap">
             {
                 "imports": {
@@ -35,6 +34,9 @@
                 <div class="left-content-wraper">
                     <div class="page-name-container">
                         <div class="page-name-text">Exhibition List</div>
+                    </div>
+                    <div class="container-middle-right">
+                        <canvas id="myCanvas">    </canvas>
                     </div>
                     <div class="database-header">
                         <div class="search-container">
@@ -180,9 +182,7 @@
                 
             </div>
 
-            <div class="container-middle-right">
-                <canvas id="myCanvas">    </canvas>
-            </div>
+
 
             <div class="container-top-right">
                 <button class="menu-container" onClick="location.href='home'">

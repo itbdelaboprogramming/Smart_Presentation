@@ -55,6 +55,29 @@ canvas {
 	padding-right: 12px;
 }
 
+@media screen and (max-width: 1140px) {
+	canvas {
+		width: 320px;
+		height: 291px;
+	}
+
+	.container-middle-right {
+		position: inherit;
+		display: flex;
+		justify-content: center;
+		padding: 0px;
+		margin: 15px 0px;
+	}
+
+	.left-content {
+		width: 100%;
+	}
+
+	.right-content {
+		width: 0%;
+	}
+}
+
 /* Input button */
 input[type="file"] {
 	display: none;
@@ -211,6 +234,13 @@ input[type="file"] {
 	justify-content: space-between;
 	padding: 5px 5px 5px 5px;
 }
+
+@media screen and (max-width: 1140px) {
+	.search-container {
+		width: 100%;
+	}
+}
+
 .search-text {
 	width: 100%;
 	border: none;
