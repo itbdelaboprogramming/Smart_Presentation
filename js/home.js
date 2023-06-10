@@ -108,8 +108,17 @@ catalogueDetailBack.addEventListener("click", () => {
 });
 
 // Menu lightning button
+const lightning_expand = document.querySelector(
+	".menu-container-blue-lightning-expand"
+);
 menuLightning.addEventListener("click", () => {
 	menuLightning.classList.toggle("active");
+
+	if (menuLightning.classList.contains("active")) {
+		lightning_expand.style.display = "block";
+	} else {
+		lightning_expand.style.display = "none";
+	}
 });
 
 // Menu information button

@@ -104,6 +104,12 @@
                 <a class="information-link" target="_blank" href="https://www.ncjpn.com/en/products/dendoman/">Dendoman Series | Nakayama Iron Works (ncjpn.com)</a>
             </div>
 
+            <div class="container-bottom-right-mr2x" >
+                <div class="menu-container-blue-lightning-expand" style="display: none">
+
+                </div>
+            </div>
+
             <div class="container-bottom-right">
                 <div class="menu-container-blue-album">
                     <img src="./assets/Album-Button.png">

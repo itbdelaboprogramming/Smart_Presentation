@@ -127,6 +127,16 @@ canvas {
 	background-color: #74e7d4;
 }
 
+.menu-container-blue-lightning-expand {
+	max-width: 690px;
+	height: 190px;
+
+	background: #f2f4f7;
+	opacity: 0.7;
+	box-shadow: 0px 4px 4px rgba(24, 154, 180, 0.69);
+	border-radius: 5px;
+}
+
 /* 3d File Kategori Dropdown */
 .select-menu {
 	width: 228.89px;
