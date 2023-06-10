@@ -65,21 +65,24 @@ toggle.addEventListener("click", () => {
 	}
 });
 
+let order_by = "ASC";
 // filter (ascending/descending)
 filter_sort_box.addEventListener("click", () => {
 	if (filter_asc.style.display != "none") {
 		filter_asc.style.display = "none";
 		filter_desc.style.display = "block";
+		order_by = "DESC";
 	} else {
 		filter_asc.style.display = "block";
 		filter_desc.style.display = "none";
+		order_by = "ASC";
 	}
 });
 
 // filter (sort by)
+let filter_drop_down = document.querySelector(".filter-drop-down");
 filter_text.addEventListener("click", () => {
 	// do something
-	let filter_drop_down = document.querySelector(".filter-drop-down");
 	if (filter_drop_down.style.display == "none") {
 		filter_drop_down.style.display = "flex";
 	} else {
@@ -89,7 +92,6 @@ filter_text.addEventListener("click", () => {
 
 window.addEventListener("click", function (e) {
 	if (!document.querySelector(".filter-container").contains(e.target)) {
-		let filter_drop_down = document.querySelector(".filter-drop-down");
 		if (filter_drop_down.style.display != "none") {
 			filter_drop_down.style.display = "none";
 		}
@@ -98,14 +100,17 @@ window.addEventListener("click", function (e) {
 
 divMNa.addEventListener("click", () => {
 	radMNa.checked = true;
+	filter_drop_down.style.display = "none";
 });
 
 divMNu.addEventListener("click", () => {
 	radMNu.checked = true;
+	filter_drop_down.style.display = "none";
 });
 
 divDM.addEventListener("click", () => {
 	radDM.checked = true;
+	filter_drop_down.style.display = "none";
 });
 
 // const database_data = document.querySelectorAll("tr");
@@ -235,8 +240,17 @@ function updateDatabaseData(amount, category) {
 				let date_modified_time_display;
 
 				if (date_modified_time[0] > 12) {
-					date_modified_time_display =
-						date_modified_time[0] - 12 + ":" + date_modified_time[1] + " PM";
+					if (date_modified_time[0] - 12 < 10) {
+						date_modified_time_display =
+							"0" +
+							(date_modified_time[0] - 12) +
+							":" +
+							date_modified_time[1] +
+							" PM";
+					} else {
+						date_modified_time_display =
+							date_modified_time[0] - 12 + ":" + date_modified_time[1] + " PM";
+					}
 				} else {
 					date_modified_time_display =
 						date_modified_time[0] + ":" + date_modified_time[1] + " AM";

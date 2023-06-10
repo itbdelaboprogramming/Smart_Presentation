@@ -20,6 +20,15 @@ canvas {
 	border-radius: 10px;
 }
 
+.container-middle-right {
+	position: fixed;
+	top: 25%;
+	right: 0;
+	/* height: 40%; */
+
+	padding: 0px 23px 0px 0px;
+}
+
 /* Content */
 .left-content {
 	width: 75%;

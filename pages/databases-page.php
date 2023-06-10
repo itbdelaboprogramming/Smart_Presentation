@@ -17,6 +17,7 @@
         <title>Smart Presentation</title>
         <link rel="icon" type="image/x-icon" href="assets/logo.png">
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="importmap">
             {
                 "imports": {
@@ -47,8 +48,8 @@
                                     Filter
                                 </div>
                                 <div class="filter-sort-box">
-                                    <img src="./assets/Filter-Ascending.svg" id="filter-asc" value="asc">
-                                    <img src="./assets/Filter-Descending.svg" id="filter-desc" value="asc" style="display: none;">
+                                    <img src="./assets/Filter-Ascending.svg" id="filter-asc" value="ASC">
+                                    <img src="./assets/Filter-Descending.svg" id="filter-desc" value="DESC" style="display: none;">
                                 </div>
                             </div>
                             <div class="filter-drop-down" style="display: none;">
@@ -117,7 +118,11 @@
                                 $date_modified_time = explode(":",$date_modified_date[1]);
 
                                 if($date_modified_time[0] > 12){
-                                    $date_modified_time_display = ($date_modified_time[0] - 12) . ":" . $date_modified_time[1] . " PM";
+                                    if($date_modified_time[0] - 12 < 10){
+                                        $date_modified_time_display = "0" . ($date_modified_time[0] - 12) . ":" . $date_modified_time[1] . " PM";
+                                    }else{
+                                        $date_modified_time_display = ($date_modified_time[0] - 12) . ":" . $date_modified_time[1] . " PM";
+                                    }
                                 }else{
                                     $date_modified_time_display = $date_modified_time[0] . ":" . $date_modified_time[1] . " AM";
                                 }
@@ -172,6 +177,10 @@
                 </div>
             </div>
             <div class="right-content">
+                
+            </div>
+
+            <div class="container-middle-right">
                 <canvas id="myCanvas">    </canvas>
             </div>
 
