@@ -7,7 +7,8 @@
     }else{
         header("Location: databases/?value=" . urlencode($global_variable));
     }
-    // include_once './database/config.php'
+
+    include_once './database/config.php'
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@
     <head>
         <title>Smart Presentation</title>
         <link rel="icon" type="image/x-icon" href="assets/logo.png">
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="importmap">
             {
                 "imports": {
@@ -30,41 +31,158 @@
     <body>
         <div class="databases-page">
             <div class="left-content">
-                <?php 
-                    // $sql = "SELECT * FROM model_detail;";
-                    // $result = mysqli_query($conn, $sql);
-                    // $resultCheck = mysqli_num_rows($result);
+                <div class="left-content-wraper">
+                    <div class="page-name-container">
+                        <div class="page-name-text">Exhibition List</div>
+                    </div>
+                    <div class="container-middle-right">
+                        <canvas id="myCanvas">    </canvas>
+                    </div>
+                    <div class="database-header">
+                        <div class="search-container">
+                            <input type="text" placeholder="Search.." name="search" class="search-text">
+                            <button type="submit" class="search-img"><img src="./assets/Search-Button.png"></button>
+                        </div>
+                        <div class="filter-container">
+                            <div class="filter-wrap">
+                                <div class="filter-text">
+                                    <img src="./assets/Filter-Icon.svg" class="filter-img">
+                                    Filter
+                                </div>
+                                <div class="filter-sort-box">
+                                    <img src="./assets/Filter-Ascending.svg" id="filter-asc" value="ASC">
+                                    <img src="./assets/Filter-Descending.svg" id="filter-desc" value="DESC" style="display: none;">
+                                </div>
+                            </div>
+                            <div class="filter-drop-down" style="display: none;">
+                                <div class="filter-drop-down-wrap">
+                                    <div class="filter-drop-down-title">
+                                        SORT BY:
+                                    </div>
+                                    <div class="filter-drop-down-item" id="div_sort_model_name">
+                                        <label for="sort_model_name"> Model Name </label>
+                                        <input type="radio" id="sort_model_name" name="sort" value="model_name" checked>
+                                    </div>
+                                    <div class="filter-drop-down-item" id="div_sort_model_number">
+                                        <label for="sort_model_number"> Model Number </label>
+                                        <input type="radio" id="sort_model_number" name="sort" value="model_number">
+                                    </div>
+                                    <div class="filter-drop-down-item" id="div_sort_date_modified">
+                                        <label for="sort_date_modified"> Date Modified </label>
+                                        <input type="radio" id="sort_date_modified" name="sort" value="date_modified">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="category" id="item-category">
+                            Category
+                            <div class="select-menu">
+                                <div class="select-menu-button">
+                                    <span class="select-menu-text">
+                                        All
+                                    </span>
+                                    <img src="./assets/Dropdown-Off.png"/>
+                                </div>
+                                <ul class="options">
+                                    <li class="option">
+                                        <span class="option-text"> All </span>
+                                    </li>
+                                    <?php 
+                                        $result = getAllCategory();
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            ?>
+                                            <li class="option">
+                                                <span class="option-text"><?php echo $row['category'];?></span>
+                                            </li>
+                                            <?php
+                                        }
+                                    ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <table id="database-data">
+                        <tr class="noHover">
+                            <th class="left-table">NO.</th>
+                            <th>MODEL NAME</th>
+                            <th>MODEL NUMBER</th>
+                            <th>CATEGORY</th>
+                            <th>DATE MODIFIED</th>
+                            <th>TYPE</th>
+                            <th class="right-table">SIZE</th>
+                        </tr>
+                        <?php 
+                            $number = 1;
+                            $result2 = getAllData(10, "All");
+                            
+                            foreach($result2 as $row){
+                                $date_modified_date = explode(" ",$row['date_modified']);
+                                $date_modified_time = explode(":",$date_modified_date[1]);
 
-                    // if($resultCheck > 0){
-                    //     while($row = mysqli_fetch_assoc($result)){
-                    //         echo $row['model_name'] . "<br>";
-                    //         // echo '<div id="item-category">';
-                    //         // echo '<p>' . $row['model_name'] . '</p>';
-                    //         // echo '<div>';
-                    //         // echo '<div>';
-                    //         // echo '<span>';
-                    //         // echo '</div>';
-                    //         // echo '<ul >';
-                    //         // echo '<li >';
-                    //         // echo '<span>' . $row['model_name'] . '</span>';
-                    //         // echo '</li>';
-                    //         // echo '</ul>';
-                    //         // echo '</div>';
-                    //         // echo '</div>';
-                    //     }
-                    // }
-                ?>
-            </div>
-            <div class="right-content">
-                <canvas id="myCanvas">    </canvas>
-            </div>
-            
+                                if($date_modified_time[0] > 12){
+                                    if($date_modified_time[0] - 12 < 10){
+                                        $date_modified_time_display = "0" . ($date_modified_time[0] - 12) . ":" . $date_modified_time[1] . " PM";
+                                    }else{
+                                        $date_modified_time_display = ($date_modified_time[0] - 12) . ":" . $date_modified_time[1] . " PM";
+                                    }
+                                }else{
+                                    $date_modified_time_display = $date_modified_time[0] . ":" . $date_modified_time[1] . " AM";
+                                }
+                                
+                            ?>
 
-            <div class="container-top-left">
-                <div class="page-name-container">
-                    <div class="page-name-text">Exhibition List</div>
+                                <tr data-value="<?php echo $row['id'];?>">
+                                    <td><?php echo $number;?></td>
+                                    <td><?php echo $row['model_name'];?></td>
+                                    <td><?php echo $row['model_number'];?></td>
+                                    <td><?php echo $row['category'];?></td>
+                                    <td><?php echo $date_modified_date[0] . " " . $date_modified_time_display;?></td>
+                                    <td><?php echo $row['file_type'];?></td>
+                                    <td><?php echo $row['size'];?></td>
+                                </tr>
+
+                            <?php  
+                            $number++;                     
+                            }
+                        ?>
+                    </table>
+                    <div class="table-controller">
+                        <div id="pagination-dropdown" class="pagination-dropdown-wrapper">
+                            Rows per page
+                            <div class="pagination-select-menu">
+                                <div class="pagination-select-menu-button">
+                                    <span class="pagination-select-menu-text">
+                                        10
+                                    </span>
+                                    <img src="./assets/Dropdown-Off.png"/>
+                                </div>
+                                <ul class="pagination-options">
+                                    <li class="pagination-option">
+                                        <span class="pagination-option-text"> 10 </span>
+                                    </li>
+                                    <li class="pagination-option">
+                                        <span class="pagination-option-text"> 15 </span>
+                                    </li>
+                                    <li class="pagination-option">
+                                        <span class="pagination-option-text"> 20 </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            
+                        </div>
+                    </div>
+                    <div class="page-filler">
+                        
+                    </div>
                 </div>
             </div>
+            <div class="right-content">
+                
+            </div>
+
+
 
             <div class="container-top-right">
                 <button class="menu-container" onClick="location.href='home'">
@@ -101,7 +219,6 @@
 
                 <div class="toggle"></div>
             </div>
-  
         </div>
 
         <script>

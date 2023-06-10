@@ -81,13 +81,13 @@
 
             <div class="catalogue-container" id="catalogue-container">
                 <div class="catalogue-description-header">
-                    <p class="catalogue-description-title">All Series</p>
+                    <p class="catalogue-description-title"></p>
                     <div class="catalogue-back-button">
                         <img src="./assets/Catalogue-Back-Button.png" class="catalogue-back-button-img">
                     </div>
                 </div>
                 <div class="catalogue-description">
-                    AAAA DETAIL
+                    
                 </div>
             </div>
 
@@ -102,6 +102,12 @@
                     <p class="information-description-specification-detail" >Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement</p>
                 </div>
                 <a class="information-link" target="_blank" href="https://www.ncjpn.com/en/products/dendoman/">Dendoman Series | Nakayama Iron Works (ncjpn.com)</a>
+            </div>
+
+            <div class="container-bottom-right-mr2x" >
+                <div class="menu-container-blue-lightning-expand" style="display: none">
+
+                </div>
             </div>
 
             <div class="container-bottom-right">

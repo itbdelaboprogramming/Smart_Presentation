@@ -33,6 +33,13 @@
         $product2 = getModelNumber($model_name);
         echo json_encode($product2);
     }
+
+    if(isset($_POST['dataamount'])){
+        $amount = $_POST['dataamount'];
+        $category = $_POST['tablecategory'];
+        $product2 = getAllData($amount, $category);
+        echo json_encode($product2);
+    }
     
 
 ?>

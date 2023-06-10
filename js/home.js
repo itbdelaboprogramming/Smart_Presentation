@@ -57,7 +57,7 @@ const catalogueDescription = document.querySelector(".catalogue-description-2");
 const toggle = document.querySelector(".toggle");
 
 let getMode = localStorage.getItem("mode");
-
+var audio = new Audio("./audio/podcast-18169.mp3");
 // Menu sound button
 menuSound.addEventListener("click", () => {
 	menuSound.classList.toggle("active");
@@ -65,9 +65,11 @@ menuSound.addEventListener("click", () => {
 	if (menuSound.classList.contains("active")) {
 		iconSoundOff.style.display = "none";
 		iconSoundOn.style.display = "block";
+		audio.play();
 	} else {
 		iconSoundOff.style.display = "block";
 		iconSoundOn.style.display = "none";
+		audio.pause();
 	}
 });
 
@@ -101,11 +103,22 @@ loadCatalogue(catalogue_product_list);
 catalogueDetailBack.addEventListener("click", () => {
 	catalogueContainer.style.display = "flex";
 	catalogueDetailContainer.style.display = "none";
+	catalogueDetailTitle.innerText = "";
+	catalogueDetailDescription.innerHTML = "";
 });
 
 // Menu lightning button
+const lightning_expand = document.querySelector(
+	".menu-container-blue-lightning-expand"
+);
 menuLightning.addEventListener("click", () => {
 	menuLightning.classList.toggle("active");
+
+	if (menuLightning.classList.contains("active")) {
+		lightning_expand.style.display = "block";
+	} else {
+		lightning_expand.style.display = "none";
+	}
 });
 
 // Menu information button
@@ -339,9 +352,9 @@ function loadCatalogue(catalogue_product_list) {
 				information_description_title.innerText = product_list_text;
 			}
 
+			loadCatalogueDetail(product_list_text);
 			catalogueContainer.style.display = "none";
 			catalogueDetailContainer.style.display = "flex";
-			loadCatalogueDetail(product_list_text);
 		});
 
 		if (product_list.classList.contains("active")) {
