@@ -57,7 +57,7 @@ const catalogueDescription = document.querySelector(".catalogue-description-2");
 const toggle = document.querySelector(".toggle");
 
 let getMode = localStorage.getItem("mode");
-
+var audio = new Audio("./audio/podcast-18169.mp3");
 // Menu sound button
 menuSound.addEventListener("click", () => {
 	menuSound.classList.toggle("active");
@@ -65,9 +65,11 @@ menuSound.addEventListener("click", () => {
 	if (menuSound.classList.contains("active")) {
 		iconSoundOff.style.display = "none";
 		iconSoundOn.style.display = "block";
+		audio.play();
 	} else {
 		iconSoundOff.style.display = "block";
 		iconSoundOn.style.display = "none";
+		audio.pause();
 	}
 });
 
