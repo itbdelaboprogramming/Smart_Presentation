@@ -53,6 +53,8 @@ const sBtn_text = optionMenu.querySelector(".select-menu-text");
 const catalogueTitle = document.querySelector(".catalogue-description-title-2");
 const catalogueDescription = document.querySelector(".catalogue-description-2");
 
+let product_list_detail_dataset_value;
+
 // ------------ dark/light mode ------------
 const toggle = document.querySelector(".toggle");
 
@@ -428,6 +430,7 @@ function loadCatalogueDetail(model_name) {
 							<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
 						</div>
 					`;
+					product_list_detail_dataset_value = item.id;
 				} else {
 					out += `
 						<div class="catalogue-product-list" data-value="${item.id}">
@@ -446,12 +449,19 @@ function loadCatalogueDetail(model_name) {
 			);
 			catalogue_product_list_detail.forEach(function (product_list_detail) {
 				product_list_detail.addEventListener("click", () => {
-					loadFile3D(product_list_detail.dataset.value);
+					if (
+						product_list_detail.dataset.value !=
+						product_list_detail_dataset_value
+					) {
+						loadFile3D(product_list_detail.dataset.value);
+						product_list_detail_dataset_value =
+							product_list_detail.dataset.value;
 
-					catalogue_product_list_detail.forEach(function (product_list) {
-						product_list.classList.remove("active");
-					});
-					product_list_detail.classList.toggle("active");
+						catalogue_product_list_detail.forEach(function (product_list) {
+							product_list.classList.remove("active");
+						});
+						product_list_detail.classList.toggle("active");
+					}
 				});
 			});
 		}
@@ -459,4 +469,21 @@ function loadCatalogueDetail(model_name) {
 	http.open("POST", "./utils/database.php", true);
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	http.send("getmodelnumber=" + model_name);
+}
+
+// slider
+const slider = document.querySelector(".slider");
+const maxValue = slider.getAttribute("max");
+
+let value;
+
+const sliderFill = document.querySelector(".fill");
+updateSlider();
+slider.addEventListener("input", () => {
+	updateSlider();
+});
+
+function updateSlider() {
+	value = (slider.value / maxValue) * 100 + "%";
+	sliderFill.style.width = value;
 }

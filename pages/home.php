@@ -106,7 +106,15 @@
 
             <div class="container-bottom-right-mr2x" >
                 <div class="menu-container-blue-lightning-expand" style="display: none">
+                    <div class="menu-container-blue-lightning-expand-wrapper">
+                        <div class="slider-container">
+                            <span class="bar">
+                                <span class="fill"></span>
+                            </span>
+                            <input type="range" min="0" max="100" value="50" step="2" class="slider"/>
+                        </div>
 
+                    </div>
                 </div>
             </div>
 

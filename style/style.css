@@ -153,6 +153,22 @@ body {
 	font-size: 13px;
 }
 
+@media screen and (max-width: 650px) {
+	.container-bottom-right-mr2x {
+		position: fixed;
+		z-index: 1;
+		bottom: 0;
+		left: 25%;
+		right: 25%;
+		padding: 0px 0px 23px 0px;
+		/* padding-right: 23px; */
+		/* padding-left: 23px; */
+		/* margin-right: 80px; */
+		margin: 0;
+		font-size: 13px;
+	}
+}
+
 .item-name-container {
 	position: absolute;
 	z-index: 1;
