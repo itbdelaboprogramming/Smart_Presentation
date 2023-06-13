@@ -300,6 +300,12 @@ function updateDatabaseDataSelect(database_table) {
 				}
 			}
 		});
+
+		if (selected_database_data_selected) {
+			if (selected_database_data_selected == data.getAttribute("data-value")) {
+				data.classList.toggle("active");
+			}
+		}
 	});
 }
 
