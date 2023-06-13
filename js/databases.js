@@ -115,7 +115,7 @@ divDM.addEventListener("click", () => {
 
 // const database_data = document.querySelectorAll("tr");
 const database_table = document.getElementById("database-data");
-
+let selected_database_data_selected;
 updateDatabaseDataSelect(database_table);
 
 // ------------ 3d category dropdown ------------
@@ -238,7 +238,7 @@ function updateDatabaseData(amount, category) {
 			`;
 			let number = 1;
 
-			response.forEach((item) => {
+			response.forEach((item, index) => {
 				let date_modified_date = item.date_modified.split(" ");
 				let date_modified_time = date_modified_date[1].split(":");
 				let date_modified_time_display;
@@ -271,6 +271,7 @@ function updateDatabaseData(amount, category) {
 						<td>${item.size}</td>
 					</tr>
 				`;
+
 				number++;
 			});
 
@@ -289,9 +290,14 @@ function updateDatabaseDataSelect(database_table) {
 	database_data.forEach(function (data) {
 		data.addEventListener("click", () => {
 			if (!data.classList.contains("noHover")) {
-				loadFile3D(data.getAttribute("data-value"));
-				resetDatabaseDataSelect(database_data);
-				data.classList.toggle("active");
+				if (
+					selected_database_data_selected != data.getAttribute("data-value")
+				) {
+					loadFile3D(data.getAttribute("data-value"));
+					resetDatabaseDataSelect(database_data);
+					data.classList.toggle("active");
+					selected_database_data_selected = data.getAttribute("data-value");
+				}
 			}
 		});
 	});
