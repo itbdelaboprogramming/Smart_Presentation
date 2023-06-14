@@ -397,6 +397,10 @@ canvas {
 	text-align: justify;
 }
 
+.information-specification-img {
+	width: 100%;
+}
+
 .information-link {
 	font-family: "Ubuntu";
 	font-style: normal;

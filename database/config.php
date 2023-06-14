@@ -5,10 +5,6 @@
         $dbusername = 'root';
         $dbpassword = '';
         $dbname = 'smart_presentation';
-        // $dbservername = '10.243.158.97';
-        // $dbusername = 'admin';
-        // $dbpassword = 'admin';
-        // $dbname = 'smart_presentation';
     
         $conn = mysqli_connect($dbservername, $dbusername, $dbpassword, $dbname);
     
@@ -63,7 +59,7 @@
 
     function getDescription($modelname){
         $conn = connect();
-        $sql = "SELECT model.model_number, model_detail.model_name, model_detail.description, model_detail.specification, model_detail.link_to_web, model.file FROM model_detail INNER JOIN model ON model_detail.model_name = model.model_name WHERE model_detail.model_name = '$modelname';";
+        $sql = "SELECT model.model_number, model_detail.model_name, model_detail.description, model_detail.specification, model_detail.specification_img, model_detail.link_to_web, model.file FROM model_detail INNER JOIN model ON model_detail.model_name = model.model_name WHERE model_detail.model_name = '$modelname';";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
     

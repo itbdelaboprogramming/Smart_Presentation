@@ -264,6 +264,7 @@ function updateInformation(model_name) {
 
 			// update file (canvas)
 			myText = response[0].file;
+			let specification_img = response[0].specification_img;
 			updateFile3D(myText);
 
 			// update title
@@ -320,6 +321,7 @@ function updateInformation(model_name) {
 					out += `<p> ${item} <br><br>`;
 				} else if (index === array.length - 1) {
 					out += `${item} </p>`;
+					out += `<img class="information-specification-img" src="./files/${specification_img}" />`;
 				} else {
 					out += `${item} <br><br>`;
 				}
