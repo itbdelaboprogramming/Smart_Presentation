@@ -495,9 +495,18 @@ let value;
 
 const sliderFill = document.querySelector(".fill");
 updateSlider();
+updateZoomCamera();
 slider.addEventListener("input", () => {
 	updateSlider();
+	updateZoomCamera();
 });
+
+function updateZoomCamera() {
+	console.log(slider.value);
+	camera.fov = 100 - (slider.value - 50);
+	// camera.zoom = slider.value;
+	camera.updateProjectionMatrix();
+}
 
 function updateSlider() {
 	value = (slider.value / maxValue) * 100 + "%";

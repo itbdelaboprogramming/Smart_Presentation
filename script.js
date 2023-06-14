@@ -26,7 +26,7 @@ plane.rotateX(-Math.PI / 2);
 scene.add(plane);
 
 export const camera = new THREE.PerspectiveCamera(
-	40,
+	60,
 	myCanvas.offsetWidth / myCanvas.offsetHeight
 );
 
