@@ -45,6 +45,9 @@ var myText = document.getElementById("myText").textContent;
 let information_description_title = document.querySelector(
 	".information-description-title"
 );
+const information_description = document.querySelector(
+	".information-description"
+);
 
 // ------------ 3d category dropdown ------------
 const optionMenu = document.querySelector(".select-menu");
@@ -188,6 +191,11 @@ options.forEach(function (option) {
 		http.open("POST", "./utils/database.php", true);
 		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		http.send("category=" + selectedOption);
+
+		if (menuAlbum.classList.contains("active")) {
+			catalogueDetailContainer.style.display = "none";
+			catalogueContainer.style.display = "flex";
+		}
 	});
 });
 
@@ -333,6 +341,8 @@ function updateInformation(model_name) {
 			let information_link = document.querySelector(".information-link");
 			information_link.href = response[0].link_to_web;
 			information_link.innerText = ` ${model_name} Series | Nakayama Iron Works (ncjpn.com))`;
+
+			information_description.scrollTo({ top: 0, behavior: "smooth" });
 		}
 	};
 	http.open("POST", "./utils/database.php", true);
@@ -372,6 +382,7 @@ function loadCatalogue(catalogue_product_list) {
 			updateInformation(product_list_text);
 		}
 	});
+	catalogueDescription.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function loadFile3D(id) {
