@@ -158,14 +158,35 @@ body {
 		position: fixed;
 		z-index: 1;
 		bottom: 0;
-		left: 25%;
-		right: 25%;
+		left: 46%;
+		right: 19%;
 		padding: 0px 0px 23px 0px;
-		/* padding-right: 23px; */
-		/* padding-left: 23px; */
-		/* margin-right: 80px; */
 		margin: 0;
 		font-size: 13px;
+	}
+}
+
+/* for sound container */
+.container-bottom-left-ml2x {
+	position: fixed;
+	z-index: 1;
+	bottom: 0;
+	left: 0%;
+	right: 55%;
+	padding-bottom: 23px;
+	padding-left: 23px;
+	margin-left: 80px;
+}
+
+@media screen and (max-width: 650px) {
+	.container-bottom-left-ml2x {
+		position: fixed;
+		z-index: 1;
+		bottom: 0;
+		left: 15%;
+		right: 50%;
+		padding: 0px 0px 23px 0px;
+		margin: 0;
 	}
 }
 

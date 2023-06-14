@@ -54,6 +54,12 @@
                 </div>
             </div>
 
+            <div class="container-bottom-left-ml2x">
+                <div class="sound-expand" style="display: none;">
+                    Sound
+                </div>
+            </div>
+
             <div class="catalogue-container-2" id="catalogue-container-2">
                 <div>
                     <p class="catalogue-description-title-2">All Series</p>

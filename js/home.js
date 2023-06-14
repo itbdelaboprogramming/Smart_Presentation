@@ -7,6 +7,7 @@ import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders
 const menuSound = document.querySelector(".menu-container-blue-sound");
 const iconSoundOff = document.getElementById("sound-off");
 const iconSoundOn = document.getElementById("sound-on");
+const soundExpand = document.querySelector(".sound-expand");
 
 // ------------ animation ------------
 const menuAnimation = document.querySelector(".menu-container-blue-animation");
@@ -67,11 +68,13 @@ menuSound.addEventListener("click", () => {
 	if (menuSound.classList.contains("active")) {
 		iconSoundOff.style.display = "none";
 		iconSoundOn.style.display = "block";
-		audio.play();
+		soundExpand.style.display = "block";
+		// audio.play();
 	} else {
 		iconSoundOff.style.display = "block";
 		iconSoundOn.style.display = "none";
-		audio.pause();
+		soundExpand.style.display = "none";
+		// audio.pause();
 	}
 });
 
