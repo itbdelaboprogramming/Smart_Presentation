@@ -64,6 +64,10 @@ const toggle = document.querySelector(".toggle");
 
 let getMode = localStorage.getItem("mode");
 var audio = new Audio("./audio/podcast-18169.mp3");
+audio.loop = true;
+audio.volume = 0.5;
+var audio_speech = new Audio("./audio/voicebooking-speech.wav");
+audio_speech.loop = true;
 // Menu sound button
 menuSound.addEventListener("click", () => {
 	menuSound.classList.toggle("active");
@@ -71,13 +75,35 @@ menuSound.addEventListener("click", () => {
 	if (menuSound.classList.contains("active")) {
 		iconSoundOff.style.display = "none";
 		iconSoundOn.style.display = "block";
-		soundExpand.style.display = "block";
-		// audio.play();
+		soundExpand.style.display = "flex";
 	} else {
 		iconSoundOff.style.display = "block";
 		iconSoundOn.style.display = "none";
 		soundExpand.style.display = "none";
-		// audio.pause();
+	}
+});
+
+const toggle_music = document.querySelector(".toggle-music");
+const toggle_speech = document.querySelector(".toggle-speech");
+
+toggle_music.addEventListener("click", () => {
+	toggle_music.classList.toggle("active");
+
+	if (toggle_music.classList.contains("active")) {
+		audio.play();
+	} else {
+		audio.pause();
+	}
+});
+
+toggle_speech.addEventListener("click", () => {
+	toggle_speech.classList.toggle("active");
+
+	if (toggle_speech.classList.contains("active")) {
+		audio_speech.play();
+	} else {
+		audio_speech.pause();
+		audio_speech.currentTime = 0;
 	}
 });
 
