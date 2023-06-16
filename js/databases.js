@@ -65,17 +65,29 @@ toggle.addEventListener("click", () => {
 	}
 });
 
-let order_by = "ASC";
+let order_type = "ASC";
 // filter (ascending/descending)
 filter_sort_box.addEventListener("click", () => {
 	if (filter_asc.style.display != "none") {
 		filter_asc.style.display = "none";
 		filter_desc.style.display = "block";
-		order_by = "DESC";
+		order_type = "DESC";
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
 	} else {
 		filter_asc.style.display = "block";
 		filter_desc.style.display = "none";
-		order_by = "ASC";
+		order_type = "ASC";
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
 	}
 });
 
@@ -105,7 +117,8 @@ divMNa.addEventListener("click", () => {
 	updateDatabaseData(
 		sBtn_text_pagination.innerText,
 		sBtn_text.innerText,
-		selected_sort_by
+		selected_sort_by,
+		order_type
 	);
 	filter_drop_down.style.display = "none";
 });
@@ -116,7 +129,8 @@ divMNu.addEventListener("click", () => {
 	updateDatabaseData(
 		sBtn_text_pagination.innerText,
 		sBtn_text.innerText,
-		selected_sort_by
+		selected_sort_by,
+		order_type
 	);
 	filter_drop_down.style.display = "none";
 });
@@ -127,7 +141,8 @@ divDM.addEventListener("click", () => {
 	updateDatabaseData(
 		sBtn_text_pagination.innerText,
 		sBtn_text.innerText,
-		selected_sort_by
+		selected_sort_by,
+		order_type
 	);
 	filter_drop_down.style.display = "none";
 });
@@ -156,7 +171,8 @@ options.forEach(function (option) {
 		updateDatabaseData(
 			sBtn_text_pagination.innerText,
 			sBtn_text.innerText,
-			selected_sort_by
+			selected_sort_by,
+			order_type
 		);
 	});
 });
@@ -194,7 +210,8 @@ options_pagination.forEach(function (option) {
 			updateDatabaseData(
 				sBtn_text_pagination.innerText,
 				sBtn_text.innerText,
-				selected_sort_by
+				selected_sort_by,
+				order_type
 			);
 		}
 
@@ -245,7 +262,7 @@ function resetDatabaseDataSelect(database_data) {
 	});
 }
 
-function updateDatabaseData(amount, category, sort_by) {
+function updateDatabaseData(amount, category, order_by, order_type) {
 	let http = new XMLHttpRequest();
 
 	http.onreadystatechange = function () {
@@ -309,7 +326,14 @@ function updateDatabaseData(amount, category, sort_by) {
 	http.open("POST", "./utils/database.php", true);
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	http.send(
-		"dataamount=" + amount + "&tablecategory=" + category + "&sortby=" + sort_by
+		"dataamount=" +
+			amount +
+			"&tablecategory=" +
+			category +
+			"&orderby=" +
+			order_by +
+			"&ordertype=" +
+			order_type
 	);
 }
 

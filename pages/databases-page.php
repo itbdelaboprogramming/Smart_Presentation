@@ -113,7 +113,7 @@
                         </tr>
                         <?php 
                             $number = 1;
-                            $result2 = getAllData(10, "All", "model_name");
+                            $result2 = getAllData(10, "All", "model_name", "ASC");
                             
                             foreach($result2 as $row){
                                 $date_modified_date = explode(" ",$row['date_modified']);

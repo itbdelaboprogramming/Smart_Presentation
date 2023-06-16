@@ -129,12 +129,12 @@
         }
     }
 
-    function getAllData($amount, $category, $sort_by){
+    function getAllData($amount, $category, $order_by, $order_type){
         $conn = connect();
         if($category == "All"){
-            $sql = "SELECT model_detail.model_name, model_detail.category, model.id, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name ORDER BY $sort_by LIMIT $amount;";
+            $sql = "SELECT model_detail.model_name, model_detail.category, model.id, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name ORDER BY $order_by $order_type LIMIT $amount;";
         }else{
-            $sql = "SELECT model_detail.model_name, model_detail.category, model.id, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name WHERE model_detail.category = '$category' ORDER BY $sort_by LIMIT $amount;";
+            $sql = "SELECT model_detail.model_name, model_detail.category, model.id, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name WHERE model_detail.category = '$category' ORDER BY $order_by $order_type LIMIT $amount;";
 
         }
         $result = mysqli_query($conn, $sql);
