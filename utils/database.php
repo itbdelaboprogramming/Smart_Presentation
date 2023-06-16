@@ -37,7 +37,8 @@
     if(isset($_POST['dataamount'])){
         $amount = $_POST['dataamount'];
         $category = $_POST['tablecategory'];
-        $product2 = getAllData($amount, $category);
+        $sort_by = $_POST['sortby'];
+        $product2 = getAllData($amount, $category, $sort_by);
         echo json_encode($product2);
     }
     

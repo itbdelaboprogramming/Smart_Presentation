@@ -313,6 +313,8 @@ input[type="file"] {
 	line-height: 21px;
 
 	color: #04445f;
+
+	margin: 0px 4px 0px 0px;
 }
 
 .filter-sort-box {

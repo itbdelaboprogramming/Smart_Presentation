@@ -98,18 +98,37 @@ window.addEventListener("click", function (e) {
 	}
 });
 
+let selected_sort_by = "model_name";
 divMNa.addEventListener("click", () => {
 	radMNa.checked = true;
+	selected_sort_by = "model_name";
+	updateDatabaseData(
+		sBtn_text_pagination.innerText,
+		sBtn_text.innerText,
+		selected_sort_by
+	);
 	filter_drop_down.style.display = "none";
 });
 
 divMNu.addEventListener("click", () => {
 	radMNu.checked = true;
+	selected_sort_by = "model_number";
+	updateDatabaseData(
+		sBtn_text_pagination.innerText,
+		sBtn_text.innerText,
+		selected_sort_by
+	);
 	filter_drop_down.style.display = "none";
 });
 
 divDM.addEventListener("click", () => {
 	radDM.checked = true;
+	selected_sort_by = "date_modified";
+	updateDatabaseData(
+		sBtn_text_pagination.innerText,
+		sBtn_text.innerText,
+		selected_sort_by
+	);
 	filter_drop_down.style.display = "none";
 });
 
@@ -134,7 +153,11 @@ options.forEach(function (option) {
 		let selectedOption = option.querySelector(".option-text").innerText;
 		sBtn_text.innerText = selectedOption;
 		optionMenu.classList.toggle("active");
-		updateDatabaseData(sBtn_text_pagination.innerText, sBtn_text.innerText);
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by
+		);
 	});
 });
 
@@ -168,7 +191,11 @@ options_pagination.forEach(function (option) {
 		).innerText;
 		if (sBtn_text_pagination.innerText != selectedOptionPagination) {
 			sBtn_text_pagination.innerText = selectedOptionPagination;
-			updateDatabaseData(sBtn_text_pagination.innerText, sBtn_text.innerText);
+			updateDatabaseData(
+				sBtn_text_pagination.innerText,
+				sBtn_text.innerText,
+				selected_sort_by
+			);
 		}
 
 		optionMenu_pagination.classList.toggle("active");
@@ -218,7 +245,7 @@ function resetDatabaseDataSelect(database_data) {
 	});
 }
 
-function updateDatabaseData(amount, category) {
+function updateDatabaseData(amount, category, sort_by) {
 	let http = new XMLHttpRequest();
 
 	http.onreadystatechange = function () {
@@ -281,7 +308,9 @@ function updateDatabaseData(amount, category) {
 	};
 	http.open("POST", "./utils/database.php", true);
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	http.send("dataamount=" + amount + "&tablecategory=" + category);
+	http.send(
+		"dataamount=" + amount + "&tablecategory=" + category + "&sortby=" + sort_by
+	);
 }
 
 function updateDatabaseDataSelect(database_table) {
