@@ -519,12 +519,11 @@ function loadCatalogueDetail(model_name) {
 }
 
 // slider
-const slider = document.querySelector(".slider");
+const slider = document.getElementById("slider-zoom");
 const maxValue = slider.getAttribute("max");
-
 let value;
+const sliderFill = document.getElementById("fill-zoom");
 
-const sliderFill = document.querySelector(".fill");
 updateSlider();
 updateZoomCamera();
 slider.addEventListener("input", () => {
@@ -543,12 +542,11 @@ function updateSlider() {
 }
 
 // slider env brightness
-const slider_env = document.querySelector(".slider-env");
+const slider_env = document.getElementById("slider-env");
 const maxValue_env = slider_env.getAttribute("max");
-
 let value_env;
+const sliderFill_env = document.getElementById("fill-env");
 
-const sliderFill_env = document.querySelector(".fill-env");
 updateSliderEnv();
 slider_env.addEventListener("input", () => {
 	updateSliderEnv();
@@ -561,23 +559,16 @@ function updateSliderEnv() {
 }
 
 function updateEnvBrightness() {
-	scene.remove(scene.getObjectByName("ambientLight"));
-	const ambientLight = new THREE.HemisphereLight(
-		"white", // bright sky color
-		"grey", // dim ground color
-		slider_env.value // intensity
-	);
-	ambientLight.name = "ambientLight";
-	scene.add(ambientLight);
+	let ambient = scene.getObjectByName("ambientLight");
+	ambient.intensity = slider_env.value;
 }
 
 // slider lamp position
-const slider_lamp_pos = document.querySelector(".slider-lamp-pos");
+const slider_lamp_pos = document.getElementById("slider-lamp-pos");
 const maxValue_lamp_pos = slider_lamp_pos.getAttribute("max");
-
 let value_lamp_pos;
+const sliderFill_lamp_pos = document.getElementById("fill-lamp-pos");
 
-const sliderFill_lamp_pos = document.querySelector(".fill-lamp-pos");
 updateSliderLampPos();
 slider_lamp_pos.addEventListener("input", () => {
 	updateSliderLampPos();
@@ -590,13 +581,29 @@ function updateSliderLampPos() {
 }
 
 function updateLampPos() {
-	scene.remove(scene.getObjectByName("dirLight"));
+	let lamp = scene.getObjectByName("dirLight");
+	lamp.position.set(100, 100, -(slider_lamp_pos.value - 200));
+}
 
-	var dirLight = new THREE.DirectionalLight(0x404040, 2);
-	dirLight.name = "dirLight";
-	dirLight.position.set(100, 100, -(slider_lamp_pos.value - 200));
+// slider lamp
+const slider_lamp = document.getElementById("slider-lamp");
+const maxValue_lamp = slider_lamp.getAttribute("max");
 
-	dirLight.castShadow = true;
+let value_lamp;
 
-	scene.add(dirLight);
+const sliderFill_lamp = document.getElementById("fill-lamp");
+updateSliderLamp();
+slider_lamp.addEventListener("input", () => {
+	updateSliderLamp();
+	updateLamp();
+});
+
+function updateSliderLamp() {
+	value_lamp = (slider_lamp.value / maxValue_lamp) * 100 + "%";
+	sliderFill_lamp.style.width = value_lamp;
+}
+
+function updateLamp() {
+	let lamp = scene.getObjectByName("dirLight");
+	lamp.intensity = slider_lamp.value;
 }
