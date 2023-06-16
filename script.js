@@ -51,24 +51,29 @@ scene.add(grid);
 //distance from 0,0,0
 const r = 20;
 
-// above obj light
-const light = new THREE.PointLight();
-light.position.set(r, r, 0);
-light.shadowMapVisible = true;
-scene.add(light);
+// var ambient = new THREE.AmbientLight(0x404040, 3);
 
-const light1 = new THREE.PointLight();
-light1.position.set(-0.5 * r, r, 0.866 * r);
-scene.add(light1);
+// scene.add(ambient);
+const ambientLight = new THREE.HemisphereLight(
+	"white", // bright sky color
+	"grey", // dim ground color
+	1 // intensity
+);
+scene.add(ambientLight);
 
-const light2 = new THREE.PointLight();
-light2.position.set(-0.5 * r, r, -0.866 * r);
-scene.add(light2);
+var dirLight = new THREE.DirectionalLight("0x404040", 0.3);
 
-// below obj light
-const light3 = new THREE.PointLight();
-light3.position.set(0, -r, 0);
-scene.add(light3);
+dirLight.position.set(100, 100, 100);
+
+dirLight.castShadow = true;
+
+var dirLight2 = new THREE.DirectionalLight("0x404040", 0.3);
+
+dirLight2.position.set(-100, 100, -100);
+
+scene.add(dirLight);
+
+scene.add(dirLight2);
 
 // Camera position
 camera.position.set(3, 2, 2);
