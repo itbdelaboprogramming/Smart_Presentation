@@ -277,6 +277,11 @@ toggle.addEventListener("click", () => {
 });
 
 // Resize canvas
+myCanvas.style.width = window.innerWidth + "px";
+myCanvas.style.height = window.innerHeight + "px";
+camera.aspect = window.innerWidth / window.innerHeight;
+camera.updateProjectionMatrix();
+
 window.addEventListener("resize", () => {
 	myCanvas.style.width = window.innerWidth + "px";
 	myCanvas.style.height = window.innerHeight + "px";

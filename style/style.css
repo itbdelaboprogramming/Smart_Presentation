@@ -68,6 +68,7 @@
 html {
 	width: 100%;
 	height: 100%;
+	margin: 0;
 	/* overflow-y: scroll; */
 	/* background: repeat; */
 }
@@ -81,12 +82,12 @@ body {
 
 /* Container for floating object */
 .container-top-left {
-	position: absolute;
+	position: fixed;
 	z-index: 1;
 	top: 0;
 	left: 0;
-	padding-top: 23px;
-	padding-left: 23px;
+	margin-top: 23px;
+	margin-left: 23px;
 
 	display: flex;
 	flex-direction: row;
@@ -103,12 +104,12 @@ body {
 }
 
 .container-bottom-left {
-	position: absolute;
+	position: fixed;
 	z-index: 1;
 	bottom: 0;
 	left: 0;
-	padding-bottom: 23px;
-	padding-left: 23px;
+	margin-bottom: 23px;
+	margin-left: 23px;
 
 	display: flex;
 	align-items: flex-end;
@@ -175,7 +176,7 @@ body {
 	/* right: 65%; */
 	padding-bottom: 23px;
 	padding-left: 23px;
-	margin-left: 80px;
+	margin-left: 70px;
 }
 
 @media screen and (max-width: 650px) {
@@ -191,7 +192,7 @@ body {
 }
 
 .item-name-container {
-	position: absolute;
+	position: fixed;
 	z-index: 1;
 	top: 0;
 	left: 0;
