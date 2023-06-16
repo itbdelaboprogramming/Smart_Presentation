@@ -62,19 +62,19 @@ const ambientLight = new THREE.HemisphereLight(
 ambientLight.name = "ambientLight";
 scene.add(ambientLight);
 
-var dirLight = new THREE.DirectionalLight(0x404040, 0.3);
-
+var dirLight = new THREE.DirectionalLight(0x404040, 2);
+dirLight.name = "dirLight";
 dirLight.position.set(100, 100, 100);
 
 dirLight.castShadow = true;
 
-var dirLight2 = new THREE.DirectionalLight(0x404040, 0.3);
+// var dirLight2 = new THREE.DirectionalLight(0x404040, 0.3);
 
-dirLight2.position.set(-100, 100, -100);
+// dirLight2.position.set(-100, 100, -100);
 
 scene.add(dirLight);
 
-scene.add(dirLight2);
+// scene.add(dirLight2);
 
 // Camera position
 camera.position.set(3, 2, 2);

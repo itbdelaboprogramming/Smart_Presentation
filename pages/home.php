@@ -129,11 +129,18 @@
                 <div class="menu-container-blue-lightning-expand" style="display: none">
                     <div class="menu-container-blue-lightning-expand-wrapper">
                         Environtment brightness
-                        <div class="slider-container-env">
+                        <div class="slider-container">
                             <span class="bar-env">
                                 <span class="fill-env"></span>
                             </span>
                             <input type="range" min="0" max="2" value="1" step="0.1" class="slider-env"/>
+                        </div>
+                        Direct lamp position
+                        <div class="slider-container">
+                            <span class="bar-lamp-pos">
+                                <span class="fill-lamp-pos"></span>
+                            </span>
+                            <input type="range" min="0" max="400" value="100" step="1" class="slider-lamp-pos"/>
                         </div>
                         Zoom
                         <div class="slider-container">

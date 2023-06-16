@@ -570,3 +570,33 @@ function updateEnvBrightness() {
 	ambientLight.name = "ambientLight";
 	scene.add(ambientLight);
 }
+
+// slider lamp position
+const slider_lamp_pos = document.querySelector(".slider-lamp-pos");
+const maxValue_lamp_pos = slider_lamp_pos.getAttribute("max");
+
+let value_lamp_pos;
+
+const sliderFill_lamp_pos = document.querySelector(".fill-lamp-pos");
+updateSliderLampPos();
+slider_lamp_pos.addEventListener("input", () => {
+	updateSliderLampPos();
+	updateLampPos();
+});
+
+function updateSliderLampPos() {
+	value_lamp_pos = (slider_lamp_pos.value / maxValue_lamp_pos) * 100 + "%";
+	sliderFill_lamp_pos.style.width = value_lamp_pos;
+}
+
+function updateLampPos() {
+	scene.remove(scene.getObjectByName("dirLight"));
+
+	var dirLight = new THREE.DirectionalLight(0x404040, 2);
+	dirLight.name = "dirLight";
+	dirLight.position.set(100, 100, -(slider_lamp_pos.value - 200));
+
+	dirLight.castShadow = true;
+
+	scene.add(dirLight);
+}
