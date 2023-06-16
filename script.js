@@ -51,7 +51,7 @@ scene.add(grid);
 //distance from 0,0,0
 const r = 20;
 
-// var ambient = new THREE.AmbientLight(0x404040, 3);
+// var ambient = new THREE.AmbientLight(0xf48037, 0.5);
 
 // scene.add(ambient);
 const ambientLight = new THREE.HemisphereLight(
@@ -59,15 +59,16 @@ const ambientLight = new THREE.HemisphereLight(
 	"grey", // dim ground color
 	1 // intensity
 );
+ambientLight.name = "ambientLight";
 scene.add(ambientLight);
 
-var dirLight = new THREE.DirectionalLight("0x404040", 0.3);
+var dirLight = new THREE.DirectionalLight(0x404040, 0.3);
 
 dirLight.position.set(100, 100, 100);
 
 dirLight.castShadow = true;
 
-var dirLight2 = new THREE.DirectionalLight("0x404040", 0.3);
+var dirLight2 = new THREE.DirectionalLight(0x404040, 0.3);
 
 dirLight2.position.set(-100, 100, -100);
 

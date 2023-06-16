@@ -128,6 +128,13 @@
             <div class="container-bottom-right-mr2x" >
                 <div class="menu-container-blue-lightning-expand" style="display: none">
                     <div class="menu-container-blue-lightning-expand-wrapper">
+                        Environtment brightness
+                        <div class="slider-container-env">
+                            <span class="bar-env">
+                                <span class="fill-env"></span>
+                            </span>
+                            <input type="range" min="0" max="2" value="1" step="0.1" class="slider-env"/>
+                        </div>
                         Zoom
                         <div class="slider-container">
                             <span class="bar">
@@ -135,7 +142,6 @@
                             </span>
                             <input type="range" min="0" max="149.9" value="90" step="1" class="slider"/>
                         </div>
-
                     </div>
                 </div>
             </div>

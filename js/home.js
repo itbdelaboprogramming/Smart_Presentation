@@ -541,3 +541,32 @@ function updateSlider() {
 	value = (slider.value / maxValue) * 100 + "%";
 	sliderFill.style.width = value;
 }
+
+// slider env brightness
+const slider_env = document.querySelector(".slider-env");
+const maxValue_env = slider_env.getAttribute("max");
+
+let value_env;
+
+const sliderFill_env = document.querySelector(".fill-env");
+updateSliderEnv();
+slider_env.addEventListener("input", () => {
+	updateSliderEnv();
+	updateEnvBrightness();
+});
+
+function updateSliderEnv() {
+	value_env = (slider_env.value / maxValue_env) * 100 + "%";
+	sliderFill_env.style.width = value_env;
+}
+
+function updateEnvBrightness() {
+	scene.remove(scene.getObjectByName("ambientLight"));
+	const ambientLight = new THREE.HemisphereLight(
+		"white", // bright sky color
+		"grey", // dim ground color
+		slider_env.value // intensity
+	);
+	ambientLight.name = "ambientLight";
+	scene.add(ambientLight);
+}
