@@ -532,7 +532,7 @@ slider.addEventListener("input", () => {
 });
 
 function updateZoomCamera() {
-	camera.fov = 100 - (slider.value - 50);
+	camera.zoom = slider.value;
 	camera.updateProjectionMatrix();
 }
 

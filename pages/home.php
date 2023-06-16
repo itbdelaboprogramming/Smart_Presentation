@@ -173,7 +173,7 @@
                                         <span class="bar">
                                             <span class="fill" id="fill-zoom"></span>
                                         </span>
-                                        <input type="range" min="0" max="149.9" value="90" step="1" class="slider" id="slider-zoom"/>
+                                        <input type="range" min="0.2" max="20" value="1" step="0.1" class="slider" id="slider-zoom"/>
                                     </div>
                                 </div>
                             </div>
