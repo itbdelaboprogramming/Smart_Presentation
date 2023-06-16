@@ -146,7 +146,8 @@ body {
 	position: fixed;
 	z-index: 1;
 	bottom: 0;
-	left: 55%;
+	/* left: 55%; */
+	/* left: 40%; */
 	right: 0%;
 	padding-bottom: 23px;
 	padding-right: 23px;
@@ -154,16 +155,21 @@ body {
 	font-size: 13px;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 900px) {
 	.container-bottom-right-mr2x {
-		position: fixed;
-		z-index: 1;
-		bottom: 0;
+		left: 35%;
+		right: 13%;
+		padding: 0px 0px 23px 0px;
+		margin: 0;
+	}
+}
+
+@media screen and (max-width: 764px) {
+	.container-bottom-right-mr2x {
 		left: 45%;
 		right: 19%;
 		padding: 0px 0px 23px 0px;
 		margin: 0;
-		font-size: 13px;
 	}
 }
 
