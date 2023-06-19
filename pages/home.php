@@ -134,7 +134,7 @@
                             </div>
                             <div class="lightning-component-container">
                                 <div class="slider-group">
-                                    Environment brightness
+                                    Environment Brightness
                                     <div class="slider-container">
                                         <span class="bar">
                                             <span class="fill" id="fill-env"></span>
@@ -143,7 +143,7 @@
                                     </div>
                                 </div>
                                 <div class="slider-group">
-                                    Direct lamp brightness
+                                    Direct Lamp Brightness
                                     <div class="slider-container">
                                         <span class="bar">
                                             <span class="fill" id="fill-lamp"></span>
@@ -152,7 +152,7 @@
                                     </div>
                                 </div>
                                 <div class="slider-group">
-                                    Direct lamp position
+                                    Direct Lamp Position
                                     <div class="slider-container">
                                         <span class="bar">
                                             <span class="fill" id="fill-lamp-pos"></span>

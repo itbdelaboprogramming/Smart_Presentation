@@ -371,7 +371,7 @@ function updateInformation(model_name) {
 			out = "";
 			let information_link = document.querySelector(".information-link");
 			information_link.href = response[0].link_to_web;
-			information_link.innerText = ` ${model_name} Series | Nakayama Iron Works (ncjpn.com))`;
+			information_link.innerText = ` ${model_name} Series | Nakayama Iron Works (ncjpn.com)`;
 
 			information_description.scrollTo({ top: 0, behavior: "smooth" });
 		}
