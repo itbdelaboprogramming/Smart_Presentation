@@ -8,6 +8,7 @@
 	width: 100%;
 	align-items: center;
 	vertical-align: text-top;
+	margin: 0;
 }
 
 /* Canvas for 3d object */
@@ -39,7 +40,7 @@ canvas {
 	background-color: #74e7d4;
 }
 
-/* For Button Information */
+/* For Button Sound*/
 .menu-container-blue-sound {
 	display: flex;
 	justify-content: center;
@@ -59,6 +60,119 @@ canvas {
 
 .menu-container-blue-sound.active {
 	background-color: #74e7d4;
+}
+
+.sound-expand {
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+
+	padding: 10px 10px 10px 10px;
+
+	min-width: 149.81px;
+	height: 170px;
+
+	background: rgba(242, 244, 247, 0.7);
+	box-shadow: 0px 4px 4px rgba(24, 154, 180, 0.69);
+	border-radius: 5px;
+
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14.8888px;
+	line-height: 17px;
+	text-align: center;
+
+	color: rgba(4, 68, 95, 0.7);
+}
+
+@media screen and (max-width: 650px) {
+	.sound-expand {
+		/* Box */
+		min-width: 110px;
+		width: 100px;
+	}
+}
+
+.sound-expand-component {
+	display: flex;
+	gap: 10px;
+	flex-direction: column;
+	align-items: center;
+
+	width: 100%;
+}
+
+.toggle-container {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+
+	font-size: 12px;
+	line-height: 14px;
+}
+
+.toggle-music {
+	position: relative;
+	width: 68.21px;
+	height: 34.11px;
+	background: #74e7d4;
+	border-radius: 34.1063px;
+	cursor: pointer;
+}
+
+.toggle-music.active {
+	background: #189ab4;
+}
+
+.toggle-music::before {
+	content: "";
+	position: absolute;
+	width: 26.53px;
+	height: 26.53px;
+	background: #189ab4;
+	border-radius: 50%;
+	top: 50%;
+	left: calc(50% - 26.53px / 2 - 15.54px);
+	transform: translateY(-50%);
+	transition: all 0.3s ease-in-out;
+}
+
+.toggle-music.active::before {
+	left: calc(100% - 26.53px - calc(50% - 26.53px / 2 - 15.54px));
+	background: #74e7d4;
+}
+
+.toggle-speech {
+	position: relative;
+	width: 68.21px;
+	height: 34.11px;
+	background: #74e7d4;
+	border-radius: 34.1063px;
+	cursor: pointer;
+}
+
+.toggle-speech.active {
+	background: #189ab4;
+}
+
+.toggle-speech::before {
+	content: "";
+	position: absolute;
+	width: 26.53px;
+	height: 26.53px;
+	background: #189ab4;
+	border-radius: 50%;
+	top: 50%;
+	left: calc(50% - 26.53px / 2 - 15.54px);
+	transform: translateY(-50%);
+	transition: all 0.3s ease-in-out;
+}
+
+.toggle-speech.active::before {
+	left: calc(100% - 26.53px - calc(50% - 26.53px / 2 - 15.54px));
+	background: #74e7d4;
 }
 
 /* For Button Animation */
@@ -128,13 +242,141 @@ canvas {
 }
 
 .menu-container-blue-lightning-expand {
-	max-width: 690px;
+	min-width: 530px;
 	height: 190px;
 
-	background: #f2f4f7;
-	opacity: 0.7;
+	background: rgba(242, 244, 247, 0.7);
 	box-shadow: 0px 4px 4px rgba(24, 154, 180, 0.69);
 	border-radius: 5px;
+}
+
+.menu-container-blue-lightning-expand-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 20px;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14.8888px;
+	line-height: 17px;
+	text-align: center;
+
+	color: #04445f;
+}
+
+.lightning-component-container {
+	display: flex;
+	margin: 10px 0px 0px 0px;
+	gap: 2px;
+}
+
+.slider-group {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+
+	font-weight: 400;
+	font-size: 11.5802px;
+	line-height: 13px;
+	text-align: center;
+}
+
+.slider-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* height: 100%; */
+	width: 170px;
+
+	position: relative;
+}
+
+.slider {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 100%;
+	height: 9px;
+
+	border: 0.564516px solid #74e7d4;
+	border-radius: 5.64516px;
+
+	position: relative;
+	z-index: 2;
+
+	background-color: transparent;
+}
+
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 21.45px;
+	height: 21.45px;
+	background-color: #74e7d4;
+	border: 0.564516px solid #189ab4;
+	border-radius: 50%;
+	cursor: pointer;
+	box-shadow: 0 0 0 0 rgba(116, 231, 212, 0.25);
+	transition: 0.3s ease-in-out;
+}
+
+.slider::-webkit-slider-thumb:hover {
+	box-shadow: 0 0 0 12px rgba(116, 231, 212, 0.3);
+}
+
+.slider:active::-webkit-slider-thumb {
+	box-shadow: 0 0 0 5px rgba(116, 231, 212, 0.3);
+}
+
+.bar {
+	position: absolute;
+	z-index: 1;
+	left: 2px;
+	top: 2px;
+	width: 97%;
+	height: 9px;
+
+	border: 0.564516px solid #74e7d4;
+	border-radius: 5.64516px;
+
+	background-color: #d4f2f4;
+	overflow: hiddenss;
+}
+
+.fill {
+	display: block;
+	width: 50%;
+	height: 9px;
+	background-color: #74e7d4;
+	border-radius: 5.64516px;
+}
+
+@media screen and (max-width: 900px) {
+	.lightning-component-container {
+		flex-direction: column;
+		margin: 0px;
+	}
+
+	.lightning-title {
+		display: none;
+	}
+
+	.menu-container-blue-lightning-expand-wrapper {
+		gap: 0px;
+	}
+
+	.slider-group {
+		margin: 4px 0px;
+	}
+
+	.menu-container-blue-lightning-expand {
+		max-width: 690px;
+		min-width: 176px;
+	}
 }
 
 /* 3d File Kategori Dropdown */
@@ -246,8 +488,8 @@ canvas {
 	width: 250px;
 	height: 40%;
 
-	background: var(--primary-color-25);
-	opacity: 0.8;
+	background: rgba(212, 242, 244, 0.8);
+
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 15px;
 
@@ -256,7 +498,7 @@ canvas {
 	}
 
 	::-webkit-scrollbar-track {
-		background: var(--primary-color-25);
+		background: transparent;
 	}
 
 	::-webkit-scrollbar-thumb {
@@ -309,6 +551,10 @@ canvas {
 	text-align: justify;
 }
 
+.information-specification-img {
+	width: 100%;
+}
+
 .information-link {
 	font-family: "Ubuntu";
 	font-style: normal;
@@ -348,7 +594,6 @@ canvas {
 		#f7fbfc 0%,
 		rgba(233, 254, 255, 0.62) 100%
 	);
-	opacity: 0.8;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 5px;
 
@@ -482,7 +727,6 @@ canvas {
 		#f7fbfc 0%,
 		rgba(233, 254, 255, 0.62) 100%
 	);
-	opacity: 0.8;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 5px;
 

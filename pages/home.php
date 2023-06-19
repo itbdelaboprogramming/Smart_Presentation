@@ -54,6 +54,27 @@
                 </div>
             </div>
 
+            <div class="container-bottom-left-ml2x">
+                <div class="sound-expand" style="display: none;">
+                    <div class="sound-expand-component">
+                        Music
+                        <div class="toggle-container">
+                            Off
+                            <div class="toggle-music"></div>
+                            On
+                        </div>
+                    </div>
+                    <div class="sound-expand-component">
+                        Voice Over
+                        <div class="toggle-container">
+                            Off
+                            <div class="toggle-speech"></div>
+                            On
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="catalogue-container-2" id="catalogue-container-2">
                 <div>
                     <p class="catalogue-description-title-2">All Series</p>
@@ -106,7 +127,58 @@
 
             <div class="container-bottom-right-mr2x" >
                 <div class="menu-container-blue-lightning-expand" style="display: none">
-
+                    <div class="menu-container-blue-lightning-expand-wrapper">
+                        <div class="lightning-component">
+                            <div class="lightning-title">
+                                Lightning
+                            </div>
+                            <div class="lightning-component-container">
+                                <div class="slider-group">
+                                    Environment Brightness
+                                    <div class="slider-container">
+                                        <span class="bar">
+                                            <span class="fill" id="fill-env"></span>
+                                        </span>
+                                        <input type="range" min="0" max="2" value="1" step="0.1" class="slider" id="slider-env"/>
+                                    </div>
+                                </div>
+                                <div class="slider-group">
+                                    Direct Lamp Brightness
+                                    <div class="slider-container">
+                                        <span class="bar">
+                                            <span class="fill" id="fill-lamp"></span>
+                                        </span>
+                                        <input type="range" min="0" max="6" value="2" step="0.1" class="slider" id="slider-lamp"/>
+                                    </div>
+                                </div>
+                                <div class="slider-group">
+                                    Direct Lamp Position
+                                    <div class="slider-container">
+                                        <span class="bar">
+                                            <span class="fill" id="fill-lamp-pos"></span>
+                                        </span>
+                                        <input type="range" min="0" max="400" value="100" step="1" class="slider" id="slider-lamp-pos"/>
+                                    </div>   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lightning-component"> 
+                            <div class="lightning-title">
+                                Enlargement
+                            </div>
+                            <div class="lightning-component-container">
+                                <div class="slider-group">
+                                    Zoom
+                                    <div class="slider-container">
+                                        <span class="bar">
+                                            <span class="fill" id="fill-zoom"></span>
+                                        </span>
+                                        <input type="range" min="0.2" max="20" value="1" step="0.1" class="slider" id="slider-zoom"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

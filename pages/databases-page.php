@@ -113,7 +113,7 @@
                         </tr>
                         <?php 
                             $number = 1;
-                            $result2 = getAllData(10, "All");
+                            $result2 = getAllData(10, "All", "model_name", "ASC");
                             
                             foreach($result2 as $row){
                                 $date_modified_date = explode(" ",$row['date_modified']);
@@ -170,7 +170,6 @@
                             </div>
                         </div>
                         <div>
-                            
                         </div>
                     </div>
                     <div class="page-filler">
@@ -223,14 +222,18 @@
 
         <script>
             function onFileChange() {
-                document.getElementById("submit-file-container").style.display = "block";
+                window.scrollTo({top: 0, behavior: 'smooth'});
+                let submit_file_container = document.getElementById("submit-file-container");
+                submit_file_container.style.display = "block";
                 var name = document.getElementById("fileUpload");
                 var nameContainer = document.getElementById("pop-up-text-fileName");
                 nameContainer.innerHTML = name.files.item(0).name;
+                document.body.style.overflow = "hidden";
             }
 
             function cancelSubmit() {
                 document.getElementById("submit-file-container").style.display = "none";
+                document.body.style.overflow = "auto";
             }
         </script>
 

@@ -65,17 +65,29 @@ toggle.addEventListener("click", () => {
 	}
 });
 
-let order_by = "ASC";
+let order_type = "ASC";
 // filter (ascending/descending)
 filter_sort_box.addEventListener("click", () => {
 	if (filter_asc.style.display != "none") {
 		filter_asc.style.display = "none";
 		filter_desc.style.display = "block";
-		order_by = "DESC";
+		order_type = "DESC";
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
 	} else {
 		filter_asc.style.display = "block";
 		filter_desc.style.display = "none";
-		order_by = "ASC";
+		order_type = "ASC";
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
 	}
 });
 
@@ -98,24 +110,46 @@ window.addEventListener("click", function (e) {
 	}
 });
 
+let selected_sort_by = "model_name";
 divMNa.addEventListener("click", () => {
 	radMNa.checked = true;
+	selected_sort_by = "model_name";
+	updateDatabaseData(
+		sBtn_text_pagination.innerText,
+		sBtn_text.innerText,
+		selected_sort_by,
+		order_type
+	);
 	filter_drop_down.style.display = "none";
 });
 
 divMNu.addEventListener("click", () => {
 	radMNu.checked = true;
+	selected_sort_by = "model_number";
+	updateDatabaseData(
+		sBtn_text_pagination.innerText,
+		sBtn_text.innerText,
+		selected_sort_by,
+		order_type
+	);
 	filter_drop_down.style.display = "none";
 });
 
 divDM.addEventListener("click", () => {
 	radDM.checked = true;
+	selected_sort_by = "date_modified";
+	updateDatabaseData(
+		sBtn_text_pagination.innerText,
+		sBtn_text.innerText,
+		selected_sort_by,
+		order_type
+	);
 	filter_drop_down.style.display = "none";
 });
 
 // const database_data = document.querySelectorAll("tr");
 const database_table = document.getElementById("database-data");
-
+let selected_database_data_selected;
 updateDatabaseDataSelect(database_table);
 
 // ------------ 3d category dropdown ------------
@@ -134,7 +168,12 @@ options.forEach(function (option) {
 		let selectedOption = option.querySelector(".option-text").innerText;
 		sBtn_text.innerText = selectedOption;
 		optionMenu.classList.toggle("active");
-		updateDatabaseData(sBtn_text_pagination.innerText, sBtn_text.innerText);
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
 	});
 });
 
@@ -168,7 +207,12 @@ options_pagination.forEach(function (option) {
 		).innerText;
 		if (sBtn_text_pagination.innerText != selectedOptionPagination) {
 			sBtn_text_pagination.innerText = selectedOptionPagination;
-			updateDatabaseData(sBtn_text_pagination.innerText, sBtn_text.innerText);
+			updateDatabaseData(
+				sBtn_text_pagination.innerText,
+				sBtn_text.innerText,
+				selected_sort_by,
+				order_type
+			);
 		}
 
 		optionMenu_pagination.classList.toggle("active");
@@ -218,7 +262,7 @@ function resetDatabaseDataSelect(database_data) {
 	});
 }
 
-function updateDatabaseData(amount, category) {
+function updateDatabaseData(amount, category, order_by, order_type) {
 	let http = new XMLHttpRequest();
 
 	http.onreadystatechange = function () {
@@ -238,7 +282,7 @@ function updateDatabaseData(amount, category) {
 			`;
 			let number = 1;
 
-			response.forEach((item) => {
+			response.forEach((item, index) => {
 				let date_modified_date = item.date_modified.split(" ");
 				let date_modified_time = date_modified_date[1].split(":");
 				let date_modified_time_display;
@@ -271,6 +315,7 @@ function updateDatabaseData(amount, category) {
 						<td>${item.size}</td>
 					</tr>
 				`;
+
 				number++;
 			});
 
@@ -280,7 +325,16 @@ function updateDatabaseData(amount, category) {
 	};
 	http.open("POST", "./utils/database.php", true);
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	http.send("dataamount=" + amount + "&tablecategory=" + category);
+	http.send(
+		"dataamount=" +
+			amount +
+			"&tablecategory=" +
+			category +
+			"&orderby=" +
+			order_by +
+			"&ordertype=" +
+			order_type
+	);
 }
 
 function updateDatabaseDataSelect(database_table) {
@@ -289,11 +343,22 @@ function updateDatabaseDataSelect(database_table) {
 	database_data.forEach(function (data) {
 		data.addEventListener("click", () => {
 			if (!data.classList.contains("noHover")) {
-				loadFile3D(data.getAttribute("data-value"));
-				resetDatabaseDataSelect(database_data);
-				data.classList.toggle("active");
+				if (
+					selected_database_data_selected != data.getAttribute("data-value")
+				) {
+					loadFile3D(data.getAttribute("data-value"));
+					resetDatabaseDataSelect(database_data);
+					data.classList.toggle("active");
+					selected_database_data_selected = data.getAttribute("data-value");
+				}
 			}
 		});
+
+		if (selected_database_data_selected) {
+			if (selected_database_data_selected == data.getAttribute("data-value")) {
+				data.classList.toggle("active");
+			}
+		}
 	});
 }
 

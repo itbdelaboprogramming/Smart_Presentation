@@ -313,6 +313,8 @@ input[type="file"] {
 	line-height: 21px;
 
 	color: #04445f;
+
+	margin: 0px 4px 0px 0px;
 }
 
 .filter-sort-box {
@@ -450,7 +452,7 @@ label {
 	display: flex;
 	align-items: center;
 
-	height: 24.66px;
+	min-height: 24.66px;
 	margin-right: 10px;
 }
 
@@ -496,7 +498,7 @@ label {
 
 	color: var(--text-color-database-data);
 
-	height: 24.66px;
+	min-height: 24.66px;
 }
 
 /* database data (search bar, filter, etc) */

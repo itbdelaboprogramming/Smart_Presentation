@@ -7,6 +7,7 @@ import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders
 const menuSound = document.querySelector(".menu-container-blue-sound");
 const iconSoundOff = document.getElementById("sound-off");
 const iconSoundOn = document.getElementById("sound-on");
+const soundExpand = document.querySelector(".sound-expand");
 
 // ------------ animation ------------
 const menuAnimation = document.querySelector(".menu-container-blue-animation");
@@ -44,6 +45,9 @@ var myText = document.getElementById("myText").textContent;
 let information_description_title = document.querySelector(
 	".information-description-title"
 );
+const information_description = document.querySelector(
+	".information-description"
+);
 
 // ------------ 3d category dropdown ------------
 const optionMenu = document.querySelector(".select-menu");
@@ -53,11 +57,17 @@ const sBtn_text = optionMenu.querySelector(".select-menu-text");
 const catalogueTitle = document.querySelector(".catalogue-description-title-2");
 const catalogueDescription = document.querySelector(".catalogue-description-2");
 
+let product_list_detail_dataset_value;
+
 // ------------ dark/light mode ------------
 const toggle = document.querySelector(".toggle");
 
 let getMode = localStorage.getItem("mode");
 var audio = new Audio("./audio/podcast-18169.mp3");
+audio.loop = true;
+audio.volume = 0.5;
+var audio_speech = new Audio("./audio/voicebooking-speech.wav");
+audio_speech.loop = true;
 // Menu sound button
 menuSound.addEventListener("click", () => {
 	menuSound.classList.toggle("active");
@@ -65,11 +75,35 @@ menuSound.addEventListener("click", () => {
 	if (menuSound.classList.contains("active")) {
 		iconSoundOff.style.display = "none";
 		iconSoundOn.style.display = "block";
-		audio.play();
+		soundExpand.style.display = "flex";
 	} else {
 		iconSoundOff.style.display = "block";
 		iconSoundOn.style.display = "none";
+		soundExpand.style.display = "none";
+	}
+});
+
+const toggle_music = document.querySelector(".toggle-music");
+const toggle_speech = document.querySelector(".toggle-speech");
+
+toggle_music.addEventListener("click", () => {
+	toggle_music.classList.toggle("active");
+
+	if (toggle_music.classList.contains("active")) {
+		audio.play();
+	} else {
 		audio.pause();
+	}
+});
+
+toggle_speech.addEventListener("click", () => {
+	toggle_speech.classList.toggle("active");
+
+	if (toggle_speech.classList.contains("active")) {
+		audio_speech.play();
+	} else {
+		audio_speech.pause();
+		audio_speech.currentTime = 0;
 	}
 });
 
@@ -183,6 +217,11 @@ options.forEach(function (option) {
 		http.open("POST", "./utils/database.php", true);
 		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		http.send("category=" + selectedOption);
+
+		if (menuAlbum.classList.contains("active")) {
+			catalogueDetailContainer.style.display = "none";
+			catalogueContainer.style.display = "flex";
+		}
 	});
 });
 
@@ -238,6 +277,11 @@ toggle.addEventListener("click", () => {
 });
 
 // Resize canvas
+myCanvas.style.width = window.innerWidth + "px";
+myCanvas.style.height = window.innerHeight + "px";
+camera.aspect = window.innerWidth / window.innerHeight;
+camera.updateProjectionMatrix();
+
 window.addEventListener("resize", () => {
 	myCanvas.style.width = window.innerWidth + "px";
 	myCanvas.style.height = window.innerHeight + "px";
@@ -259,6 +303,7 @@ function updateInformation(model_name) {
 
 			// update file (canvas)
 			myText = response[0].file;
+			let specification_img = response[0].specification_img;
 			updateFile3D(myText);
 
 			// update title
@@ -315,6 +360,7 @@ function updateInformation(model_name) {
 					out += `<p> ${item} <br><br>`;
 				} else if (index === array.length - 1) {
 					out += `${item} </p>`;
+					out += `<img class="information-specification-img" src="./files/${specification_img}" />`;
 				} else {
 					out += `${item} <br><br>`;
 				}
@@ -325,7 +371,9 @@ function updateInformation(model_name) {
 			out = "";
 			let information_link = document.querySelector(".information-link");
 			information_link.href = response[0].link_to_web;
-			information_link.innerText = ` ${model_name} Series | Nakayama Iron Works (ncjpn.com))`;
+			information_link.innerText = ` ${model_name} Series | Nakayama Iron Works (ncjpn.com)`;
+
+			information_description.scrollTo({ top: 0, behavior: "smooth" });
 		}
 	};
 	http.open("POST", "./utils/database.php", true);
@@ -365,6 +413,7 @@ function loadCatalogue(catalogue_product_list) {
 			updateInformation(product_list_text);
 		}
 	});
+	catalogueDescription.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function loadFile3D(id) {
@@ -428,6 +477,7 @@ function loadCatalogueDetail(model_name) {
 							<img class="catalogue-image-preview" src="./files/${item.image_preview}" />
 						</div>
 					`;
+					product_list_detail_dataset_value = item.id;
 				} else {
 					out += `
 						<div class="catalogue-product-list" data-value="${item.id}">
@@ -446,12 +496,19 @@ function loadCatalogueDetail(model_name) {
 			);
 			catalogue_product_list_detail.forEach(function (product_list_detail) {
 				product_list_detail.addEventListener("click", () => {
-					loadFile3D(product_list_detail.dataset.value);
+					if (
+						product_list_detail.dataset.value !=
+						product_list_detail_dataset_value
+					) {
+						loadFile3D(product_list_detail.dataset.value);
+						product_list_detail_dataset_value =
+							product_list_detail.dataset.value;
 
-					catalogue_product_list_detail.forEach(function (product_list) {
-						product_list.classList.remove("active");
-					});
-					product_list_detail.classList.toggle("active");
+						catalogue_product_list_detail.forEach(function (product_list) {
+							product_list.classList.remove("active");
+						});
+						product_list_detail.classList.toggle("active");
+					}
 				});
 			});
 		}
@@ -459,4 +516,94 @@ function loadCatalogueDetail(model_name) {
 	http.open("POST", "./utils/database.php", true);
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	http.send("getmodelnumber=" + model_name);
+}
+
+// slider
+const slider = document.getElementById("slider-zoom");
+const maxValue = slider.getAttribute("max");
+let value;
+const sliderFill = document.getElementById("fill-zoom");
+
+updateSlider();
+updateZoomCamera();
+slider.addEventListener("input", () => {
+	updateSlider();
+	updateZoomCamera();
+});
+
+function updateZoomCamera() {
+	camera.zoom = slider.value;
+	camera.updateProjectionMatrix();
+}
+
+function updateSlider() {
+	value = (slider.value / maxValue) * 100 + "%";
+	sliderFill.style.width = value;
+}
+
+// slider env brightness
+const slider_env = document.getElementById("slider-env");
+const maxValue_env = slider_env.getAttribute("max");
+let value_env;
+const sliderFill_env = document.getElementById("fill-env");
+
+updateSliderEnv();
+slider_env.addEventListener("input", () => {
+	updateSliderEnv();
+	updateEnvBrightness();
+});
+
+function updateSliderEnv() {
+	value_env = (slider_env.value / maxValue_env) * 100 + "%";
+	sliderFill_env.style.width = value_env;
+}
+
+function updateEnvBrightness() {
+	let ambient = scene.getObjectByName("ambientLight");
+	ambient.intensity = slider_env.value;
+}
+
+// slider lamp position
+const slider_lamp_pos = document.getElementById("slider-lamp-pos");
+const maxValue_lamp_pos = slider_lamp_pos.getAttribute("max");
+let value_lamp_pos;
+const sliderFill_lamp_pos = document.getElementById("fill-lamp-pos");
+
+updateSliderLampPos();
+slider_lamp_pos.addEventListener("input", () => {
+	updateSliderLampPos();
+	updateLampPos();
+});
+
+function updateSliderLampPos() {
+	value_lamp_pos = (slider_lamp_pos.value / maxValue_lamp_pos) * 100 + "%";
+	sliderFill_lamp_pos.style.width = value_lamp_pos;
+}
+
+function updateLampPos() {
+	let lamp = scene.getObjectByName("dirLight");
+	lamp.position.set(100, 100, -(slider_lamp_pos.value - 200));
+}
+
+// slider lamp
+const slider_lamp = document.getElementById("slider-lamp");
+const maxValue_lamp = slider_lamp.getAttribute("max");
+
+let value_lamp;
+
+const sliderFill_lamp = document.getElementById("fill-lamp");
+updateSliderLamp();
+slider_lamp.addEventListener("input", () => {
+	updateSliderLamp();
+	updateLamp();
+});
+
+function updateSliderLamp() {
+	value_lamp = (slider_lamp.value / maxValue_lamp) * 100 + "%";
+	sliderFill_lamp.style.width = value_lamp;
+}
+
+function updateLamp() {
+	let lamp = scene.getObjectByName("dirLight");
+	lamp.intensity = slider_lamp.value;
 }
