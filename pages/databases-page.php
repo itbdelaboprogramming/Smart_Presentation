@@ -192,7 +192,7 @@
             <p id="myText" style="display: none;"><?php echo $global_variable; ?></p>
 
             <form action="uploadFile.php" method="POST" enctype="multipart/form-data">
-                <div class="container-bottom-mb2x-right">
+                <div class="container-bottom-mb1x-right">
                     <input type="file" id="fileUpload" type="file" name="fileUpload" onChange="onFileChange()">
                     <label for="fileUpload" class="upload-container">
                         <img src="./assets/Upload-File-Button.png">
@@ -212,10 +212,6 @@
             </form>
             
             <div class="container-bottom-right">
-                <button class="menu-container">
-                    <img src="./assets/Delete-File-Button.png">
-                </button>
-
                 <div class="toggle"></div>
             </div>
         </div>
