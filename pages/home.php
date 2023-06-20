@@ -16,7 +16,7 @@
         <script type="importmap">
             {
                 "imports": {
-                "three": "https://unpkg.com/three@0.139.2/build/three.module.js"
+                "three": "https://unpkg.com/three@0.153.0/build/three.module.js"
                 }
             }
         </script>
