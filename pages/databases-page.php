@@ -166,6 +166,9 @@
                                     <li class="pagination-option">
                                         <span class="pagination-option-text"> 20 </span>
                                     </li>
+                                    <li class="pagination-option">
+                                        <span class="pagination-option-text"> 40 </span>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
