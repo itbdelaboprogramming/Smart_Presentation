@@ -5,6 +5,10 @@
         $dbusername = 'admin';
         $dbpassword = 'admin';
         $dbname = 'smart_presentation';
+        // $dbservername = 'localhost';
+        // $dbusername = 'root';
+        // $dbpassword = '';
+        // $dbname = 'smart_presentation';
     
         $conn = mysqli_connect($dbservername, $dbusername, $dbpassword, $dbname);
     
