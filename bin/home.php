@@ -16,10 +16,11 @@
         <script type="importmap">
             {
                 "imports": {
-                "three": "https://unpkg.com/three@0.139.2/build/three.module.js"
+                "three": "https://unpkg.com/three@0.153.0/build/three.module.js"
                 }
             }
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.2.4/dist/gsap.js"></script>
         <link rel="stylesheet" href="./style/style.css" >
         <link rel="stylesheet" href="./style/home.css" >
     </head>
@@ -54,26 +55,61 @@
                 </div>
             </div>
 
-            <div class="catalogue-container" id="catalogue-container">
-                <p class="catalogue-description-title">All Series</p>
-                <div class="catalogue-description">
+            <div class="container-bottom-left-ml2x">
+                <div class="sound-expand" style="display: none;">
+                    <div class="sound-expand-component">
+                        Music
+                        <div class="toggle-container">
+                            Off
+                            <div class="toggle-music"></div>
+                            On
+                        </div>
+                    </div>
+                    <div class="sound-expand-component">
+                        Voice Over
+                        <div class="toggle-container">
+                            Off
+                            <div class="toggle-speech"></div>
+                            On
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="catalogue-container-2" id="catalogue-container-2">
+                <div>
+                    <p class="catalogue-description-title-2">All Series</p>
+                </div>
+                <div class="catalogue-description-2">
                     <?php
-                        $result2 = getAllModelName();
+                        $result2 = getAllDistinctModelName();
                         
                         foreach ($result2 as $key => $row2){
                             if ($key === array_key_first($result2)) {
-                                echo '<div class="catalogue-product-list active" data-value="' . $row2['id'] . '" id="model_name">';
-                                    echo '<div class="catalogue-product-list-text">' . $row2['model_name'] . '</div>';
-                                    echo '<img class="catalogue-image-preview" src="./files/' . $row2['image_preview'] .'" />';
+                                echo '<div class="catalogue-product-list-2 active" id="model_name">';
+                                    echo '<div class="catalogue-product-list-text-2">' . $row2['model_name'] . '</div>';
+                                    echo '<img class="catalogue-image-preview-2" src="./files/' . $row2['image_preview'] .'" />';
                                 echo '</div>';
                             }else{
-                                echo '<div class="catalogue-product-list" data-value="' . $row2['id'] . '">';
-                                    echo '<div class="catalogue-product-list-text">' . $row2['model_name'] . '</div>';
-                                    echo '<img class="catalogue-image-preview" src="./files/' . $row2['image_preview'] .'" />';
+                                echo '<div class="catalogue-product-list-2" >';
+                                    echo '<div class="catalogue-product-list-text-2">' . $row2['model_name'] . '</div>';
+                                    echo '<img class="catalogue-image-preview-2" src="./files/' . $row2['image_preview'] .'" />';
                                 echo '</div>';
                             }
                         }
                     ?>
+                </div>
+            </div>
+
+            <div class="catalogue-container" id="catalogue-container">
+                <div class="catalogue-description-header">
+                    <p class="catalogue-description-title"></p>
+                    <div class="catalogue-back-button">
+                        <img src="./assets/Catalogue-Back-Button.png" class="catalogue-back-button-img">
+                    </div>
+                </div>
+                <div class="catalogue-description">
+                    
                 </div>
             </div>
 
@@ -88,6 +124,63 @@
                     <p class="information-description-specification-detail" >Processing ability is influenced by quality of material, block size thrown into, particle size <br><br> Specs and dimensions of this machine might be changed without any prior notice for the purpose of improvement</p>
                 </div>
                 <a class="information-link" target="_blank" href="https://www.ncjpn.com/en/products/dendoman/">Dendoman Series | Nakayama Iron Works (ncjpn.com)</a>
+            </div>
+
+            <div class="container-bottom-right-mr2x" >
+                <div class="menu-container-blue-lightning-expand" style="display: none">
+                    <div class="menu-container-blue-lightning-expand-wrapper">
+                        <div class="lightning-component">
+                            <div class="lightning-title">
+                                Lightning
+                            </div>
+                            <div class="lightning-component-container">
+                                <div class="slider-group">
+                                    Environment Brightness
+                                    <div class="slider-container">
+                                        <span class="bar">
+                                            <span class="fill" id="fill-env"></span>
+                                        </span>
+                                        <input type="range" min="0" max="2" value="1" step="0.1" class="slider" id="slider-env"/>
+                                    </div>
+                                </div>
+                                <div class="slider-group">
+                                    Direct Lamp Brightness
+                                    <div class="slider-container">
+                                        <span class="bar">
+                                            <span class="fill" id="fill-lamp"></span>
+                                        </span>
+                                        <input type="range" min="0" max="6" value="2" step="0.1" class="slider" id="slider-lamp"/>
+                                    </div>
+                                </div>
+                                <div class="slider-group">
+                                    Direct Lamp Position
+                                    <div class="slider-container">
+                                        <span class="bar">
+                                            <span class="fill" id="fill-lamp-pos"></span>
+                                        </span>
+                                        <input type="range" min="0" max="400" value="100" step="1" class="slider" id="slider-lamp-pos"/>
+                                    </div>   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lightning-component"> 
+                            <div class="lightning-title">
+                                Enlargement
+                            </div>
+                            <div class="lightning-component-container">
+                                <div class="slider-group">
+                                    Zoom
+                                    <div class="slider-container">
+                                        <span class="bar">
+                                            <span class="fill" id="fill-zoom"></span>
+                                        </span>
+                                        <input type="range" min="0.2" max="20" value="1" step="0.1" class="slider" id="slider-zoom"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="container-bottom-right">
@@ -132,4 +225,3 @@
         <script type="module" src="./js/home.js"></script>
     </body>
 </html>
-
