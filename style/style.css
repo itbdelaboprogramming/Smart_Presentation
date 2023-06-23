@@ -251,6 +251,10 @@ body {
 	box-shadow: 0px 4px 4px #00000040;
 }
 
+.menu-container:active {
+	background-color: var(--background-color-50);
+}
+
 /* darkmode light mode toggle */
 .toggle {
 	position: relative;

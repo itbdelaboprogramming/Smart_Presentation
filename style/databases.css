@@ -100,6 +100,10 @@ input[type="file"] {
 	box-shadow: 0px 4px 4px #00000040;
 }
 
+.upload-container:active {
+	background-color: var(--background-color-50);
+}
+
 /* Pop up notification */
 .pop-up-container {
 	display: none;
@@ -704,6 +708,15 @@ label {
 	cursor: pointer;
 }
 
+.pagination-arrow-box.disabled {
+	cursor: auto;
+	background-color: rgba(0, 0, 0, 0.25);
+}
+
+.pagination-arrow-box.disabled:hover {
+	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
 .pagination-arrow-box:hover {
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -716,9 +729,13 @@ label {
 	display: flex;
 	min-width: 25px;
 	min-height: 25px;
-	padding: 7px 8px 7px 8px;
+	padding: 8px 9px 8px 9px;
 	justify-content: center;
 	align-items: center;
 
 	border: 1px solid var(--primary-color-main-theme-ocean-wave-100, #189ab4);
+}
+
+.total-data {
+	display: none;
 }

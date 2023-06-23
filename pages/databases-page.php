@@ -173,16 +173,30 @@
                             </div>
                         </div>
                         <div class="pagination-arrow">
-                            <div class="pagination-arrow-box">
+                            <div class="pagination-arrow-box disabled">
                                 <img src="./assets/Arrow-First.svg">
                             </div>
-                            <div class="pagination-arrow-box">
+                            <div class="pagination-arrow-box disabled">
                                 <img src="./assets/Arrow-Left.svg">
                             </div>
                             <div class="pagination-arrow-page-number">
                                 1
                             </div>
-                            of 2
+                            of
+                            <?php  
+                                $result = getTotalPage();
+                            
+                            ?>
+                            <div class="total-data">
+                                <?php 
+                                    foreach($result as $row){
+                                        echo $row["COUNT(*)"];
+                                    }
+                                ?>
+                            </div>
+                            <div id="total-page">
+                                
+                            </div>
                             <div class="pagination-arrow-box">
                                 <img src="./assets/Arrow-Right.svg">
                             </div>
