@@ -4,6 +4,8 @@ var myText = document.getElementById("myText").textContent;
 import * as THREE from "three";
 import { OrbitControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js";
+// import { STLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/STLLoader.js";
+// import { VRMLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/VRMLLoader.js";
 
 // Creating a scene with background color
 export const scene = new THREE.Scene();
@@ -46,6 +48,12 @@ scene.add(grid);
 		+z left
 */
 
+//distance from 0,0,0
+const r = 20;
+
+// var ambient = new THREE.AmbientLight(0xf48037, 0.5);
+
+// scene.add(ambient);
 const ambientLight = new THREE.HemisphereLight(
 	"white", // bright sky color
 	"grey", // dim ground color
@@ -60,7 +68,13 @@ dirLight.position.set(100, 100, 100);
 
 dirLight.castShadow = true;
 
+// var dirLight2 = new THREE.DirectionalLight(0x404040, 0.3);
+
+// dirLight2.position.set(-100, 100, -100);
+
 scene.add(dirLight);
+
+// scene.add(dirLight2);
 
 // Camera position
 camera.position.set(3, 2, 2);
@@ -76,7 +90,7 @@ export const orbitControls = new OrbitControls(camera, renderer.domElement);
 export const loader = new GLTFLoader();
 loader.name = "loader";
 
-let path = "files/" + myText;
+let path = "files/" + "MSD700_ブレードモデル_MCLA15A.glb";
 
 loader.load(
 	path,
@@ -84,6 +98,29 @@ loader.load(
 		let file3D = gltf.scene;
 		file3D.name = "file3D";
 		scene.add(file3D);
+
+		let obj = file3D.children;
+		obj.forEach((child) => {
+			let target = new THREE.Vector3();
+			child.getWorldPosition(target);
+			target.normalize();
+			target.setX(target.x + child.position.x);
+			target.setY(target.y + child.position.y);
+			target.setZ(target.z + child.position.z);
+			gsap.to(child.position, {
+				duration: 1,
+				x: target.x,
+			});
+			gsap.to(child.position, {
+				duration: 1,
+				y: target.y,
+			});
+			gsap.to(child.position, {
+				duration: 1,
+				z: target.z,
+			});
+			// child.position.set(target.x, target.y, target.z);
+		});
 	},
 	undefined,
 	function (error) {

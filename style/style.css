@@ -131,14 +131,14 @@ body {
 	gap: 30px;
 }
 
-.container-bottom-mb2x-right {
+.container-bottom-mb1x-right {
 	position: fixed;
 	z-index: 1;
 	bottom: 0;
 	right: 0;
 	padding-bottom: 23px;
 	padding-right: 23px;
-	margin-bottom: 140px;
+	margin-bottom: 62px;
 	font-size: 13px;
 }
 
@@ -249,6 +249,10 @@ body {
 
 .menu-container:hover {
 	box-shadow: 0px 4px 4px #00000040;
+}
+
+.menu-container:active {
+	background-color: var(--background-color-50);
 }
 
 /* darkmode light mode toggle */

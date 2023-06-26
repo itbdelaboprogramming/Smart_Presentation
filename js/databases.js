@@ -22,6 +22,17 @@ const radMNu = document.getElementById("sort_model_number");
 const divDM = document.getElementById("div_sort_date_modified");
 const radDM = document.getElementById("sort_date_modified");
 
+// ------------ pagination drop down ------------
+const optionMenu_pagination = document.querySelector(".pagination-select-menu");
+const selectBtn_pagination = optionMenu_pagination.querySelector(
+	".pagination-select-menu-button"
+);
+const options_pagination =
+	optionMenu_pagination.querySelectorAll(".pagination-option");
+const sBtn_text_pagination = optionMenu_pagination.querySelector(
+	".pagination-select-menu-text"
+);
+
 // dark/light mode toggle
 if (getMode && getMode === "dark-theme") {
 	document.body.classList.add("dark-theme");
@@ -147,6 +158,17 @@ divDM.addEventListener("click", () => {
 	filter_drop_down.style.display = "none";
 });
 
+// pagination previous/next
+const total_data = document.querySelector(".total-data");
+const total_page = document.getElementById("total-page");
+updateTotalPage();
+
+function updateTotalPage() {
+	total_page.innerText = Math.ceil(
+		total_data.innerText / sBtn_text_pagination.innerText
+	);
+}
+
 // const database_data = document.querySelectorAll("tr");
 const database_table = document.getElementById("database-data");
 let selected_database_data_selected;
@@ -186,16 +208,6 @@ window.addEventListener("click", function (e) {
 });
 
 // for pagination dropdown
-const optionMenu_pagination = document.querySelector(".pagination-select-menu");
-const selectBtn_pagination = optionMenu_pagination.querySelector(
-	".pagination-select-menu-button"
-);
-const options_pagination =
-	optionMenu_pagination.querySelectorAll(".pagination-option");
-const sBtn_text_pagination = optionMenu_pagination.querySelector(
-	".pagination-select-menu-text"
-);
-
 selectBtn_pagination.addEventListener("click", () => {
 	optionMenu_pagination.classList.toggle("active");
 });
@@ -213,6 +225,7 @@ options_pagination.forEach(function (option) {
 				selected_sort_by,
 				order_type
 			);
+			updateTotalPage();
 		}
 
 		optionMenu_pagination.classList.toggle("active");

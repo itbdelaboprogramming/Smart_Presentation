@@ -1,6 +1,10 @@
 <?php
 
     function connect(){
+        // $dbservername = '10.243.158.97';
+        // $dbusername = 'admin';
+        // $dbpassword = 'admin';
+        // $dbname = 'smart_presentation';
         $dbservername = 'localhost';
         $dbusername = 'root';
         $dbpassword = '';
@@ -146,5 +150,21 @@
             }
             return $product2;
         }
+    }
+
+    function getTotalPage(){
+        $conn = connect();
+        $sql = "SELECT COUNT(*) FROM model;";
+        $result = mysqli_query($conn, $sql);
+        
+        $resultCheck = mysqli_num_rows($result);
+    
+        if($resultCheck > 0){
+            while($row = $result->fetch_assoc()){
+                $product2[] = $row;
+            }
+            return $product2;
+        }
+
     }
 ?>

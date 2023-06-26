@@ -20,7 +20,7 @@
         <script type="importmap">
             {
                 "imports": {
-                "three": "https://unpkg.com/three@0.139.2/build/three.module.js"
+                "three": "https://unpkg.com/three@0.153.0/build/three.module.js"
                 }
             }
         </script>
@@ -166,10 +166,43 @@
                                     <li class="pagination-option">
                                         <span class="pagination-option-text"> 20 </span>
                                     </li>
+                                    <li class="pagination-option">
+                                        <span class="pagination-option-text"> 40 </span>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-                        <div>
+                        <div class="pagination-arrow">
+                            <div class="pagination-arrow-box disabled">
+                                <img src="./assets/Arrow-First.svg">
+                            </div>
+                            <div class="pagination-arrow-box disabled">
+                                <img src="./assets/Arrow-Left.svg">
+                            </div>
+                            <div class="pagination-arrow-page-number">
+                                1
+                            </div>
+                            of
+                            <?php  
+                                $result = getTotalPage();
+                            
+                            ?>
+                            <div class="total-data">
+                                <?php 
+                                    foreach($result as $row){
+                                        echo $row["COUNT(*)"];
+                                    }
+                                ?>
+                            </div>
+                            <div id="total-page">
+                                
+                            </div>
+                            <div class="pagination-arrow-box">
+                                <img src="./assets/Arrow-Right.svg">
+                            </div>
+                            <div class="pagination-arrow-box">
+                                <img src="./assets/Arrow-Last.svg">
+                            </div>
                         </div>
                     </div>
                     <div class="page-filler">
@@ -192,7 +225,7 @@
             <p id="myText" style="display: none;"><?php echo $global_variable; ?></p>
 
             <form action="uploadFile.php" method="POST" enctype="multipart/form-data">
-                <div class="container-bottom-mb2x-right">
+                <div class="container-bottom-mb1x-right">
                     <input type="file" id="fileUpload" type="file" name="fileUpload" onChange="onFileChange()">
                     <label for="fileUpload" class="upload-container">
                         <img src="./assets/Upload-File-Button.png">
@@ -212,10 +245,6 @@
             </form>
             
             <div class="container-bottom-right">
-                <button class="menu-container">
-                    <img src="./assets/Delete-File-Button.png">
-                </button>
-
                 <div class="toggle"></div>
             </div>
         </div>

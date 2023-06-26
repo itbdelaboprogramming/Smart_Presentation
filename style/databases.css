@@ -42,7 +42,7 @@ canvas {
 	margin: 24px 20px 0px 24px;
 
 	display: flex;
-	gap: 20px;
+	gap: 18px;
 	flex-direction: column;
 	width: 100%;
 }
@@ -98,6 +98,10 @@ input[type="file"] {
 
 .upload-container:hover {
 	box-shadow: 0px 4px 4px #00000040;
+}
+
+.upload-container:active {
+	background-color: var(--background-color-50);
 }
 
 /* Pop up notification */
@@ -682,4 +686,56 @@ label {
 
 .page-filler {
 	min-height: 20px;
+}
+
+.pagination-arrow {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.pagination-arrow-box {
+	display: flex;
+	min-width: 25px;
+	min-height: 25px;
+	padding: 0px 0px 0px 0px;
+	justify-content: center;
+	align-items: center;
+
+	border-radius: 5px;
+	border: 1px solid var(--primary-color-main-theme-ocean-wave-100, #189ab4);
+
+	cursor: pointer;
+}
+
+.pagination-arrow-box.disabled {
+	cursor: auto;
+	background-color: rgba(0, 0, 0, 0.25);
+}
+
+.pagination-arrow-box.disabled:hover {
+	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.pagination-arrow-box:hover {
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.pagination-arrow-box:active {
+	background-color: rgba(0, 0, 0, 0.25);
+}
+
+.pagination-arrow-page-number {
+	display: flex;
+	min-width: 25px;
+	min-height: 25px;
+	padding: 5px 8px 5px 8px;
+	justify-content: center;
+	align-items: center;
+
+	border: 1px solid var(--primary-color-main-theme-ocean-wave-100, #189ab4);
+}
+
+.total-data {
+	display: none;
 }

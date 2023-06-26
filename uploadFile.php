@@ -23,7 +23,6 @@ if (isset($_FILES['fileUpload'])) {
     }
     // $value = $file_name;
     
-    // header("Location: databases");
     exit();
 }
   
