@@ -4,8 +4,6 @@ var myText = document.getElementById("myText").textContent;
 import * as THREE from "three";
 import { OrbitControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js";
-// import { STLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/STLLoader.js";
-// import { VRMLLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/VRMLLoader.js";
 
 // Creating a scene with background color
 export const scene = new THREE.Scene();
@@ -48,12 +46,6 @@ scene.add(grid);
 		+z left
 */
 
-//distance from 0,0,0
-const r = 20;
-
-// var ambient = new THREE.AmbientLight(0xf48037, 0.5);
-
-// scene.add(ambient);
 const ambientLight = new THREE.HemisphereLight(
 	"white", // bright sky color
 	"grey", // dim ground color
@@ -68,13 +60,7 @@ dirLight.position.set(100, 100, 100);
 
 dirLight.castShadow = true;
 
-// var dirLight2 = new THREE.DirectionalLight(0x404040, 0.3);
-
-// dirLight2.position.set(-100, 100, -100);
-
 scene.add(dirLight);
-
-// scene.add(dirLight2);
 
 // Camera position
 camera.position.set(3, 2, 2);
