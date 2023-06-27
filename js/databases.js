@@ -281,6 +281,7 @@ function updateDatabaseData(amount, category, order_by, order_type) {
 	http.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
 			let response = JSON.parse(this.responseText);
+			console.log(response);
 			let out = "";
 			out += `
 				<tr class="noHover">
@@ -295,7 +296,7 @@ function updateDatabaseData(amount, category, order_by, order_type) {
 			`;
 			let number = 1;
 
-			response.forEach((item, index) => {
+			response[0].forEach((item, index) => {
 				let date_modified_date = item.date_modified.split(" ");
 				let date_modified_time = date_modified_date[1].split(":");
 				let date_modified_time_display;
@@ -334,6 +335,8 @@ function updateDatabaseData(amount, category, order_by, order_type) {
 
 			database_table.innerHTML = out;
 			updateDatabaseDataSelect(database_table);
+			total_data.innerText = response[1];
+			updateTotalPage();
 		}
 	};
 	http.open("POST", "./utils/database.php", true);

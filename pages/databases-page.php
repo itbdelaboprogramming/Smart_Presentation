@@ -113,7 +113,7 @@
                         </tr>
                         <?php 
                             $number = 1;
-                            $result2 = getAllData(10, "All", "model_name", "ASC");
+                            list($result2, $totaldata) = getAllData(10, "All", "model_name", "ASC");
                             
                             foreach($result2 as $row){
                                 $date_modified_date = explode(" ",$row['date_modified']);
@@ -176,7 +176,7 @@
                             ?>
                             <div style="display:flex; gap:4px;">
                                 <div>
-                                    11 - 15 of 
+                                    1 - 10 of 
                                 </div>
                                 <div class="total-data">
                                     <?php 
