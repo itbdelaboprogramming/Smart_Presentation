@@ -161,6 +161,8 @@ divDM.addEventListener("click", () => {
 // pagination previous/next
 const total_data = document.querySelector(".total-data");
 const total_page = document.getElementById("total-page");
+const total_data_first = document.querySelector(".total-data-first");
+const total_data_last = document.querySelector(".total-data-last");
 updateTotalPage();
 
 function updateTotalPage() {
@@ -281,7 +283,6 @@ function updateDatabaseData(amount, category, order_by, order_type) {
 	http.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
 			let response = JSON.parse(this.responseText);
-			console.log(response);
 			let out = "";
 			out += `
 				<tr class="noHover">
@@ -295,6 +296,8 @@ function updateDatabaseData(amount, category, order_by, order_type) {
 				</tr>
 			`;
 			let number = 1;
+			let firstDataNumber = number;
+			let lastDataNumber;
 
 			response[0].forEach((item, index) => {
 				let date_modified_date = item.date_modified.split(" ");
@@ -331,11 +334,14 @@ function updateDatabaseData(amount, category, order_by, order_type) {
 				`;
 
 				number++;
+				lastDataNumber = number;
 			});
 
 			database_table.innerHTML = out;
 			updateDatabaseDataSelect(database_table);
 			total_data.innerText = response[1];
+			total_data_first.innerText = firstDataNumber;
+			total_data_last.innerText = lastDataNumber - 1;
 			updateTotalPage();
 		}
 	};

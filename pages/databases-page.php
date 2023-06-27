@@ -175,15 +175,20 @@
                                 $result = getTotalPage();
                             ?>
                             <div style="display:flex; gap:4px;">
-                                <div>
-                                    1 - 10 of 
+                                <div class="total-data-first">
+                                    1
                                 </div>
+                                -
+                                <div class="total-data-last">
+                                    10
+                                </div>
+                                of
                                 <div class="total-data">
                                     <?php 
                                         foreach($result as $row){
                                             echo  $row["COUNT(*)"];
                                         }
-                                        ?>
+                                    ?>
                                 </div>
                             </div>
                         </div>
