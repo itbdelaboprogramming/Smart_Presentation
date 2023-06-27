@@ -139,7 +139,7 @@
                                         <span class="bar">
                                             <span class="fill" id="fill-env"></span>
                                         </span>
-                                        <input type="range" min="0" max="2" value="1" step="0.1" class="slider" id="slider-env"/>
+                                        <input type="range" min="0" max="2" value="0.2" step="0.1" class="slider" id="slider-env"/>
                                     </div>
                                 </div>
                                 <div class="slider-group">
@@ -148,7 +148,7 @@
                                         <span class="bar">
                                             <span class="fill" id="fill-lamp"></span>
                                         </span>
-                                        <input type="range" min="0" max="6" value="2" step="0.1" class="slider" id="slider-lamp"/>
+                                        <input type="range" min="0" max="40" value="20" step="0.1" class="slider" id="slider-lamp"/>
                                     </div>
                                 </div>
                                 <div class="slider-group">
@@ -157,7 +157,7 @@
                                         <span class="bar">
                                             <span class="fill" id="fill-lamp-pos"></span>
                                         </span>
-                                        <input type="range" min="0" max="400" value="100" step="1" class="slider" id="slider-lamp-pos"/>
+                                        <input type="range" min="0" max="400" value="200" step="1" class="slider" id="slider-lamp-pos"/>
                                     </div>   
                                 </div>
                             </div>

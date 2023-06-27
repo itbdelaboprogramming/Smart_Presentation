@@ -559,6 +559,7 @@ function updateSliderEnv() {
 }
 
 function updateEnvBrightness() {
+	console.log("ambient", slider_env.value);
 	let ambient = scene.getObjectByName("ambientLight");
 	ambient.intensity = slider_env.value;
 }
@@ -581,6 +582,7 @@ function updateSliderLampPos() {
 }
 
 function updateLampPos() {
+	console.log("lamp pos", slider_lamp_pos.value);
 	let lamp = scene.getObjectByName("dirLight");
 	lamp.position.set(100, 100, -(slider_lamp_pos.value - 200));
 }
@@ -604,6 +606,7 @@ function updateSliderLamp() {
 }
 
 function updateLamp() {
+	console.log("lamp intensity", slider_lamp.value);
 	let lamp = scene.getObjectByName("dirLight");
 	lamp.intensity = slider_lamp.value;
 }

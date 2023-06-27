@@ -49,14 +49,14 @@ scene.add(grid);
 const ambientLight = new THREE.HemisphereLight(
 	"white", // bright sky color
 	"grey", // dim ground color
-	1 // intensity
+	0.2 // intensity
 );
 ambientLight.name = "ambientLight";
 scene.add(ambientLight);
 
-var dirLight = new THREE.DirectionalLight(0x404040, 2);
+var dirLight = new THREE.DirectionalLight(0x404040, 20);
 dirLight.name = "dirLight";
-dirLight.position.set(100, 100, 100);
+dirLight.position.set(100, 100, 0);
 
 dirLight.castShadow = true;
 
