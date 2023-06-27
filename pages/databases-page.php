@@ -171,6 +171,21 @@
                                     </li>
                                 </ul>
                             </div>
+                            <?php  
+                                $result = getTotalPage();
+                            ?>
+                            <div style="display:flex; gap:4px;">
+                                <div>
+                                    11 - 15 of 
+                                </div>
+                                <div class="total-data">
+                                    <?php 
+                                        foreach($result as $row){
+                                            echo  $row["COUNT(*)"];
+                                        }
+                                        ?>
+                                </div>
+                            </div>
                         </div>
                         <div class="pagination-arrow">
                             <div class="pagination-arrow-box disabled">
@@ -183,17 +198,6 @@
                                 1
                             </div>
                             of
-                            <?php  
-                                $result = getTotalPage();
-                            
-                            ?>
-                            <div class="total-data">
-                                <?php 
-                                    foreach($result as $row){
-                                        echo $row["COUNT(*)"];
-                                    }
-                                ?>
-                            </div>
                             <div id="total-page">
                                 
                             </div>
