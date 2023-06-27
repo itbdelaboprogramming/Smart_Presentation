@@ -193,23 +193,23 @@
                             </div>
                         </div>
                         <div class="pagination-arrow">
-                            <div class="pagination-arrow-box disabled">
+                            <div class="pagination-arrow-box disabled" id="pagination-first-page-button">
                                 <img src="./assets/Arrow-First.svg">
                             </div>
-                            <div class="pagination-arrow-box disabled">
+                            <div class="pagination-arrow-box disabled" id="pagination-previous-page-button">
                                 <img src="./assets/Arrow-Left.svg">
                             </div>
-                            <div class="pagination-arrow-page-number">
+                            <div class="pagination-arrow-page-number" id="current-page">
                                 1
                             </div>
                             of
                             <div id="total-page">
                                 
                             </div>
-                            <div class="pagination-arrow-box">
+                            <div class="pagination-arrow-box" id="pagination-next-page-button">
                                 <img src="./assets/Arrow-Right.svg">
                             </div>
-                            <div class="pagination-arrow-box">
+                            <div class="pagination-arrow-box" id="pagination-last-page-button">
                                 <img src="./assets/Arrow-Last.svg">
                             </div>
                         </div>

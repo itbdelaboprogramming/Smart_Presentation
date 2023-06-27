@@ -163,12 +163,34 @@ const total_data = document.querySelector(".total-data");
 const total_page = document.getElementById("total-page");
 const total_data_first = document.querySelector(".total-data-first");
 const total_data_last = document.querySelector(".total-data-last");
+const current_page = document.getElementById("current-page");
+const pagination_first_page_button = document.getElementById(
+	"pagination-first-page-button"
+);
+const pagination_previous_page_button = document.getElementById(
+	"pagination-previous-page-button"
+);
+const pagination_next_page_button = document.getElementById(
+	"pagination-next-page-button"
+);
+const pagination_last_page_button = document.getElementById(
+	"pagination-last-page-button"
+);
+
 updateTotalPage();
 
 function updateTotalPage() {
 	total_page.innerText = Math.ceil(
 		total_data.innerText / sBtn_text_pagination.innerText
 	);
+
+	if (total_page.innerText == 1) {
+		pagination_next_page_button.classList.add("disabled");
+		pagination_last_page_button.classList.add("disabled");
+	} else {
+		pagination_next_page_button.classList.remove("disabled");
+		pagination_last_page_button.classList.remove("disabled");
+	}
 }
 
 // const database_data = document.querySelectorAll("tr");
@@ -295,7 +317,8 @@ function updateDatabaseData(amount, category, order_by, order_type) {
 					<th class="right-table">SIZE</th>
 				</tr>
 			`;
-			let number = 1;
+			let number =
+				(parseInt(current_page.innerText) - 1) * parseInt(amount) + 1;
 			let firstDataNumber = number;
 			let lastDataNumber;
 
