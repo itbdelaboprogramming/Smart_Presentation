@@ -201,6 +201,58 @@ divDM.addEventListener("click", () => {
 // ------------------------------- pagination previous/next ------------------------------
 updateTotalPage();
 
+pagination_first_page_button.addEventListener("click", () => {
+	if (!pagination_first_page_button.classList.contains("disabled")) {
+		current_page.innerText = "1";
+		pagination_first_page_button.classList.add("disabled");
+		pagination_previous_page_button.classList.add("disabled");
+
+		pagination_next_page_button.classList.remove("disabled");
+		pagination_last_page_button.classList.remove("disabled");
+	}
+});
+
+pagination_previous_page_button.addEventListener("click", () => {
+	if (!pagination_previous_page_button.classList.contains("disabled")) {
+		let pageNumber = parseInt(current_page.innerText) - 1;
+		current_page.innerText = pageNumber;
+
+		pagination_next_page_button.classList.remove("disabled");
+		pagination_last_page_button.classList.remove("disabled");
+
+		if (pageNumber == "1") {
+			pagination_first_page_button.classList.add("disabled");
+			pagination_previous_page_button.classList.add("disabled");
+		}
+	}
+});
+
+pagination_next_page_button.addEventListener("click", () => {
+	if (!pagination_next_page_button.classList.contains("disabled")) {
+		let pageNumber = parseInt(current_page.innerText) + 1;
+		current_page.innerText = pageNumber;
+
+		pagination_first_page_button.classList.remove("disabled");
+		pagination_previous_page_button.classList.remove("disabled");
+
+		if (pageNumber == total_page.innerText) {
+			pagination_next_page_button.classList.add("disabled");
+			pagination_last_page_button.classList.add("disabled");
+		}
+	}
+});
+
+pagination_last_page_button.addEventListener("click", () => {
+	if (!pagination_last_page_button.classList.contains("disabled")) {
+		current_page.innerText = total_page.innerText;
+		pagination_next_page_button.classList.add("disabled");
+		pagination_last_page_button.classList.add("disabled");
+
+		pagination_first_page_button.classList.remove("disabled");
+		pagination_previous_page_button.classList.remove("disabled");
+	}
+});
+
 // ----------------------------------- database data -------------------------------------
 updateDatabaseDataSelect(database_table);
 
