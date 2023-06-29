@@ -133,22 +133,23 @@
         }
     }
 
-    function getAllData($amount, $category, $order_by, $order_type, $offset){
+    function getAllData($amount, $category, $order_by, $order_type, $offset, $search_key){
         $conn = connect();
         if($category == "All"){
-            $sql = "SELECT model_detail.model_name, model_detail.category, model.id, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name ORDER BY $order_by $order_type LIMIT $offset, $amount;";
-            $sqlTotalData = "SELECT model_detail.model_name, model_detail.category, model.id, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name ORDER BY $order_by $order_type;";
+            $sql = "SELECT model_detail.model_name, model_detail.category, model.id, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name WHERE model.model_name LIKE '%$search_key%' ORDER BY $order_by $order_type LIMIT $offset, $amount;";
+            $sqlTotalData = "SELECT model_detail.model_name, model_detail.category, model.id, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name WHERE model.model_name LIKE '%$search_key%' ORDER BY $order_by $order_type;";
         }else{
-            $sql = "SELECT model_detail.model_name, model_detail.category, model.id, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name WHERE model_detail.category = '$category' ORDER BY $order_by $order_type LIMIT $offset, $amount;";
-            $sqlTotalData = "SELECT model_detail.model_name, model_detail.category, model.id, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name WHERE model_detail.category = '$category' ORDER BY $order_by $order_type;";
+            $sql = "SELECT model_detail.model_name, model_detail.category, model.id, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name WHERE model_detail.category = '$category' AND model.model_name LIKE '%$search_key%' ORDER BY $order_by $order_type LIMIT $offset, $amount;";
+            $sqlTotalData = "SELECT model_detail.model_name, model_detail.category, model.id, model.model_number, model.date_modified, model.file_type, model.size, model.file FROM model INNER JOIN model_detail ON model.model_name = model_detail.model_name WHERE model_detail.category = '$category' AND model.model_name LIKE '%$search_key%' ORDER BY $order_by $order_type;";
         }
+        
         $result = mysqli_query($conn, $sql);
         $result1 = mysqli_query($conn, $sqlTotalData);
         $resultCheck = mysqli_num_rows($result);
         $resultCheck1 = mysqli_num_rows($result1);
     
         if($resultCheck > 0){
-            while($row = $result->fetch_assoc()){
+            while($row = $result->fetch_assoc()){        
                 $product2[] = $row;
             }
             return array($product2, $resultCheck1);

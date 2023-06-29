@@ -4,8 +4,6 @@
     if (isset($_GET['value'])) {
         $value = urldecode($_GET['value']);
         $global_variable = $value;
-    }else{
-        header("Location: databases/?value=" . urlencode($global_variable));
     }
 
     include_once './database/config.php'
@@ -39,10 +37,10 @@
                         <canvas id="myCanvas">    </canvas>
                     </div>
                     <div class="database-header">
-                        <div class="search-container">
-                            <input type="text" placeholder="Search.." name="search" class="search-text" autocomplete="off">
+                        <form class="search-container" action="uploadFile.php" method="get">
+                            <input type="text" placeholder="Search.." id="search" name="search" class="search-text" autocomplete="off">
                             <button type="submit" class="search-img"><img src="./assets/Search-Button.png"></button>
-                        </div>
+                        </form>
                         <div class="filter-container">
                             <div class="filter-wrap">
                                 <div class="filter-text">
@@ -113,7 +111,13 @@
                         </tr>
                         <?php 
                             $number = 1;
-                            list($result2, $totaldata) = getAllData(10, "All", "model_name", "ASC", 0);
+                            if (isset($_GET['search'])) {
+                                $search_key = $_GET['search'];
+                            }else{
+                                $search_key = "";
+                            }
+                            
+                            list($result2, $totaldata) = getAllData(10, "All", "model_name", "ASC", 0, $search_key);
                             
                             foreach($result2 as $row){
                                 $date_modified_date = explode(" ",$row['date_modified']);
@@ -171,9 +175,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <?php  
-                                $result = getTotalPage();
-                            ?>
+                
                             <div style="display:flex; gap:4px;">
                                 <div class="total-data-first">
                                     1
@@ -185,9 +187,7 @@
                                 of
                                 <div class="total-data">
                                     <?php 
-                                        foreach($result as $row){
-                                            echo  $row["COUNT(*)"];
-                                        }
+                                        echo  $totaldata;
                                     ?>
                                 </div>
                             </div>

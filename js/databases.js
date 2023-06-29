@@ -262,7 +262,6 @@ pagination_next_page_button.addEventListener("click", () => {
 		);
 
 		if (pageNumber == parseInt(total_page.innerText)) {
-			console.log("here");
 			pagination_next_page_button.classList.add("disabled");
 			pagination_last_page_button.classList.add("disabled");
 		}
@@ -408,11 +407,13 @@ function updateTotalPage() {
 // ----------------------------------- database data -------------------------------------
 function updateDatabaseData(amount, category, order_by, order_type) {
 	const offset = (parseInt(current_page.innerText) - 1) * parseInt(amount);
+	const search_key = getSearchParameters();
 	let http = new XMLHttpRequest();
 
 	http.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
 			let response = JSON.parse(this.responseText);
+
 			let out = "";
 			out += `
 				<tr class="noHover">
@@ -488,7 +489,9 @@ function updateDatabaseData(amount, category, order_by, order_type) {
 			"&ordertype=" +
 			order_type +
 			"&offset=" +
-			offset
+			offset +
+			"&searchkey=" +
+			search_key
 	);
 }
 
@@ -560,4 +563,18 @@ function updateFile3D(file_name) {
 	} catch (e) {
 		// do nothing
 	}
+}
+
+// ---------------------------------------- search ---------------------------------------
+// ------------------------------- pagination previous/next ------------------------------
+function getSearchParameters() {
+	let prmstr = window.location.search;
+	var param = new URLSearchParams(prmstr);
+	let value;
+	if (param.has("search")) {
+		value = param.get("search");
+	} else {
+		value = "";
+	}
+	return value;
 }
