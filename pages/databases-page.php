@@ -40,7 +40,7 @@
                     </div>
                     <div class="database-header">
                         <div class="search-container">
-                            <input type="text" placeholder="Search.." name="search" class="search-text">
+                            <input type="text" placeholder="Search.." name="search" class="search-text" autocomplete="off">
                             <button type="submit" class="search-img"><img src="./assets/Search-Button.png"></button>
                         </div>
                         <div class="filter-container">
@@ -113,7 +113,7 @@
                         </tr>
                         <?php 
                             $number = 1;
-                            list($result2, $totaldata) = getAllData(10, "All", "model_name", "ASC");
+                            list($result2, $totaldata) = getAllData(10, "All", "model_name", "ASC", 0);
                             
                             foreach($result2 as $row){
                                 $date_modified_date = explode(" ",$row['date_modified']);

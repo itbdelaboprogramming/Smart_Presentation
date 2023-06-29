@@ -39,7 +39,8 @@
         $category = $_POST['tablecategory'];
         $sort_by = $_POST['orderby'];
         $order_type = $_POST['ordertype'];
-        list($product2, $totalData) = getAllData($amount, $category, $sort_by, $order_type);
+        $offset = $_POST['offset'];
+        list($product2, $totalData) = getAllData($amount, $category, $sort_by, $order_type, $offset);
         echo json_encode(array($product2, $totalData));
         // echo json_encode($product2);
     }

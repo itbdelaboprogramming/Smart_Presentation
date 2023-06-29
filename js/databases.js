@@ -126,6 +126,7 @@ filter_sort_box.addEventListener("click", () => {
 		filter_asc.style.display = "none";
 		filter_desc.style.display = "block";
 		order_type = "DESC";
+		current_page.innerText = "1";
 		updateDatabaseData(
 			sBtn_text_pagination.innerText,
 			sBtn_text.innerText,
@@ -136,6 +137,7 @@ filter_sort_box.addEventListener("click", () => {
 		filter_asc.style.display = "block";
 		filter_desc.style.display = "none";
 		order_type = "ASC";
+		current_page.innerText = "1";
 		updateDatabaseData(
 			sBtn_text_pagination.innerText,
 			sBtn_text.innerText,
@@ -165,6 +167,7 @@ window.addEventListener("click", function (e) {
 divMNa.addEventListener("click", () => {
 	radMNa.checked = true;
 	selected_sort_by = "model_name";
+	current_page.innerText = "1";
 	updateDatabaseData(
 		sBtn_text_pagination.innerText,
 		sBtn_text.innerText,
@@ -177,6 +180,7 @@ divMNa.addEventListener("click", () => {
 divMNu.addEventListener("click", () => {
 	radMNu.checked = true;
 	selected_sort_by = "model_number";
+	current_page.innerText = "1";
 	updateDatabaseData(
 		sBtn_text_pagination.innerText,
 		sBtn_text.innerText,
@@ -189,6 +193,7 @@ divMNu.addEventListener("click", () => {
 divDM.addEventListener("click", () => {
 	radDM.checked = true;
 	selected_sort_by = "date_modified";
+	current_page.innerText = "1";
 	updateDatabaseData(
 		sBtn_text_pagination.innerText,
 		sBtn_text.innerText,
@@ -209,6 +214,13 @@ pagination_first_page_button.addEventListener("click", () => {
 
 		pagination_next_page_button.classList.remove("disabled");
 		pagination_last_page_button.classList.remove("disabled");
+
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
 	}
 });
 
@@ -220,10 +232,17 @@ pagination_previous_page_button.addEventListener("click", () => {
 		pagination_next_page_button.classList.remove("disabled");
 		pagination_last_page_button.classList.remove("disabled");
 
-		if (pageNumber == "1") {
+		if (pageNumber == 1) {
 			pagination_first_page_button.classList.add("disabled");
 			pagination_previous_page_button.classList.add("disabled");
 		}
+
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
 	}
 });
 
@@ -235,7 +254,15 @@ pagination_next_page_button.addEventListener("click", () => {
 		pagination_first_page_button.classList.remove("disabled");
 		pagination_previous_page_button.classList.remove("disabled");
 
-		if (pageNumber == total_page.innerText) {
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
+
+		if (pageNumber == parseInt(total_page.innerText)) {
+			console.log("here");
 			pagination_next_page_button.classList.add("disabled");
 			pagination_last_page_button.classList.add("disabled");
 		}
@@ -247,6 +274,13 @@ pagination_last_page_button.addEventListener("click", () => {
 		current_page.innerText = total_page.innerText;
 		pagination_next_page_button.classList.add("disabled");
 		pagination_last_page_button.classList.add("disabled");
+
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
 
 		pagination_first_page_button.classList.remove("disabled");
 		pagination_previous_page_button.classList.remove("disabled");
@@ -266,6 +300,7 @@ options.forEach(function (option) {
 		let selectedOption = option.querySelector(".option-text").innerText;
 		sBtn_text.innerText = selectedOption;
 		optionMenu.classList.toggle("active");
+		current_page.innerText = "1";
 		updateDatabaseData(
 			sBtn_text_pagination.innerText,
 			sBtn_text.innerText,
@@ -295,6 +330,7 @@ options_pagination.forEach(function (option) {
 		).innerText;
 		if (sBtn_text_pagination.innerText != selectedOptionPagination) {
 			sBtn_text_pagination.innerText = selectedOptionPagination;
+			current_page.innerText = "1";
 			updateDatabaseData(
 				sBtn_text_pagination.innerText,
 				sBtn_text.innerText,
@@ -349,9 +385,21 @@ function updateTotalPage() {
 	);
 
 	if (total_page.innerText == 1) {
+		pagination_first_page_button.classList.add("disabled");
+		pagination_previous_page_button.classList.add("disabled");
 		pagination_next_page_button.classList.add("disabled");
 		pagination_last_page_button.classList.add("disabled");
-	} else {
+	} else if (
+		current_page.innerText == total_page.innerText &&
+		total_page.innerText != 1
+	) {
+		pagination_first_page_button.classList.remove("disabled");
+		pagination_previous_page_button.classList.remove("disabled");
+		pagination_next_page_button.classList.add("disabled");
+		pagination_last_page_button.classList.add("disabled");
+	} else if (current_page.innerText == 1 && total_page.innerText != 1) {
+		pagination_first_page_button.classList.add("disabled");
+		pagination_previous_page_button.classList.add("disabled");
 		pagination_next_page_button.classList.remove("disabled");
 		pagination_last_page_button.classList.remove("disabled");
 	}
@@ -359,6 +407,7 @@ function updateTotalPage() {
 
 // ----------------------------------- database data -------------------------------------
 function updateDatabaseData(amount, category, order_by, order_type) {
+	const offset = (parseInt(current_page.innerText) - 1) * parseInt(amount);
 	let http = new XMLHttpRequest();
 
 	http.onreadystatechange = function () {
@@ -437,7 +486,9 @@ function updateDatabaseData(amount, category, order_by, order_type) {
 			"&orderby=" +
 			order_by +
 			"&ordertype=" +
-			order_type
+			order_type +
+			"&offset=" +
+			offset
 	);
 }
 
