@@ -12,7 +12,7 @@ const iconSoundOn = document.getElementById("sound-on");
 const soundExpand = document.querySelector(".sound-expand");
 
 var audio = new Audio("./audio/podcast-18169.mp3");
-var audio_speech = new Audio("./audio/voicebooking-speech.wav");
+var audio_speech = new Audio("./audio/audio_speech1.wav");
 
 const toggle_music = document.querySelector(".toggle-music");
 const toggle_speech = document.querySelector(".toggle-speech");
@@ -361,6 +361,15 @@ slider_lamp.addEventListener("input", () => {
 // ---------------------------------- FUNCTION HELPER ------------------------------------
 // ---------------------------------------------------------------------------------------
 
+// ---------------------------------------- sound ----------------------------------------
+function resetSpeech(audio_name) {
+	toggle_speech.classList.remove("active");
+	audio_speech.pause();
+	audio_speech.currentTime = 0;
+	audio_speech = new Audio(`./audio/${audio_name}`);
+	audio_speech.loop = true;
+}
+
 // ------------------------------------- information -------------------------------------
 function updateInformation(model_name) {
 	let http = new XMLHttpRequest();
@@ -369,6 +378,9 @@ function updateInformation(model_name) {
 		if (this.readyState == 4 && this.status == 200) {
 			let response = JSON.parse(this.responseText);
 			let out = "";
+
+			// update speech
+			resetSpeech(response[0].voice_over);
 
 			// update file (canvas)
 			myText = response[0].file;
@@ -493,6 +505,10 @@ function loadFile3D(id) {
 		if (this.readyState == 4 && this.status == 200) {
 			let response = JSON.parse(this.responseText);
 
+			// update speech
+			resetSpeech(response[0].voice_over);
+
+			// update canvas
 			updateFile3D(response[0].file);
 		}
 	};
