@@ -2,19 +2,27 @@ import { scene, camera, orbitControls } from "../script.js";
 import * as THREE from "three";
 import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js";
 
-// Const, Var, Let
-// ------------ sound ------------
+// ---------------------------------------------------------------------------------------
+// ----------------------------------- Const, Var, Let -----------------------------------
+// ---------------------------------------------------------------------------------------
+// ---------------------------------------- sound ----------------------------------------
 const menuSound = document.querySelector(".menu-container-blue-sound");
 const iconSoundOff = document.getElementById("sound-off");
 const iconSoundOn = document.getElementById("sound-on");
 const soundExpand = document.querySelector(".sound-expand");
 
-// ------------ animation ------------
+var audio = new Audio("./audio/podcast-18169.mp3");
+var audio_speech = new Audio("./audio/audio_speech1.wav");
+
+const toggle_music = document.querySelector(".toggle-music");
+const toggle_speech = document.querySelector(".toggle-speech");
+
+// -------------------------------------- animation --------------------------------------
 const menuAnimation = document.querySelector(".menu-container-blue-animation");
 const iconAnimationOff = document.getElementById("animation-off");
 const iconAnimationOn = document.getElementById("animation-on");
 
-// ------------ catalogue ------------
+// -------------------------------------- catalogue --------------------------------------
 const menuAlbum = document.querySelector(".menu-container-blue-album");
 const catalogueContainer = document.getElementById("catalogue-container-2");
 var catalogue_product_list = document.querySelectorAll(
@@ -33,10 +41,10 @@ const catalogueDetailTitle = document.querySelector(
 	".catalogue-description-title"
 );
 
-// ------------ lightning ------------
+// -------------------------------------- lightning --------------------------------------
 const menuLightning = document.querySelector(".menu-container-blue-lightning");
 
-// ------------ information ------------
+// ------------------------------------- information -------------------------------------
 const menuInformation = document.querySelector(
 	".menu-container-blue-information"
 );
@@ -49,7 +57,7 @@ const information_description = document.querySelector(
 	".information-description"
 );
 
-// ------------ 3d category dropdown ------------
+// -------------------------------- 3d category dropdown ---------------------------------
 const optionMenu = document.querySelector(".select-menu");
 const selectBtn = optionMenu.querySelector(".select-menu-button");
 const options = optionMenu.querySelectorAll(".option");
@@ -59,16 +67,48 @@ const catalogueDescription = document.querySelector(".catalogue-description-2");
 
 let product_list_detail_dataset_value;
 
-// ------------ dark/light mode ------------
+// ----------------------------------- dark/light mode -----------------------------------
 const toggle = document.querySelector(".toggle");
 
 let getMode = localStorage.getItem("mode");
-var audio = new Audio("./audio/podcast-18169.mp3");
+
+// ---------------------------- resize canvas width responsive ---------------------------
+let loader = new GLTFLoader();
+loader.name = "loader";
+
+// ------------------------------------- slider zoom -------------------------------------
+const slider = document.getElementById("slider-zoom");
+const maxValue = slider.getAttribute("max");
+let value;
+const sliderFill = document.getElementById("fill-zoom");
+
+// -------------------------------- slider env brightness --------------------------------
+const slider_env = document.getElementById("slider-env");
+const maxValue_env = slider_env.getAttribute("max");
+let value_env;
+const sliderFill_env = document.getElementById("fill-env");
+
+// --------------------------------- slider lamp position --------------------------------
+const slider_lamp_pos = document.getElementById("slider-lamp-pos");
+const maxValue_lamp_pos = slider_lamp_pos.getAttribute("max");
+let value_lamp_pos;
+const sliderFill_lamp_pos = document.getElementById("fill-lamp-pos");
+
+// ------------------------------- slider lamp brightness --------------------------------
+const slider_lamp = document.getElementById("slider-lamp");
+const maxValue_lamp = slider_lamp.getAttribute("max");
+let value_lamp;
+const sliderFill_lamp = document.getElementById("fill-lamp");
+
+// ---------------------------------------------------------------------------------------
+// ---------------------------------- PROGRAM CODE ---------------------------------------
+// ---------------------------------------------------------------------------------------
+
+// ---------------------------------------- sound ----------------------------------------
 audio.loop = true;
 audio.volume = 0.5;
-var audio_speech = new Audio("./audio/voicebooking-speech.wav");
 audio_speech.loop = true;
-// Menu sound button
+
 menuSound.addEventListener("click", () => {
 	menuSound.classList.toggle("active");
 
@@ -82,9 +122,6 @@ menuSound.addEventListener("click", () => {
 		soundExpand.style.display = "none";
 	}
 });
-
-const toggle_music = document.querySelector(".toggle-music");
-const toggle_speech = document.querySelector(".toggle-speech");
 
 toggle_music.addEventListener("click", () => {
 	toggle_music.classList.toggle("active");
@@ -107,7 +144,7 @@ toggle_speech.addEventListener("click", () => {
 	}
 });
 
-// Menu animation button
+// -------------------------------------- animation --------------------------------------
 menuAnimation.addEventListener("click", () => {
 	menuAnimation.classList.toggle("active");
 
@@ -122,7 +159,7 @@ menuAnimation.addEventListener("click", () => {
 	}
 });
 
-// Menu album button
+// -------------------------------------- catalogue --------------------------------------
 menuAlbum.addEventListener("click", () => {
 	menuAlbum.classList.toggle("active");
 	if (menuAlbum.classList.contains("active")) {
@@ -133,7 +170,9 @@ menuAlbum.addEventListener("click", () => {
 		catalogueDetailContainer.style.display = "none";
 	}
 });
+
 loadCatalogue(catalogue_product_list);
+
 catalogueDetailBack.addEventListener("click", () => {
 	catalogueContainer.style.display = "flex";
 	catalogueDetailContainer.style.display = "none";
@@ -141,7 +180,7 @@ catalogueDetailBack.addEventListener("click", () => {
 	catalogueDetailDescription.innerHTML = "";
 });
 
-// Menu lightning button
+// -------------------------------------- lightning --------------------------------------
 const lightning_expand = document.querySelector(
 	".menu-container-blue-lightning-expand"
 );
@@ -155,7 +194,7 @@ menuLightning.addEventListener("click", () => {
 	}
 });
 
-// Menu information button
+// ------------------------------------- information -------------------------------------
 menuInformation.addEventListener("click", () => {
 	menuInformation.classList.toggle("active");
 
@@ -167,7 +206,7 @@ menuInformation.addEventListener("click", () => {
 });
 updateInformation(product_list_text);
 
-// for 3d category dropdown
+// -------------------------------- 3d category dropdown ---------------------------------
 selectBtn.addEventListener("click", () => {
 	optionMenu.classList.toggle("active");
 });
@@ -233,7 +272,7 @@ window.addEventListener("click", function (e) {
 	}
 });
 
-// dark/light mode toggle
+// ----------------------------------- dark/light mode -----------------------------------
 if (getMode && getMode === "dark-theme") {
 	document.body.classList.add("dark-theme");
 	toggle.classList.add("active");
@@ -276,7 +315,7 @@ toggle.addEventListener("click", () => {
 	}
 });
 
-// Resize canvas
+// ---------------------------- resize canvas width responsive ---------------------------
 myCanvas.style.width = window.innerWidth + "px";
 myCanvas.style.height = window.innerHeight + "px";
 camera.aspect = window.innerWidth / window.innerHeight;
@@ -289,10 +328,49 @@ window.addEventListener("resize", () => {
 	camera.updateProjectionMatrix();
 });
 
-let loader = new GLTFLoader();
-loader.name = "loader";
+// ------------------------------------- slider zoom -------------------------------------
+updateSlider();
+updateZoomCamera();
+slider.addEventListener("input", () => {
+	updateSlider();
+	updateZoomCamera();
+});
 
-// helper function
+// -------------------------------- slider env brightness --------------------------------
+updateSliderEnv();
+slider_env.addEventListener("input", () => {
+	updateSliderEnv();
+	updateEnvBrightness();
+});
+
+// --------------------------------- slider lamp position --------------------------------
+updateSliderLampPos();
+slider_lamp_pos.addEventListener("input", () => {
+	updateSliderLampPos();
+	updateLampPos();
+});
+
+// ------------------------------- slider lamp brightness --------------------------------
+updateSliderLamp();
+slider_lamp.addEventListener("input", () => {
+	updateSliderLamp();
+	updateLamp();
+});
+
+// ---------------------------------------------------------------------------------------
+// ---------------------------------- FUNCTION HELPER ------------------------------------
+// ---------------------------------------------------------------------------------------
+
+// ---------------------------------------- sound ----------------------------------------
+function resetSpeech(audio_name) {
+	toggle_speech.classList.remove("active");
+	audio_speech.pause();
+	audio_speech.currentTime = 0;
+	audio_speech = new Audio(`./audio/${audio_name}`);
+	audio_speech.loop = true;
+}
+
+// ------------------------------------- information -------------------------------------
 function updateInformation(model_name) {
 	let http = new XMLHttpRequest();
 
@@ -300,6 +378,9 @@ function updateInformation(model_name) {
 		if (this.readyState == 4 && this.status == 200) {
 			let response = JSON.parse(this.responseText);
 			let out = "";
+
+			// update speech
+			resetSpeech(response[0].voice_over);
 
 			// update file (canvas)
 			myText = response[0].file;
@@ -381,6 +462,7 @@ function updateInformation(model_name) {
 	http.send("modelname=" + model_name);
 }
 
+// -------------------------------------- catalogue --------------------------------------
 function loadCatalogue(catalogue_product_list) {
 	catalogue_product_list.forEach(function (product_list) {
 		product_list.addEventListener("click", () => {
@@ -423,42 +505,16 @@ function loadFile3D(id) {
 		if (this.readyState == 4 && this.status == 200) {
 			let response = JSON.parse(this.responseText);
 
+			// update speech
+			resetSpeech(response[0].voice_over);
+
+			// update canvas
 			updateFile3D(response[0].file);
 		}
 	};
 	http.open("POST", "./utils/database.php", true);
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	http.send("id=" + id);
-}
-
-function resetCatalogueSelect() {
-	catalogue_product_list.forEach(function (product_list) {
-		product_list.classList.remove("active");
-	});
-}
-
-function updateFile3D(file_name) {
-	try {
-		let file3D = scene.getObjectByName("file3D");
-		file3D.name = "file3D";
-
-		scene.remove(file3D);
-
-		loader.load(
-			`./files/${file_name}`,
-			function (gltf) {
-				file3D = gltf.scene;
-				file3D.name = "file3D";
-				scene.add(file3D);
-			},
-			undefined,
-			function (error) {
-				console.error(error);
-			}
-		);
-	} catch (e) {
-		// do nothing
-	}
 }
 
 function loadCatalogueDetail(model_name) {
@@ -518,19 +574,38 @@ function loadCatalogueDetail(model_name) {
 	http.send("getmodelnumber=" + model_name);
 }
 
-// slider
-const slider = document.getElementById("slider-zoom");
-const maxValue = slider.getAttribute("max");
-let value;
-const sliderFill = document.getElementById("fill-zoom");
+function resetCatalogueSelect() {
+	catalogue_product_list.forEach(function (product_list) {
+		product_list.classList.remove("active");
+	});
+}
 
-updateSlider();
-updateZoomCamera();
-slider.addEventListener("input", () => {
-	updateSlider();
-	updateZoomCamera();
-});
+// ------------------------------------- information -------------------------------------
+function updateFile3D(file_name) {
+	try {
+		let file3D = scene.getObjectByName("file3D");
+		file3D.name = "file3D";
 
+		scene.remove(file3D);
+
+		loader.load(
+			`./files/${file_name}`,
+			function (gltf) {
+				file3D = gltf.scene;
+				file3D.name = "file3D";
+				scene.add(file3D);
+			},
+			undefined,
+			function (error) {
+				console.error(error);
+			}
+		);
+	} catch (e) {
+		// do nothing
+	}
+}
+
+// ------------------------------------- slider zoom -------------------------------------
 function updateZoomCamera() {
 	camera.zoom = slider.value;
 	camera.updateProjectionMatrix();
@@ -541,69 +616,38 @@ function updateSlider() {
 	sliderFill.style.width = value;
 }
 
-// slider env brightness
-const slider_env = document.getElementById("slider-env");
-const maxValue_env = slider_env.getAttribute("max");
-let value_env;
-const sliderFill_env = document.getElementById("fill-env");
-
-updateSliderEnv();
-slider_env.addEventListener("input", () => {
-	updateSliderEnv();
-	updateEnvBrightness();
-});
-
+// -------------------------------- slider env brightness --------------------------------
 function updateSliderEnv() {
 	value_env = (slider_env.value / maxValue_env) * 100 + "%";
 	sliderFill_env.style.width = value_env;
 }
 
 function updateEnvBrightness() {
+	console.log("ambient", slider_env.value);
 	let ambient = scene.getObjectByName("ambientLight");
 	ambient.intensity = slider_env.value;
 }
 
-// slider lamp position
-const slider_lamp_pos = document.getElementById("slider-lamp-pos");
-const maxValue_lamp_pos = slider_lamp_pos.getAttribute("max");
-let value_lamp_pos;
-const sliderFill_lamp_pos = document.getElementById("fill-lamp-pos");
-
-updateSliderLampPos();
-slider_lamp_pos.addEventListener("input", () => {
-	updateSliderLampPos();
-	updateLampPos();
-});
-
+// --------------------------------- slider lamp position --------------------------------
 function updateSliderLampPos() {
 	value_lamp_pos = (slider_lamp_pos.value / maxValue_lamp_pos) * 100 + "%";
 	sliderFill_lamp_pos.style.width = value_lamp_pos;
 }
 
 function updateLampPos() {
+	console.log("lamp pos", slider_lamp_pos.value);
 	let lamp = scene.getObjectByName("dirLight");
 	lamp.position.set(100, 100, -(slider_lamp_pos.value - 200));
 }
 
-// slider lamp
-const slider_lamp = document.getElementById("slider-lamp");
-const maxValue_lamp = slider_lamp.getAttribute("max");
-
-let value_lamp;
-
-const sliderFill_lamp = document.getElementById("fill-lamp");
-updateSliderLamp();
-slider_lamp.addEventListener("input", () => {
-	updateSliderLamp();
-	updateLamp();
-});
-
+// ------------------------------- slider lamp brightness --------------------------------
 function updateSliderLamp() {
 	value_lamp = (slider_lamp.value / maxValue_lamp) * 100 + "%";
 	sliderFill_lamp.style.width = value_lamp;
 }
 
 function updateLamp() {
+	console.log("lamp intensity", slider_lamp.value);
 	let lamp = scene.getObjectByName("dirLight");
 	lamp.intensity = slider_lamp.value;
 }

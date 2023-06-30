@@ -4,8 +4,6 @@
     if (isset($_GET['value'])) {
         $value = urldecode($_GET['value']);
         $global_variable = $value;
-    }else{
-        header("Location: databases/?value=" . urlencode($global_variable));
     }
 
     include_once './database/config.php'
@@ -39,10 +37,10 @@
                         <canvas id="myCanvas">    </canvas>
                     </div>
                     <div class="database-header">
-                        <div class="search-container">
-                            <input type="text" placeholder="Search.." name="search" class="search-text">
+                        <form class="search-container" action="uploadFile.php" method="get">
+                            <input type="text" placeholder="Search.." id="search" name="search" class="search-text" autocomplete="off">
                             <button type="submit" class="search-img"><img src="./assets/Search-Button.png"></button>
-                        </div>
+                        </form>
                         <div class="filter-container">
                             <div class="filter-wrap">
                                 <div class="filter-text">
@@ -113,7 +111,13 @@
                         </tr>
                         <?php 
                             $number = 1;
-                            $result2 = getAllData(10, "All", "model_name", "ASC");
+                            if (isset($_GET['search'])) {
+                                $search_key = $_GET['search'];
+                            }else{
+                                $search_key = "";
+                            }
+                            
+                            list($result2, $totaldata) = getAllData(10, "All", "model_name", "ASC", 0, $search_key);
                             
                             foreach($result2 as $row){
                                 $date_modified_date = explode(" ",$row['date_modified']);
@@ -171,36 +175,41 @@
                                     </li>
                                 </ul>
                             </div>
+                
+                            <div style="display:flex; gap:4px;">
+                                <div class="total-data-first">
+                                    1
+                                </div>
+                                -
+                                <div class="total-data-last">
+                                    10
+                                </div>
+                                of
+                                <div class="total-data">
+                                    <?php 
+                                        echo  $totaldata;
+                                    ?>
+                                </div>
+                            </div>
                         </div>
                         <div class="pagination-arrow">
-                            <div class="pagination-arrow-box disabled">
+                            <div class="pagination-arrow-box disabled" id="pagination-first-page-button">
                                 <img src="./assets/Arrow-First.svg">
                             </div>
-                            <div class="pagination-arrow-box disabled">
+                            <div class="pagination-arrow-box disabled" id="pagination-previous-page-button">
                                 <img src="./assets/Arrow-Left.svg">
                             </div>
-                            <div class="pagination-arrow-page-number">
+                            <div class="pagination-arrow-page-number" id="current-page">
                                 1
                             </div>
                             of
-                            <?php  
-                                $result = getTotalPage();
-                            
-                            ?>
-                            <div class="total-data">
-                                <?php 
-                                    foreach($result as $row){
-                                        echo $row["COUNT(*)"];
-                                    }
-                                ?>
-                            </div>
                             <div id="total-page">
                                 
                             </div>
-                            <div class="pagination-arrow-box">
+                            <div class="pagination-arrow-box" id="pagination-next-page-button">
                                 <img src="./assets/Arrow-Right.svg">
                             </div>
-                            <div class="pagination-arrow-box">
+                            <div class="pagination-arrow-box" id="pagination-last-page-button">
                                 <img src="./assets/Arrow-Last.svg">
                             </div>
                         </div>

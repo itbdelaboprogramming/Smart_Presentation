@@ -597,6 +597,8 @@ label {
 	line-height: 21px;
 
 	color: #04445f;
+
+	user-select: none;
 }
 
 .pagination-dropdown-wrapper {
@@ -737,5 +739,5 @@ label {
 }
 
 .total-data {
-	display: none;
+	margin: 0;
 }

@@ -2,19 +2,25 @@ import { scene, camera } from "../script.js";
 import * as THREE from "three";
 import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js";
 
-// Const, Var, Let
-// ------------ dark/light mode toggle ------------
+// ---------------------------------------------------------------------------------------
+// -------------------------------- Const, Var, Let --------------------------------------
+// ---------------------------------------------------------------------------------------
+
+// ------------------------------ dark/light mode toggle ---------------------------------
 const toggle = document.querySelector(".toggle");
 let getMode = localStorage.getItem("mode");
 
-// ------------ filter (ascending/descending) ------------
+// --------------------------- filter (ascending/descending) -----------------------------
 const filter_sort_box = document.querySelector(".filter-sort-box");
 const filter_asc = document.getElementById("filter-asc");
 const filter_desc = document.getElementById("filter-desc");
+let order_type = "ASC";
 
-// ------------ filter (sort by) ------------
+// --------------------------------- filter (sort by) ------------------------------------
+let filter_drop_down = document.querySelector(".filter-drop-down");
 const filter_text = document.querySelector(".filter-text");
 
+let selected_sort_by = "model_name";
 const divMNa = document.getElementById("div_sort_model_name");
 const radMNa = document.getElementById("sort_model_name");
 const divMNu = document.getElementById("div_sort_model_number");
@@ -22,7 +28,7 @@ const radMNu = document.getElementById("sort_model_number");
 const divDM = document.getElementById("div_sort_date_modified");
 const radDM = document.getElementById("sort_date_modified");
 
-// ------------ pagination drop down ------------
+// --------------------------------- pagination drop down --------------------------------
 const optionMenu_pagination = document.querySelector(".pagination-select-menu");
 const selectBtn_pagination = optionMenu_pagination.querySelector(
 	".pagination-select-menu-button"
@@ -33,7 +39,47 @@ const sBtn_text_pagination = optionMenu_pagination.querySelector(
 	".pagination-select-menu-text"
 );
 
-// dark/light mode toggle
+// ------------------------------- pagination previous/next ------------------------------
+const total_data = document.querySelector(".total-data");
+const total_page = document.getElementById("total-page");
+const total_data_first = document.querySelector(".total-data-first");
+const total_data_last = document.querySelector(".total-data-last");
+const current_page = document.getElementById("current-page");
+const pagination_first_page_button = document.getElementById(
+	"pagination-first-page-button"
+);
+const pagination_previous_page_button = document.getElementById(
+	"pagination-previous-page-button"
+);
+const pagination_next_page_button = document.getElementById(
+	"pagination-next-page-button"
+);
+const pagination_last_page_button = document.getElementById(
+	"pagination-last-page-button"
+);
+
+// ---------------------------- resize canvas width responsive ---------------------------
+let right_content = document.querySelector(".right-content");
+let width = right_content.offsetWidth * 0.9;
+
+// ----------------------------------- database data -------------------------------------
+const database_table = document.getElementById("database-data");
+let selected_database_data_selected;
+
+let loader = new GLTFLoader();
+loader.name = "loader";
+
+// -------------------------------- 3d category dropdown ---------------------------------
+const optionMenu = document.querySelector(".select-menu");
+const selectBtn = optionMenu.querySelector(".select-menu-button");
+const options = optionMenu.querySelectorAll(".option");
+const sBtn_text = optionMenu.querySelector(".select-menu-text");
+
+// ---------------------------------------------------------------------------------------
+// ---------------------------------- PROGRAM CODE ---------------------------------------
+// ---------------------------------------------------------------------------------------
+
+// ------------------------------ dark/light mode toggle ---------------------------------
 if (getMode && getMode === "dark-theme") {
 	document.body.classList.add("dark-theme");
 	toggle.classList.add("active");
@@ -41,7 +87,6 @@ if (getMode && getMode === "dark-theme") {
 	scene.background = new THREE.Color(0x98a2b3);
 
 	scene.remove(scene.getObjectByName("grid"));
-
 	const grid = new THREE.GridHelper(20, 20, 0x475b74, 0x475b74);
 	grid.name = "grid";
 	scene.add(grid);
@@ -58,7 +103,6 @@ toggle.addEventListener("click", () => {
 		scene.background = new THREE.Color(0x98a2b3);
 
 		scene.remove(scene.getObjectByName("grid"));
-
 		const grid = new THREE.GridHelper(20, 20, 0x475b74, 0x475b74);
 		grid.name = "grid";
 		scene.add(grid);
@@ -76,13 +120,13 @@ toggle.addEventListener("click", () => {
 	}
 });
 
-let order_type = "ASC";
-// filter (ascending/descending)
+// --------------------------- filter (ascending/descending) -----------------------------
 filter_sort_box.addEventListener("click", () => {
 	if (filter_asc.style.display != "none") {
 		filter_asc.style.display = "none";
 		filter_desc.style.display = "block";
 		order_type = "DESC";
+		current_page.innerText = "1";
 		updateDatabaseData(
 			sBtn_text_pagination.innerText,
 			sBtn_text.innerText,
@@ -93,6 +137,7 @@ filter_sort_box.addEventListener("click", () => {
 		filter_asc.style.display = "block";
 		filter_desc.style.display = "none";
 		order_type = "ASC";
+		current_page.innerText = "1";
 		updateDatabaseData(
 			sBtn_text_pagination.innerText,
 			sBtn_text.innerText,
@@ -102,10 +147,8 @@ filter_sort_box.addEventListener("click", () => {
 	}
 });
 
-// filter (sort by)
-let filter_drop_down = document.querySelector(".filter-drop-down");
+// --------------------------------- filter (sort by) ------------------------------------
 filter_text.addEventListener("click", () => {
-	// do something
 	if (filter_drop_down.style.display == "none") {
 		filter_drop_down.style.display = "flex";
 	} else {
@@ -121,10 +164,10 @@ window.addEventListener("click", function (e) {
 	}
 });
 
-let selected_sort_by = "model_name";
 divMNa.addEventListener("click", () => {
 	radMNa.checked = true;
 	selected_sort_by = "model_name";
+	current_page.innerText = "1";
 	updateDatabaseData(
 		sBtn_text_pagination.innerText,
 		sBtn_text.innerText,
@@ -137,6 +180,7 @@ divMNa.addEventListener("click", () => {
 divMNu.addEventListener("click", () => {
 	radMNu.checked = true;
 	selected_sort_by = "model_number";
+	current_page.innerText = "1";
 	updateDatabaseData(
 		sBtn_text_pagination.innerText,
 		sBtn_text.innerText,
@@ -149,6 +193,7 @@ divMNu.addEventListener("click", () => {
 divDM.addEventListener("click", () => {
 	radDM.checked = true;
 	selected_sort_by = "date_modified";
+	current_page.innerText = "1";
 	updateDatabaseData(
 		sBtn_text_pagination.innerText,
 		sBtn_text.innerText,
@@ -158,29 +203,93 @@ divDM.addEventListener("click", () => {
 	filter_drop_down.style.display = "none";
 });
 
-// pagination previous/next
-const total_data = document.querySelector(".total-data");
-const total_page = document.getElementById("total-page");
+// ------------------------------- pagination previous/next ------------------------------
 updateTotalPage();
 
-function updateTotalPage() {
-	total_page.innerText = Math.ceil(
-		total_data.innerText / sBtn_text_pagination.innerText
-	);
-}
+pagination_first_page_button.addEventListener("click", () => {
+	if (!pagination_first_page_button.classList.contains("disabled")) {
+		current_page.innerText = "1";
+		pagination_first_page_button.classList.add("disabled");
+		pagination_previous_page_button.classList.add("disabled");
 
-// const database_data = document.querySelectorAll("tr");
-const database_table = document.getElementById("database-data");
-let selected_database_data_selected;
+		pagination_next_page_button.classList.remove("disabled");
+		pagination_last_page_button.classList.remove("disabled");
+
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
+	}
+});
+
+pagination_previous_page_button.addEventListener("click", () => {
+	if (!pagination_previous_page_button.classList.contains("disabled")) {
+		let pageNumber = parseInt(current_page.innerText) - 1;
+		current_page.innerText = pageNumber;
+
+		pagination_next_page_button.classList.remove("disabled");
+		pagination_last_page_button.classList.remove("disabled");
+
+		if (pageNumber == 1) {
+			pagination_first_page_button.classList.add("disabled");
+			pagination_previous_page_button.classList.add("disabled");
+		}
+
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
+	}
+});
+
+pagination_next_page_button.addEventListener("click", () => {
+	if (!pagination_next_page_button.classList.contains("disabled")) {
+		let pageNumber = parseInt(current_page.innerText) + 1;
+		current_page.innerText = pageNumber;
+
+		pagination_first_page_button.classList.remove("disabled");
+		pagination_previous_page_button.classList.remove("disabled");
+
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
+
+		if (pageNumber == parseInt(total_page.innerText)) {
+			pagination_next_page_button.classList.add("disabled");
+			pagination_last_page_button.classList.add("disabled");
+		}
+	}
+});
+
+pagination_last_page_button.addEventListener("click", () => {
+	if (!pagination_last_page_button.classList.contains("disabled")) {
+		current_page.innerText = total_page.innerText;
+		pagination_next_page_button.classList.add("disabled");
+		pagination_last_page_button.classList.add("disabled");
+
+		updateDatabaseData(
+			sBtn_text_pagination.innerText,
+			sBtn_text.innerText,
+			selected_sort_by,
+			order_type
+		);
+
+		pagination_first_page_button.classList.remove("disabled");
+		pagination_previous_page_button.classList.remove("disabled");
+	}
+});
+
+// ----------------------------------- database data -------------------------------------
 updateDatabaseDataSelect(database_table);
 
-// ------------ 3d category dropdown ------------
-const optionMenu = document.querySelector(".select-menu");
-const selectBtn = optionMenu.querySelector(".select-menu-button");
-const options = optionMenu.querySelectorAll(".option");
-const sBtn_text = optionMenu.querySelector(".select-menu-text");
-
-// for 3d category dropdown
+// -------------------------------- 3d category dropdown ---------------------------------
 selectBtn.addEventListener("click", () => {
 	optionMenu.classList.toggle("active");
 });
@@ -190,6 +299,7 @@ options.forEach(function (option) {
 		let selectedOption = option.querySelector(".option-text").innerText;
 		sBtn_text.innerText = selectedOption;
 		optionMenu.classList.toggle("active");
+		current_page.innerText = "1";
 		updateDatabaseData(
 			sBtn_text_pagination.innerText,
 			sBtn_text.innerText,
@@ -207,7 +317,7 @@ window.addEventListener("click", function (e) {
 	}
 });
 
-// for pagination dropdown
+// --------------------------------- pagination drop down --------------------------------
 selectBtn_pagination.addEventListener("click", () => {
 	optionMenu_pagination.classList.toggle("active");
 });
@@ -219,6 +329,7 @@ options_pagination.forEach(function (option) {
 		).innerText;
 		if (sBtn_text_pagination.innerText != selectedOptionPagination) {
 			sBtn_text_pagination.innerText = selectedOptionPagination;
+			current_page.innerText = "1";
 			updateDatabaseData(
 				sBtn_text_pagination.innerText,
 				sBtn_text.innerText,
@@ -240,25 +351,22 @@ window.addEventListener("click", function (e) {
 	}
 });
 
-// canvas
-let right_content = document.querySelector(".right-content");
-// let width = window.innerWidth * 0.4;
-let width = right_content.offsetWidth * 0.9;
+// ---------------------------- resize canvas width responsive ---------------------------
 resizeCanvas();
 
 window.addEventListener("resize", () => {
 	resizeCanvas();
 });
 
-// FUNCTION HELPER
+// ---------------------------------------------------------------------------------------
+// ---------------------------------- FUNCTION HELPER ------------------------------------
+// ---------------------------------------------------------------------------------------
+
+// ---------------------------- resize canvas width responsive ---------------------------
 function resizeCanvas() {
 	right_content = document.querySelector(".right-content");
 
 	width = right_content.offsetWidth * 0.9;
-
-	// if (width < 275) {
-	// 	width = 275;
-	// }
 
 	if (window.innerWidth <= 1140) {
 		width = window.innerWidth * 0.4;
@@ -269,18 +377,43 @@ function resizeCanvas() {
 	camera.updateProjectionMatrix();
 }
 
-function resetDatabaseDataSelect(database_data) {
-	database_data.forEach(function (data) {
-		data.classList.remove("active");
-	});
+// ------------------------------- pagination previous/next ------------------------------
+function updateTotalPage() {
+	total_page.innerText = Math.ceil(
+		total_data.innerText / sBtn_text_pagination.innerText
+	);
+
+	if (total_page.innerText == 1) {
+		pagination_first_page_button.classList.add("disabled");
+		pagination_previous_page_button.classList.add("disabled");
+		pagination_next_page_button.classList.add("disabled");
+		pagination_last_page_button.classList.add("disabled");
+	} else if (
+		current_page.innerText == total_page.innerText &&
+		total_page.innerText != 1
+	) {
+		pagination_first_page_button.classList.remove("disabled");
+		pagination_previous_page_button.classList.remove("disabled");
+		pagination_next_page_button.classList.add("disabled");
+		pagination_last_page_button.classList.add("disabled");
+	} else if (current_page.innerText == 1 && total_page.innerText != 1) {
+		pagination_first_page_button.classList.add("disabled");
+		pagination_previous_page_button.classList.add("disabled");
+		pagination_next_page_button.classList.remove("disabled");
+		pagination_last_page_button.classList.remove("disabled");
+	}
 }
 
+// ----------------------------------- database data -------------------------------------
 function updateDatabaseData(amount, category, order_by, order_type) {
+	const offset = (parseInt(current_page.innerText) - 1) * parseInt(amount);
+	const search_key = getSearchParameters();
 	let http = new XMLHttpRequest();
 
 	http.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
 			let response = JSON.parse(this.responseText);
+
 			let out = "";
 			out += `
 				<tr class="noHover">
@@ -293,9 +426,12 @@ function updateDatabaseData(amount, category, order_by, order_type) {
 					<th class="right-table">SIZE</th>
 				</tr>
 			`;
-			let number = 1;
+			let number =
+				(parseInt(current_page.innerText) - 1) * parseInt(amount) + 1;
+			let firstDataNumber = number;
+			let lastDataNumber;
 
-			response.forEach((item, index) => {
+			response[0].forEach((item, index) => {
 				let date_modified_date = item.date_modified.split(" ");
 				let date_modified_time = date_modified_date[1].split(":");
 				let date_modified_time_display;
@@ -330,10 +466,15 @@ function updateDatabaseData(amount, category, order_by, order_type) {
 				`;
 
 				number++;
+				lastDataNumber = number;
 			});
 
 			database_table.innerHTML = out;
 			updateDatabaseDataSelect(database_table);
+			total_data.innerText = response[1];
+			total_data_first.innerText = firstDataNumber;
+			total_data_last.innerText = lastDataNumber - 1;
+			updateTotalPage();
 		}
 	};
 	http.open("POST", "./utils/database.php", true);
@@ -346,8 +487,18 @@ function updateDatabaseData(amount, category, order_by, order_type) {
 			"&orderby=" +
 			order_by +
 			"&ordertype=" +
-			order_type
+			order_type +
+			"&offset=" +
+			offset +
+			"&searchkey=" +
+			search_key
 	);
+}
+
+function resetDatabaseDataSelect(database_data) {
+	database_data.forEach(function (data) {
+		data.classList.remove("active");
+	});
 }
 
 function updateDatabaseDataSelect(database_table) {
@@ -390,8 +541,6 @@ function loadFile3D(id) {
 	http.send("id=" + id);
 }
 
-let loader = new GLTFLoader();
-loader.name = "loader";
 function updateFile3D(file_name) {
 	try {
 		let file3D = scene.getObjectByName("file3D");
@@ -414,4 +563,18 @@ function updateFile3D(file_name) {
 	} catch (e) {
 		// do nothing
 	}
+}
+
+// ---------------------------------------- search ---------------------------------------
+// ------------------------------- pagination previous/next ------------------------------
+function getSearchParameters() {
+	let prmstr = window.location.search;
+	var param = new URLSearchParams(prmstr);
+	let value;
+	if (param.has("search")) {
+		value = param.get("search");
+	} else {
+		value = "";
+	}
+	return value;
 }
