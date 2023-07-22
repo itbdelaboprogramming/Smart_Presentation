@@ -43,6 +43,9 @@ const catalogueDetailTitle = document.querySelector(
 
 // -------------------------------------- lightning --------------------------------------
 const menuLightning = document.querySelector(".menu-container-blue-lightning");
+const lightning_expand = document.querySelector(
+	".menu-container-blue-lightning-expand"
+);
 
 // ------------------------------------- information -------------------------------------
 const menuInformation = document.querySelector(
@@ -181,9 +184,7 @@ catalogueDetailBack.addEventListener("click", () => {
 });
 
 // -------------------------------------- lightning --------------------------------------
-const lightning_expand = document.querySelector(
-	".menu-container-blue-lightning-expand"
-);
+
 menuLightning.addEventListener("click", () => {
 	menuLightning.classList.toggle("active");
 
