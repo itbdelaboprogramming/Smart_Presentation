@@ -218,6 +218,10 @@
                     </ul>
                 </div>
             </div>
+            <div class="loadingScreenContainer" style="display: none">
+                    <label for="loadingBar" id='loadingBarLabel'> Loading... </label>
+                    <progress id='loadingBar' max='100' value='0'></progress>
+            </div>
         </div>
 
         <script type="module" src="script.js"> </script>

@@ -1,4 +1,4 @@
-import { scene, camera, orbitControls } from "../script.js";
+import { scene, camera, orbitControls, loader } from "../script.js";
 import * as THREE from "three";
 import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js";
 
@@ -76,8 +76,8 @@ const toggle = document.querySelector(".toggle");
 let getMode = localStorage.getItem("mode");
 
 // ---------------------------- resize canvas width responsive ---------------------------
-let loader = new GLTFLoader();
-loader.name = "loader";
+// let loader = new GLTFLoader();
+// loader.name = "loader";
 
 // ------------------------------------- slider zoom -------------------------------------
 const slider = document.getElementById("slider-zoom");

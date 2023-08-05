@@ -173,6 +173,24 @@ body {
 	}
 }
 
+.loadingScreenContainer {
+	position: fixed;
+	z-index: 3;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+
+	/* background-color: rgba(0, 0, 0, 0.8); */
+	backdrop-filter: blur(3px);
+	display: flex;
+	gap: 10px;
+
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
 /* for sound container */
 .container-bottom-left-ml2x {
 	position: fixed;
@@ -285,4 +303,18 @@ body {
 .toggle.active::before {
 	left: calc(100% - 26.53px - calc(50% - 26.53px / 2 - 15.54px));
 	background: #74e7d4;
+}
+
+/* --------------------------------------------- LOADING SCREEN -------------------------------------------- */
+#loadingBarLabel {
+	font-family: "Ubuntu";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 22px;
+	line-height: 17px;
+}
+
+#loadingBar {
+	height: 5%;
+	width: 30%;
 }

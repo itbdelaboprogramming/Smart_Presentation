@@ -73,7 +73,26 @@ renderer.setSize(myCanvas.offsetWidth, myCanvas.offsetHeight);
 
 export const orbitControls = new OrbitControls(camera, renderer.domElement);
 
-export const loader = new GLTFLoader();
+const loadingScreenBar = document.getElementById("loadingBar");
+const loadingScreenContainer = document.querySelector(
+	".loadingScreenContainer"
+);
+const loadingManager = new THREE.LoadingManager();
+
+loadingManager.onStart = function () {
+	loadingScreenContainer.style.display = "flex";
+};
+
+loadingManager.onProgress = function (url, loaded, total) {
+	loadingScreenBar.value = (loaded / total) * 100;
+};
+
+loadingManager.onLoad = function () {
+	loadingScreenBar.value = 0;
+	loadingScreenContainer.style.display = "none";
+};
+
+export const loader = new GLTFLoader(loadingManager);
 loader.name = "loader";
 
 let path = "files/" + myText;
