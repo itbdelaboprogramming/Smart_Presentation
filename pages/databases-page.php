@@ -256,6 +256,10 @@
             <div class="container-bottom-right">
                 <div class="toggle"></div>
             </div>
+            <div class="loadingScreenContainer" style="display: none">
+                    <label for="loadingBar" id='loadingBarLabel'> Loading... </label>
+                    <progress id='loadingBar' max='100' value='0'></progress>
+            </div>
         </div>
 
         <script>

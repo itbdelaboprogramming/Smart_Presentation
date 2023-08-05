@@ -1,4 +1,4 @@
-import { scene, camera } from "../script.js";
+import { scene, camera, loader } from "../script.js";
 import * as THREE from "three";
 import { GLTFLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/GLTFLoader.js";
 
@@ -66,8 +66,8 @@ let width = right_content.offsetWidth * 0.9;
 const database_table = document.getElementById("database-data");
 let selected_database_data_selected;
 
-let loader = new GLTFLoader();
-loader.name = "loader";
+// let loader = new GLTFLoader();
+// loader.name = "loader";
 
 // -------------------------------- 3d category dropdown ---------------------------------
 const optionMenu = document.querySelector(".select-menu");
