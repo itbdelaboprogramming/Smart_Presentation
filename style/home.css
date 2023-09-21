@@ -815,6 +815,7 @@ canvas {
 	background: var(--primary-color-50);
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 5px;
+	height: fit-content;
 }
 
 @media (max-width: 1000px) {
@@ -832,3 +833,52 @@ canvas {
 	text-align: center;
 	color: var(--primary-color-200);
 }
+
+/* ---------------------------------------------- PDF BUTTON ----------------------------------------------- */
+.pdf_container {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	user-select: none;
+}
+
+.menu-pdf {
+	cursor: pointer;
+}
+
+.menu-pdf:hover {
+	filter: drop-shadow(0px 4px 4px rgba(24, 154, 180, 0.75));
+}
+
+.menu-pdf:active {
+	filter: brightness(0.5);
+}
+
+/* ---------------------------------------------- PDF POP UP ----------------------------------------------- */
+/* .pdf-pop-up-container {
+	border: 10px solid var(--secondary-color-side-theme-sunset-200, #ff7582);
+	height: 100%;
+	width: 100%;
+} */
+
+/* --------------------------------------------- VIDEO BUTTON ---------------------------------------------- */
+.menu-video {
+	cursor: pointer;
+}
+
+.menu-video:hover {
+	filter: drop-shadow(0px 4px 4px rgba(24, 154, 180, 0.75));
+}
+
+.menu-video:active {
+	filter: brightness(0.5);
+}
+
+/* --------------------------------------------- VIDEO POP UP ---------------------------------------------- */
+/* .pdf-pop-up-container-video {
+	border: 10px solid var(--secondary-color-side-theme-sunset-200, #ff7582);
+	height: fit-content;
+	width: fit-content;
+
+	display: flex;
+} */

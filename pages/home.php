@@ -28,9 +28,13 @@
             <canvas id="myCanvas">    </canvas>
 
             <div class="container-top-left">
-                <button class="menu-container" onClick="location.href='databases'">
-                    <img src="./assets/Menu.png">
-                </button>
+                <div class="pdf_container">
+                    <button class="menu-container" onClick="location.href='databases'">
+                        <img src="./assets/Menu.png">
+                    </button>
+                    <img class="menu-pdf" src="./assets/Pdf.svg">
+                    <img class="menu-video" src="./assets/Video.svg">
+                </div>
 
                 <div class="page-name-container">
                     <div class="page-name-text">N-Presentation</div>
