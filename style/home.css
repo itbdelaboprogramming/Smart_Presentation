@@ -835,6 +835,24 @@ canvas {
 }
 
 /* ---------------------------------------------- PDF BUTTON ----------------------------------------------- */
+.container-full-screen-pdf {
+	position: fixed;
+	z-index: 3;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 5% 7% 5% 7%;
+	backdrop-filter: blur(5px);
+
+	display: none;
+	user-select: none;
+}
+
+.container-full-screen-pdf.active {
+	display: block;
+}
+
 .pdf_container {
 	display: flex;
 	flex-direction: column;
@@ -855,11 +873,11 @@ canvas {
 }
 
 /* ---------------------------------------------- PDF POP UP ----------------------------------------------- */
-/* .pdf-pop-up-container {
+.pdf-pop-up-container {
 	border: 10px solid var(--secondary-color-side-theme-sunset-200, #ff7582);
 	height: 100%;
 	width: 100%;
-} */
+}
 
 /* --------------------------------------------- VIDEO BUTTON ---------------------------------------------- */
 .menu-video {

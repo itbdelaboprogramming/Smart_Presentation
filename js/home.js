@@ -652,3 +652,19 @@ function updateLamp() {
 	let lamp = scene.getObjectByName("dirLight");
 	lamp.intensity = slider_lamp.value;
 }
+
+// ------------------------------------- PDF Button --------------------------------------
+const pdf_button = document.querySelector(".menu-pdf");
+const pdf_pop_up = document.querySelector(".container-full-screen-pdf");
+
+pdf_button.addEventListener("click", () => {
+	pdf_pop_up.classList.toggle("active");
+});
+
+pdf_pop_up.addEventListener("click", function (e) {
+	if (!document.getElementById("pdf-pop-up-container").contains(e.target)) {
+		if (pdf_pop_up.classList.contains("active")) {
+			pdf_pop_up.classList.remove("active");
+		}
+	}
+});
