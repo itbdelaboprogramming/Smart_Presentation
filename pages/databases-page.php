@@ -274,6 +274,7 @@
             }
 
             function cancelSubmit() {
+                document.getElementById("fileUpload").value = "";
                 document.getElementById("submit-file-container").style.display = "none";
                 document.body.style.overflow = "auto";
             }
